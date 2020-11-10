@@ -1,0 +1,33 @@
+.dropdown-menu {
+    background: red ;
+    width: 200px ;
+    position: absolute ;
+    margin-top: 40px ;
+    right: 200px ;
+    left: 650px ;
+    list-style: none ;
+    text-align: center ;
+  }
+  
+  .dropdown-menu li {
+    background: #1888ff !important ;
+    cursor: pointer !important;
+  }
+  
+  .dropdown-menu li:hover {
+    background: #5cabff !important ;
+  }
+  
+  .dropdown-menu.clicked {
+    display: none ;
+  }
+  
+  .dropdown-link {
+    display: block !important ;
+    height: 100% !important;
+    width: 100% !important;
+    text-decoration: none ;
+    color: #fff !important;
+    padding: 16px !important;
+  }
+  

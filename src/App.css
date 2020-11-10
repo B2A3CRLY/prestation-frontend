@@ -1,0 +1,76 @@
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+*{
+  box-sizing: border-box ;
+  margin:  0 ;
+  padding: 0 ;
+  font-family: 'EB Garamond', serif ;
+}
+.home, .domestique, .login, .agricole, .home-service{
+  display: flex ;
+  height: 90vh ;
+  align-items: center ;
+  justify-content: center ;
+  font-size: 3rem ;
+}
+.home {
+  background-image: url('./images/img-3.jpg');
+  background-position: center ;
+  background-size: cover ;
+  background-repeat: no-repeat ;
+  color: #fff ;
+  font-size: 100px ;
+}
+
+.domestique {
+  background-image: url('./images/img-2.jpg') ;
+  background-position: center ;
+  background-size: cover ;
+  background-repeat: no-repeat ;
+  color: #fff ;
+  font-size: 100px ;
+}
+
+.agricole{
+  background-image: url('./images/img-3.jpg') ;
+  background-position: center ;
+  background-size: cover ;
+  background-repeat: no-repeat ;
+  color: #fff ;
+  font-size: 100px ;
+}
+
+.contact-us {
+  background-image: url('./images/img-4.jpg') ;
+  background-position: center ;
+  background-size: fill ;
+  background-repeat: no-repeat ;
+  color: #fff ;
+  font-size: 100px ;
+}
+
+.login {
+  background-image: url('./images/img-3.jpg') ;
+  background-position: center ;
+  background-size: cover ;
+  background-repeat: no-repeat ;
+  color: #fff ;
+  font-size: 100px ;
+}
+
+.home-service {
+  background-image: url('./images/img-3.jpg') ;
+  background-position: center ;
+  background-size: fill ;
+  background-repeat: no-repeat ;
+  color: #fff ;
+  font-size: 100px ;
+}
+
+
