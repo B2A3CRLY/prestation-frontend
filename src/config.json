@@ -1,3 +1,4 @@
 {
-    "apiUrl": "https://kirikou-prestation.herokuapp.com/api"
+   "apiUrlProd": "https://kirikou-prestation.herokuapp.com/api",
+   "apiUrl": "http://localhost:8000/api"
 }

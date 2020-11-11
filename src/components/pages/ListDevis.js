@@ -80,7 +80,7 @@ export default class ListDevis extends Component {
                     >
                       delete
                   </Button>
-                    <Button variant="primary" size="sm" onClick = {this.gotoViewQuotation.bind(this, dev.id)}>
+                    <Button variant="primary" size="sm" className="mt-1" onClick = {this.gotoViewQuotation.bind(this, dev.id)}>
                       view
                   </Button>
                   </td>

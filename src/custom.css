@@ -780,16 +780,16 @@ table{
 }
 .text-right-one{
   margin-right: -2px;
-  margin-top: 222px;
+  margin-top: 105px;
   display: block;
 }
 .text-right-one-integre{
   margin-right: -2px;
-  margin-top: 220px;
+  margin-top: 120px;
   display: block;
 }
 .text-right-two{
-  margin-top: 644px;
+  margin-top: 814px;
   text-align: right;
   display: block;
 }
@@ -806,7 +806,7 @@ table{
   text-align: right;
 }
 .text-integre{
-  margin-top: 955px;
+  margin-top: 854px;
   text-align: right;
   display: block;
 }
@@ -880,7 +880,7 @@ table{
   margin-top: -700px;
 }
 .space-between-end{
-  margin-top: -630px;
+  margin-top: -800px;
 }
 .space-between-cloture{
   margin-top: -750px; 

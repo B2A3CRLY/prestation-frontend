@@ -447,52 +447,7 @@ export default class ViewDevis extends Component {
                                 </tbody>
                                 <tbody>
                                     {quotationGouttePlusView}
-                                </tbody>
-                                 <tbody>
-                                        <tr>
-                                            <td>2-a</td>
-                                            <td>Panneau solaire de puissance 270 Watts</td>
-                                            <td style={{ textAlign: 'right' }}>2</td>
-                                            <td style={{ textAlign: 'right' }}>85000</td>
-                                            <td style={{ textAlign: 'right' }}>{2*85000}</td>
-                                        </tr>
-                                    </tbody>
-                                <tbody>
-                                        <tr>
-                                            <td>2-b</td>
-                                            <td>Pompe immergée solaire, Débit 3 m3/h, HMT 40 m, Puissance 400 Watts, Tension 24 Volts</td>
-                                            <td style={{ textAlign: 'right' }}>1</td>
-                                            <td style={{ textAlign: 'right' }}>250000</td>
-                                            <td style={{ textAlign: 'right' }}>{250000}</td>
-                                        </tr>
-                                </tbody>
-                                <tbody>
-                                        <tr>
-                                            <td>2-c</td>
-                                            <td>Accessoires solaires</td>
-                                            <td style={{ textAlign: 'right' }}>ens</td>
-                                            <td style={{ textAlign: 'right' }}>150000</td>
-                                            <td style={{ textAlign: 'right' }}>{150000}</td>
-                                        </tr>
-                                </tbody>
-                                 <tbody>
-                                        <tr>
-                                            <td>2-d</td>
-                                            <td>Pompe de surface (electrique) et Accessoires</td>
-                                            <td style={{ textAlign: 'right' }}>1</td>
-                                            <td style={{ textAlign: 'right' }}>250000</td>
-                                            <td style={{ textAlign: 'right' }}>250000</td>
-                                        </tr>
-                                </tbody> 
-                                <tbody>
-                                        <tr>
-                                            <td>2-e</td>
-                                            <td>Frais de déplacement et de séjour</td>
-                                            <td style={{ textAlign: 'right' }}>ens</td>
-                                            <td style={{ textAlign: 'right' }}>300000</td>
-                                            <td style={{ textAlign: 'right' }}>300000</td>
-                                        </tr>
-                                    </tbody>  
+                                </tbody>  
                                 {nCloture !== null && nCloture !== 0 && nEclairage === 0 && <>
                                     <tbody className="box-text">
                                         <tr>
@@ -600,8 +555,8 @@ export default class ViewDevis extends Component {
                                         <th></th>
                                         <th></th>
                                         <th style={{ textAlign: 'center' }}>Total (TTC)</th>
-                                        <th colspan="1" style={{ textAlign: 'right' }}>{1.18*(totalPriceGoutte + totalWorkForce + totalCloture + totalEclairage + totalSupportMetalique + 570000 + 550000)}</th>
-                                        <th style={{ textAlign: 'right' }}>{1.18*(totalPriceGoutte + totalWorkForce + totalCloture + totalEclairage + totalSupportMetalique + 570000 + 550000)}</th>
+                                        <th colspan="1" style={{ textAlign: 'right' }}>{1.18*(totalPriceGoutte + totalWorkForce + totalCloture + totalEclairage + totalSupportMetalique)}</th>
+                                        <th style={{ textAlign: 'right' }}>{1.18*(totalPriceGoutte + totalWorkForce + totalCloture + totalEclairage + totalSupportMetalique)}</th>
                                     </tr>
                                 </tbody>
                             </table>
