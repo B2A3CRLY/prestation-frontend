@@ -1,20 +1,26 @@
 import React, { Component} from 'react';
 import http from '../../services/httpService';
 import Select from 'react-select';
+import Image from '../common/image';
 import { Button, Form, Modal,Table} from 'react-bootstrap';
+import auth from "../../services/authService";
 import {
     apiUrl
   } from '../../config.json';
 const apiClient = apiUrl + '/client/';
 const apiVente = apiUrl + '/vente/';
-const apiDevis = apiUrl + '/devisDomestique/';
+const apiDevis = apiUrl + '/devisVenteCreate/';
+const apiProduct = apiUrl + '/quantityVenteCreate/';
 const options = [{ value: 'Masculin', label: 'Masculin' }, { value: 'Feminin', label: 'Feminin' }];
+const tokenKey = 'token';
+const idProductCollected = [];
 export default class Vente extends Component{
     constructor(props, context) {
         super(props, context)
         this.state = {
             clients: [],
             id: '',
+            idProduct: '',
             ventes:'',
             firstName: '',
             lastName: '',
@@ -26,9 +32,16 @@ export default class Vente extends Component{
             pays:'',
             phone: '',
             people: '',
+            ugs: '',
+            img: '',
+            price: '',
+            marque: '',
+            description : '',
+            designation: '',
             show: false,
             showAdd: false,
             showProduct: false,
+            createProduct: false,
             search:''
         }
     }
@@ -48,6 +61,12 @@ export default class Vente extends Component{
     }
     handleCloseProduct = () =>{
         this.setState({showProduct: false})
+    }
+    handleShowCreateProduct = () =>{
+        this.setState({createProduct: true})
+    }
+    handleCloseCreateProduct = () =>{
+        this.setState({createProduct: false})
     }
     handleShowAdd = () =>{
         this.setState({
@@ -126,25 +145,91 @@ export default class Vente extends Component{
              }
              });
          }
-    onSubmitProduct = () =>{
+    onSubmitProduct = (e) => {
+        e.preventDefault();
+        const product = {
+            vente: {id: this.state.selectedOption.id},
+            quantity: this.state.quantity
+        }
+        http.post(apiProduct, product)
+        .then(res => {
+            console.log('devis:', res.data);
+            console.log('id:', res.data.id);
+            console.log('status :', res.status);
+            this.setState({
+                idProduct: res.data.id
+            });
+            if (res.status === 200) {
+                alert('produit ajouté avec succés !');
+                idProductCollected.push({id : this.state.idProduct})
+                this.setState({ showProduct: false })
+                console.log('productCollected: ', idProductCollected)
+                
+          } else {
+            alert("Une erreur s'est produite");
+        }
+        });
+    }
+    onSubmitCreateProduct = (e) =>{
+       e.preventDefault();
+       const product = {
+           ugs: this.state.ugs,
+           designation: this.state.designation,
+           price: this.state.price,
+           url: this.state.url,
+           marque: this.state.marque
+       }
+       http.post(apiVente + 'create/', product)
+             .then(res => {
+                 console.log('produit:', res.data);
+                 console.log('status :', res.data.status);
+                 this.setState({
 
+                 });
+                 if (res.status === 200) {
+                     alert('produit ajouté avec succés !');
+                     this.getVentes();
+                     this.setState({
+                         createProduct : false
+                     })
+               } else {
+                 alert("Une erreur s'est produite");
+             }
+             });
     }
     canBeSubmittedProduct (){
-        return true;
+        return this.state.selectedOption && this.state.quantity;
+    }
+    canBeSubmittedCreateProduct (){
+        return this.state.designation && this.state.price;
     }
     async componentDidMount() {
-        const { data : clients } = await http.get(apiClient);
-        const { data : ventes } = await http.get(apiVente);
+        const { data: clients } = await http.get(apiClient)
         console.log('Clients : ', clients);
+        this.setState({ clients });
+        this.getVentes();
+    }
+    async getVentes() {
+        let token = auth.getJwt(tokenKey)
+        const { data: ventes } = await http.get(apiVente,{
+            headers:{
+                "Content-type": "application/json",
+                "Authorization": `Token ${token}`
+            },
+        });
         console.log('Ventes : ', ventes);
-        this.setState({ clients, ventes});
+        console.log('headers:',"Token " + token)
+        this.setState({ventes});
     }
     onSubmitDevis = (e) => {
         e.preventDefault();
         const devis = {
-            client: this.state.id,
+            client: {id: this.state.id },
+            sales: idProductCollected,
+            isQuotation: this.state.checked,
+            isInvoice: this.state.checkedNo
         }
-        http.post(apiDevis + 'create/', devis)
+        http.post(apiDevis, devis)
                 .then(res => {
                     console.log('devis:', res.data);
                     console.log('id:', res.data.id);
@@ -152,9 +237,6 @@ export default class Vente extends Component{
                     if (res.status === 200) {
                         alert('Devis créé avec succés !');
                         this.toDevis();
-                        this.setState({
-                            surfaceAllocated: ''
-                        })
                   } else {
                     alert("Une erreur s'est produite");
                 }
@@ -163,11 +245,14 @@ export default class Vente extends Component{
     toDevis = () =>{
         window.location.href = '/devis-vente';
     }
+    
     render() {
-        const { clients,ventes,sexe, selectedOption,
-                selectedPerson,people, checked, checkedNo, quantity} = this.state;
+        const { clients, ventes, sexe, selectedOption, checked, checkedNo, quantity} = this.state;
+        console.log('devis : ', checked)
+        console.log('facture : ', checkedNo)
         console.log('selectedOption: ', selectedOption, 'quantité:', quantity);
         const isEnabledProduct = this.canBeSubmittedProduct();
+        const isEnabledCreateProduct = this.canBeSubmittedCreateProduct()
         console.log('img:',selectedOption ? selectedOption.img: '')
         const isEnabledAdd = this.canBeSubmittedClient();
         let filterClient = clients.length ? clients.filter((client)=>{
@@ -221,7 +306,8 @@ export default class Vente extends Component{
                                 value={this.state.quantity}
                                 onChange={this.handleChange}
                                 />
-                                <Button variant="secondary" size="sm" className="mt-2" onClick={this.handleShowProduct}>Ajouter produit</Button>
+                                <Button variant="secondary" size="sm" className="mt-2 mr-2" onClick={this.handleShowCreateProduct}>Créer produit</Button>
+                                <Button variant="secondary" size="sm" className="mt-2" onClick={this.handleShowProduct}>Ajouter produitt</Button>
                             </div>
                             <div className="form-check">
                                     <input className="form-check-input" type="radio"
@@ -373,7 +459,7 @@ export default class Vente extends Component{
                     <Modal.Body>
                     <form onSubmit={this.onSubmitProduct}>
                             <div className="form-group">
-                                <label>Produits:  </label>
+                                <label>Listes des produits:  </label>
                                 <Select 
                                 isSearchable={true}
                                 getOptionLabel={option => option.designation}
@@ -393,12 +479,88 @@ export default class Vente extends Component{
                                     onChange={this.handleChange}
                                     />
                                 </div>
+                                <Image vente={selectedOption}/>
                             </>}       
                         <Modal.Footer>
                         <Button variant="secondary" onClick={this.handleCloseProduct}>
                                 Close
                         </Button>
                         <Button variant="primary" type="submit" className="btn btn-primary"  disabled={!isEnabledProduct}>
+                                Valider
+                        </Button>
+                    </Modal.Footer>
+                    </form>     
+                    </Modal.Body>
+                    </Modal>
+                </div>
+                <div>
+                    <Modal show={this.state.createProduct}
+                        onHide={this.handleCloseCreateProduct}>
+                    <Modal.Header closeButton>
+                        <Modal.Title className="text-success"><marquee direction="right">Création de produit (s)!</marquee></Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                    <form onSubmit={this.onSubmitCreateProduct}>
+                            <div className="form-group">
+                                <label>Référence:  </label>
+                                <input 
+                                type="text" 
+                                className="form-control" 
+                                name="ugs"
+                                onChange={this.handleChange}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Désignation:  </label>
+                                <input 
+                                type="text" 
+                                className="form-control" 
+                                name="designation"
+                                onChange={this.handleChange}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Prix:  </label>
+                                <input 
+                                type="number" step = "any"
+                                className="form-control" 
+                                name="price"
+                                onChange={this.handleChange}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Marque:  </label>
+                                <input 
+                                type="text" 
+                                className="form-control" 
+                                name="marque"
+                                onChange={this.handleChange}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Url de l'image:  </label>
+                                <input 
+                                type="text" 
+                                className="form-control" 
+                                placeholder="https://kirikousystems.com/nom_image"
+                                name="img"
+                                onChange={this.handleChange}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Description:  </label>
+                                <input 
+                                type="text" 
+                                className="form-control" 
+                                name="description"
+                                onChange={this.handleChange}
+                                />
+                            </div>   
+                        <Modal.Footer>
+                        <Button variant="secondary" onClick={this.handleCloseCreateProduct}>
+                                Close
+                        </Button>
+                        <Button variant="primary" type="submit" className="btn btn-primary"  disabled={!isEnabledCreateProduct}>
                                 Valider
                         </Button>
                     </Modal.Footer>

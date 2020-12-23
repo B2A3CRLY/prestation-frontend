@@ -20,12 +20,18 @@ const Navbar = ({ user,loginUser}) => {
         <i class="fa fa-home"></i>
 					Home
 				</NavLink>
-				</li>
+        </li>
         <li className="nav-item">
-        <NavLink className=" nav-link" to="/devis">
-        <i class="fa fa-home"></i>
-					Liste Devis
-				</NavLink>
+          <NavLink className="nav-link" to="/home-service">
+            <i class="fab fa-paypal"></i>
+            Liste devis
+          </NavLink>
+          <div className="sub-menu-1">
+            <ul>
+                <li><NavLink to="/devis"><a href>Devis agricole</a></NavLink></li>
+                <li><NavLink to="/devis-domestique">Devis domestique</NavLink></li>
+            </ul>
+          </div>
 				</li>
         <li className="nav-item">
           <NavLink className="nav-link" to="/home-service">
@@ -41,21 +47,15 @@ const Navbar = ({ user,loginUser}) => {
 				</li>
         <li className="nav-item">
           <NavLink className="nav-link" to="/home-service">
-            <i class="fab fa-paypal"></i>
-            Liste devis
+            <i class="fa fa-users"></i>
+            Devis Ventes
           </NavLink>
           <div className="sub-menu-1">
-            <ul>
-                <li><NavLink to="/devis"><a href>Devis agricole</a></NavLink></li>
-                <li><NavLink to="/devis-domestique">Devis domestique</NavLink></li>
+            <ul> 
+                <li><NavLink to="/vente"><a href>Création Devis</a></NavLink></li>
+                <li><NavLink to="/devis-vente">Liste Devis</NavLink></li>
             </ul>
           </div>
-				</li>
-        <li className="nav-item">
-        <NavLink className="nav-link" to="/vente">
-        <i class="fa fa-users"></i>
-        Devis Ventes
-				</NavLink>
 				</li>
         <li className="nav-item">
         <NavLink className="nav-link" to="/colis">

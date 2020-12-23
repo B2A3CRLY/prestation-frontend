@@ -10,12 +10,25 @@ import HomeService from './components/pages/HomeService';
 import auth from "./services/authService";
 import Logout from './components/pages/Logout';
 import Vente from './components/pages/Vente';
-import ViewDevis from './components/pages/ViewDevis';
+import Error from './components/pages/Error';
+import Alerts from './components/common/Alerts';
+import ListDevisVente from './components/pages/ListDevisVente';
 import PrintDevis from './components/pages/PrintDevis';
+import PrintDevisVente from './components/pages/PrintDevisVente';
+import PrintFactureVente from './components/pages/PrintFactureVente';
+import PrintBonLivraisonVente from './components/pages/PrintBonLivraison';
+import ContenuDevisVente from './components/pages/ContenuDevisVente';
 import PrintDevisDomestique from './components/pages/PrintDevisDomestique';
 import ListDevisDomestique from './components/pages/ListDevisDomestique';
+import {Provider as AlertProvider} from 'react-alert';
+import AlertTemplate from 'react-alert-template-basic';
 let hours = 120; // Reset when storage is more than 72hours
 let now = new Date().getTime();
+const tokenKey = 'token';
+const alertOptions = {
+  timeout:3000,
+  position:'top center'
+}
 var setupTime = localStorage.getItem("setupTime");
 if (setupTime == null) {
   localStorage.setItem("setupTime", now);
@@ -35,6 +48,7 @@ class App extends Component {
     console.log("userObjectByUsername ", loginUserByUsername[0]);
     console.log("userObject : ", loginUser);
     console.log("user : ", user);
+    console.log("token : ", auth.getJwt(tokenKey));
     this.setState({ user, loginUser, loginUserByUsername});
   }
   render() {
@@ -42,19 +56,28 @@ class App extends Component {
     return (
       <Router>
         <Navbar user={loginUserByUsername ? loginUserByUsername[0]: loginUserByUsername} loginUser={loginUser}/>
-        <Switch>
-          <Route path='/' exact component={Home} />
-          <Route path='/home-service' exact component={HomeService} />
-          <Route path='/domestique' exact component={Domestique} />
-          <Route path='/devis-domestique' exact component={ListDevisDomestique} />
-          <Route path='/agricole' exact component={Agricole} />
-          <Route path='/devis' exact component={ListDevis} />
-          <Route path='/view/devis/:id' exact component={PrintDevis} />
-          <Route path='/view/domestique/:id' exact component={PrintDevisDomestique}/>
-          <Route path="/vente" component = {Vente}/>
-          <Route path='/login' exact component={Login} />
-          <Route path="/logout" component={Logout} />
-        </Switch>
+        <AlertProvider template={AlertTemplate}{...alertOptions}>
+            <Switch>
+              <Route path='/' exact component={Home}/>
+              <Route path='/home-service' exact component={HomeService} />
+              <Route path='/domestique' exact component={Domestique} />
+              <Route path='/devis-domestique' exact component={ListDevisDomestique} />
+              <Route path='/agricole' exact component={Agricole} />
+              <Route path='/devis' exact component={ListDevis} />
+              <Route path='/view/devis/:id' exact component={PrintDevis} />
+              <Route path='/view/domestique/:id' exact component={PrintDevisDomestique}/>
+              <Route path='/view/devis-vente/:id' exact component={PrintDevisVente} />
+              <Route path='/view/facture-vente/:id' exact component={PrintFactureVente} />
+              <Route path='/view/bon-livraison-vente/:id' exact component={PrintBonLivraisonVente} />
+              <Route path='/view/contenu-vente/:id' exact component={ContenuDevisVente}/>
+              <Route path="/vente" component={Vente} />
+              <Route path='/devis-vente' exact component={ListDevisVente} />
+              <Route path='/login' exact component={Login} />
+              <Route path="/logout" component={Logout} />
+              <Route component={Error}/>
+            </Switch>
+            
+        </AlertProvider> 
         
       </Router>
     );

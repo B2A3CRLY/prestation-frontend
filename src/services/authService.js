@@ -47,7 +47,7 @@ export async function getUserObjectByUsername(user) {
   return data;
 }
 
-export function getJwt() {
+export function getJwt(tokenKey) {
   return localStorage.getItem(tokenKey);
 }
 

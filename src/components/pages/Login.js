@@ -37,6 +37,7 @@ class LoginForm extends Form {
 	};
 
 	render() {
+		console.log('token:', auth.getCurrentUser())
 		if (auth.getCurrentUser()) return <Redirect to="/"/>;
 		return (
 			<div className = "towards-top">

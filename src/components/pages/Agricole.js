@@ -6,13 +6,15 @@ import {ToastContainer, toast, Zoom, Bounce} from 'react-toastify';
 
 import {
     apiUrl
-  } from '../../config.json';
+} from '../../config.json';
+import auth from "../../services/authService";
 const apiEndpoint = apiUrl + '/parcel/';
 const apiCulture = apiUrl + '/goutteAgoutte/';
 const apiSurfaceCulture = apiUrl + '/surfaceCulture/';
 const apiClient = apiUrl + '/client/';
 const apiDevis = apiUrl + '/devis/';
 const options = [{ value: 'Masculin', label: 'Masculin' }, { value: 'Feminin', label: 'Feminin' }];
+const tokenKey = 'token';
 const optionWaterSource = [
     { value: 'forage', label: 'Forage' },
     { value: 'puits', label: 'Puits' },
@@ -281,12 +283,15 @@ export default class AddColis extends Component {
         });
        }
     async componentDidMount() {
+        let token = auth.getJwt(tokenKey)
+        let vide = ' '
         this.refreshCultures();
         const { data : clients } = await http.get(apiClient);
         console.log('Clients : ', clients);
         console.log('Eclairage:', this.state.eclairage);
         console.log('Perimetre : ', this.state.perimetre);
         this.setState({ clients });
+        console.log(`Token ${vide}${token}`)
 
     }
     addProduit(){} 
@@ -355,7 +360,13 @@ export default class AddColis extends Component {
                 console.log('data ', res.data);
             });
         }
-        onSubmitClient = (e) =>{
+    onSubmitClient = (e) => {
+        let token = auth.getJwt(tokenKey)
+        let vide = ' '
+            let headers = {
+                "Content-type": "application/json",
+                "Authorization": `Token ${vide}${token}`
+            }
            e.preventDefault();
               const client = {
               clientFirstName:this.state.firstName,
@@ -366,7 +377,12 @@ export default class AddColis extends Component {
               clientEmail:this.state.email ? this.state.email : null,
               pays: this.state.pays
              };
-             http.post(apiClient + 'create/',client)
+        http.post(apiClient + 'create/', client, {
+            headers: {
+                "Content-type": "application/json",
+                "Authorization": `Token ${token}`
+            },
+        })
                 .then(res => {
                     console.log('client:', res.data);
                     console.log('status :', res.data.status);

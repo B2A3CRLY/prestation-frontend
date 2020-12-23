@@ -35,32 +35,32 @@ export default class ViewDevis extends Component {
         }
     }
     getGoutteAGoutte(I, E, s) {
-        let nr = Math.round(s * Math.round(L / I)),
-            lTR = Math.round(s * Math.round((L * l) / I)),
-            nR400mDN16mm = Math.round(s * Math.round((L * l) / (400 * I))),
-            nG_R = Math.round(s * Math.round(l / E)),
-            nTG = Math.round(s * Math.round((L * l) / (I * E))),
-            nP100PCS = Math.round(s * Math.round((l * L) / (100 * I * E))),
-            v3_4M = Math.round(s * Math.round(L / I)),
-            te3_4F = Math.round(s * Math.round((L / I))),
-            b = Math.round(s * Math.round((L / I))),
-            bDN25 = Math.round(s),
+        let nr = Math.ceil(s * Math.ceil(L / I)),
+            lTR = Math.ceil(s * Math.ceil((L * l) / I)),
+            nR400mDN16mm = Math.ceil(s * Math.ceil((L * l) / (400 * I))),
+            nG_R = Math.ceil(s * Math.ceil(l / E)),
+            nTG = Math.ceil(s * Math.ceil((L * l) / (I * E))),
+            nP100PCS = Math.ceil(s * Math.ceil((l * L) / (100 * I * E))),
+            v3_4M = Math.ceil(s * Math.ceil(L / I)),
+            te3_4F = Math.ceil(s * Math.ceil((L / I))),
+            b = Math.ceil(s * Math.ceil((L / I))),
+            bDN25 = Math.ceil(s),
             bDN63 = 2,
             dRamp = 16,
             dPRamp = 25,
-            workforce = Math.round(s * 100000 * 1.18),
+            workforce = Math.ceil(s * 100000 * 1.18),
             dNPrincipal = 63,
-            teDN63egaux = Math.round(s * 2),
-            lPR = Math.round(s * ((L + 5) / 50)),
-            lCPDN63_2ha = Math.round(s),
-            a63_3 = Math.round(s * 2),
-            m25_1 = Math.round(s * 2),
-            r2_1_ff = Math.round(s * 2),
-            r1_1_MF = Math.round(s * 2),
-            cJR25 = Math.round(s * 2),
-            vJR25 = Math.round(s * 2),
-            cPVCGM = Math.round(s * 2),
-            teflon = Math.round(s * 10)
+            teDN63egaux = Math.ceil(s * 2),
+            lPR = Math.ceil(s * ((L + 5) / 50)),
+            lCPDN63_2ha = Math.ceil(s),
+            a63_3 = Math.ceil(s * 2),
+            m25_1 = Math.ceil(s * 2),
+            r2_1_ff = Math.ceil(s * 2),
+            r1_1_MF = Math.ceil(s * 2),
+            cJR25 = Math.ceil(s * 2),
+            vJR25 = Math.ceil(s * 2),
+            cPVCGM = Math.ceil(s * 2),
+            teflon = Math.ceil(s * 10)
         return {
             nr, lTR, nR400mDN16mm, nG_R, nTG, nP100PCS, v3_4M, te3_4F, b, dRamp, dPRamp, dNPrincipal, teDN63egaux, lPR, lCPDN63_2ha, a63_3, m25_1, r2_1_ff, r1_1_MF, cJR25, vJR25, cPVCGM, bDN63, bDN25, teflon, workforce
         }
@@ -68,28 +68,28 @@ export default class ViewDevis extends Component {
     getAspersion(s, p) {
         let pa = 0, nr = 0, lTRDN40mm = 0, nTLCPVC = 0, nA_r, nTA = 0, dNr = 0, dNPr = 0, lPr = 0, lCP75mm = 0, tePDN75mm = 0, rDN75_40 = 0, dN40_1F = 0, vPVC75 = 0, dN40 = 0, bPVCND75 = 0, cPVCD75mm = 0, potCollePVC = 0, teflonA = 0, vPVCDN40 = 0, cPDN40_1 = 0, bPVCND40 = 0, workforce = 0;
         pa = p;
-        nr = s * Math.round(L / p);
-        lTRDN40mm = s * Math.round((l * L) / (6 * p));
-        nTLCPVC = s * Math.round((l * L) / (6 * p));
-        nA_r = s * Math.round(l / p);
-        nTA = s * Math.round((l * L) / (p * p));
+        nr = s * Math.ceil(L / p);
+        lTRDN40mm = s * Math.ceil((l * L) / (6 * p));
+        nTLCPVC = s * Math.ceil((l * L) / (6 * p));
+        nA_r = s * Math.ceil(l / p);
+        nTA = s * Math.ceil((l * L) / (p * p));
         dNr = 40;
         dNPr = 75;
         lPr = s * (L + 5);
         lCP75mm = 50 * s;
         workforce = s * 100000;
-        cPVCD75mm = s * Math.round((L + 5 + 12.5) / 6);
-        tePDN75mm = s * Math.round((L / p) + 5);
-        rDN75_40 = s * Math.round((L / p) + 5);
-        cPDN40_1 = s * Math.round(((l * L) / (p * p)) + 5);
-        dN40_1F = s * Math.round((L / p) + 5);
+        cPVCD75mm = s * Math.ceil((L + 5 + 12.5) / 6);
+        tePDN75mm = s * Math.ceil((L / p) + 5);
+        rDN75_40 = s * Math.ceil((L / p) + 5);
+        cPDN40_1 = s * Math.ceil(((l * L) / (p * p)) + 5);
+        dN40_1F = s * Math.ceil((L / p) + 5);
         vPVC75 = s * 2;
-        dN40 = s * Math.round((L / p) + 5);
+        dN40 = s * Math.ceil((L / p) + 5);
         bPVCND75 = s * 2;
-        bPVCND40 = s * Math.round((L / p) + 5);
+        bPVCND40 = s * Math.ceil((L / p) + 5);
         potCollePVC = s * 2;
         teflonA = s * 20;
-        vPVCDN40 = s * Math.round((L / p) + 5);
+        vPVCDN40 = s * Math.ceil((L / p) + 5);
         return {
             pa, nr, lTRDN40mm, nTLCPVC, nA_r, nTA, dNr, dNPr, lPr, lCP75mm, tePDN75mm, rDN75_40, dN40_1F, vPVC75, dN40, bPVCND75, cPVCD75mm, potCollePVC, teflonA, vPVCDN40, cPDN40_1, bPVCND40, workforce
         }
@@ -191,76 +191,78 @@ export default class ViewDevis extends Component {
             }
             if (typeTaster === 'goutteurNonPerfore') {
                 quotationGoutte = [
-                    { id: 0, ref: "1-a", designation: 'Rouleau de 400 m de tuyau PEHD souple 16 mm', quantity: nR400mDN16mm, price: 60000, totalPrice: Math.round(nR400mDN16mm * 60000) },
-                    { id: 1, ref: "1-b", designation: 'Paquets de 100 goutteurs réglables', quantity: 2*nP100PCS, price: 8500, totalPrice: Math.round(2 * nP100PCS * 8500) },
-                    { id: 2, ref: "1-c", designation: 'Vannette 3/4, M', quantity: v3_4M, price: 370, totalPrice: Math.round(v3_4M * 370) },
-                    { id: 3, ref: "1-d", designation: 'Té Cannelé 3/4, F', quantity: te3_4F, price: 100, totalPrice: Math.round(te3_4F * 100) },
-                    { id: 4, ref: "1-e", designation: 'Bouchon Cannelé  Tuyau souple 16 mm', quantity: b, price: 30, totalPrice: Math.round(b * 30) },
-                    { id: 5, ref: "1-f", designation: 'Té DN 63 EGO', quantity: teDN63egaux, price: 3550, totalPrice: Math.round(teDN63egaux * 3550) },
-                    { id: 6, ref: "1-g", designation: 'Manchon JR 63 mm, Sortie 2" M', quantity: a63_3, price: 3000, totalPrice: Math.round(a63_3 * 3000) },
-                    { id: 7, ref: "1-h", designation: 'Manchon JR 25 mm, Sortie 1" M', quantity: m25_1, price: 780, totalPrice: Math.round(m25_1 * 780) },
-                    { id: 8, ref: "1-i", designation: 'Réduction 2", 1"/1/2 FF', quantity: r2_1_ff, price: 2000, totalPrice: Math.round(r2_1_ff * 2000) },
-                    { id: 9, ref: "1-j", designation: 'Réduction 1" 1/2, 1" MF', quantity: r1_1_MF, price: 1500, totalPrice: Math.round(r1_1_MF * 150) },
-                    { id: 10, ref: "1-k", designation: 'Coude JR 25 mm, 1" M', quantity: cJR25, price: 780, totalPrice: Math.round(cJR25 * 780) },
-                    { id: 11, ref: "1-l", designation: 'Vanne JR 25 mm', quantity: vJR25, price: 2000, totalPrice: Math.round(vJR25 * 2000) },
-                    { id: 12, ref: "1-m", designation: 'Téflon', quantity: teflon, price: 350, totalPrice: Math.round(teflon * 350) },
+                    { id: 0, ref: "1-a", designation: 'Rouleau de 400 m de tuyau PEHD souple 16 mm', quantity: nR400mDN16mm, price: 60000, totalPrice: Math.ceil(nR400mDN16mm * 60000) },
+                    { id: 1, ref: "1-b", designation: 'Paquets de 100 goutteurs réglables', quantity: nP100PCS, price: 8500, totalPrice: Math.ceil(nP100PCS * 8500) },
+                    { id: 2, ref: "1-c", designation: 'Vannette 3/4, M', quantity: v3_4M, price: 370, totalPrice: Math.ceil(v3_4M * 370) },
+                    { id: 3, ref: "1-d", designation: 'Té JR DN 25 mm 3/4 F', quantity: te3_4F, price: 700, totalPrice: Math.ceil(te3_4F * 700) },
+                    { id: 4, ref: "1-e", designation: 'Bouchon Cannelé  Tuyau souple 16 mm', quantity: b, price: 30, totalPrice: Math.ceil(b * 30) },
+                    { id: 5, ref: "1-f", designation: 'Té DN 63 EGO', quantity: teDN63egaux, price: 3550, totalPrice: Math.ceil(teDN63egaux * 3550) },
+                    { id: 6, ref: "1-g", designation: 'Manchon JR 63 mm, Sortie 2" M', quantity: a63_3, price: 3000, totalPrice: Math.ceil(a63_3 * 3000) },
+                    { id: 7, ref: "1-h", designation: 'Manchon JR 25 mm, Sortie 1" M', quantity: m25_1, price: 780, totalPrice: Math.ceil(m25_1 * 780) },
+                    { id: 8, ref: "1-i", designation: 'Réduction 2", 1"/1/2 FF', quantity: r2_1_ff, price: 2000, totalPrice: Math.ceil(r2_1_ff * 2000) },
+                    
+                    
                     
                 ]
                 quotationGouttePlus = [
-                    { id: 13, ref: "1-n", designation: 'Rouleau Anjou 25 mm, 50 m', quantity: lPR, price: 11000, totalPrice: Math.round(lPR * 11000) },
-                    { id: 14, ref: "1-o", designation: 'Rouleau Anjou 63 mm, 50 m', quantity: lCPDN63_2ha, price: 55690, totalPrice: Math.round(lCPDN63_2ha * 55690) },
-                    { id: 15, ref: "1-p", designation: 'Bouchon DN 25 mm', quantity: bDN25, price: 600, totalPrice: Math.round(bDN25 * 600) },
-                    { id: 16, ref: "1-q", designation: 'Bouchon DN 63 mm', quantity: bDN63, price: 3040, totalPrice: Math.round(bDN63 * 3040) }
+                    { id: 9, ref: "1-j", designation: 'Réduction 1" 1/2, 1" MF', quantity: r1_1_MF, price: 1500, totalPrice: Math.ceil(r1_1_MF * 1500) },
+                    { id: 10, ref: "1-k", designation: 'Coude JR 25 mm, 1" M', quantity: cJR25, price: 780, totalPrice: Math.ceil(cJR25 * 780) },
+                    { id: 11, ref: "1-l", designation: 'Vanne JR 25 mm', quantity: vJR25, price: 2000, totalPrice: Math.ceil(vJR25 * 2000) },
+                    { id: 12, ref: "1-m", designation: 'Téflon', quantity: teflon, price: 350, totalPrice: Math.ceil(teflon * 350) },
+                    { id: 13, ref: "1-n", designation: 'Rouleau Anjou 25 mm, 50 m', quantity: lPR, price: 11000, totalPrice: Math.ceil(lPR * 11000) },
+                    { id: 14, ref: "1-o", designation: 'Rouleau Anjou 63 mm, 50 m', quantity: lCPDN63_2ha, price: 55690, totalPrice: Math.ceil(lCPDN63_2ha * 55690) },
+                    { id: 15, ref: "1-p", designation: 'Bouchon DN 25 mm', quantity: bDN25, price: 600, totalPrice: Math.ceil(bDN25 * 600) },
+                    { id: 16, ref: "1-q", designation: 'Bouchon DN 63 mm', quantity: bDN63, price: 3040, totalPrice: Math.ceil(bDN63 * 3040) }
                 ]
-                totalPriceGoutte = Math.round(nR400mDN16mm * 60000 + 2*nP100PCS * 8500 + v3_4M * 370 + te3_4F * 100 + b * 30 + teDN63egaux * 3550 + a63_3 * 3000 + m25_1 * 780 + r2_1_ff * 2000 + r1_1_MF * 1500 + cJR25 * 780 + vJR25 * 2000 + teflon * 350 + lCPDN63_2ha * 55690 + lPR * 11000 + bDN25 * 600 + bDN63 * 3040)
+                totalPriceGoutte = Math.ceil(nR400mDN16mm * 60000 + nP100PCS * 8500 + v3_4M * 370 + te3_4F * 700 + b * 30 + teDN63egaux * 3550 + a63_3 * 3000 + m25_1 * 780 + r2_1_ff * 2000 + r1_1_MF * 1500 + cJR25 * 780 + vJR25 * 2000 + teflon * 350 + lCPDN63_2ha * 55690 + lPR * 11000 + bDN25 * 600 + bDN63 * 3040)
             }
             if (typeTaster === 'goutteurIntegre') {
                 quotationGoutte = [
-                    { id: 0, ref: "1-a", designation: 'Rouleau de 16m de goutteurs intégrés', quantity: nR400mDN16mm, price: 70000, totalPrice: Math.round(nR400mDN16mm * 70000) },
-                    { id: 1, ref: "1-b", designation: 'Vannette 3/4, M', quantity: v3_4M, price: 370, totalPrice: Math.round(v3_4M * 370) },
-                    { id: 2, ref: "1-c", designation: 'Té Cannelé 3/4, F', quantity: te3_4F, price: 100, totalPrice: Math.round(te3_4F * 100) },
-                    { id: 3, ref: "1-d", designation: 'Bouchon Cannelé  Tuyau souple 16 mm', quantity: b, price: 30, totalPrice: Math.round(b * 30) },
-                    { id: 4, ref: "1-e", designation: 'Té DN 63 EGO', quantity: teDN63egaux, price: 3550, totalPrice: Math.round(teDN63egaux * 3550) },
-                    { id: 5, ref: "1-f", designation: 'Manchon JR 63 mm, Sortie 2" M', quantity: a63_3, price: 3000, totalPrice: Math.round(a63_3 * 3000) },
-                    { id: 6, ref: "1-g", designation: 'Manchon JR 25 mm, Sortie 1" M', quantity: m25_1, price: 780, totalPrice: Math.round(m25_1 * 780) },
-                    { id: 7, ref: "1-h", designation: 'Réduction 2", 1"/1/2 FF', quantity: r2_1_ff, price: 2000, totalPrice: Math.round(r2_1_ff * 2000) },
-                    { id: 8, ref: "1-i", designation: 'Réduction 1" 1/2, 1" MF', quantity: r1_1_MF, price: 1500, totalPrice: Math.round(r1_1_MF * 150) },
-                    { id: 9, ref: "1-j", designation: 'Coude JR 25 mm, 1" M', quantity: cJR25, price: 780, totalPrice: Math.round(cJR25 * 780) },
-                    { id: 10, ref: "1-k", designation: 'Vanne JR 25 mm', quantity: vJR25, price: 2000, totalPrice: Math.round(vJR25 * 2000) },
-                    { id: 11, ref: "1-l", designation: 'Téflon', quantity: teflon, price: 350, totalPrice: Math.round(teflon * 350) },
-                    { id: 12, ref: "1-m", designation: 'Rouleau Anjou 25 mm, 50 m', quantity: lPR, price: 11000, totalPrice: Math.round(lPR * 11000) }
+                    { id: 0, ref: "1-a", designation: 'Rouleau de 16m de goutteurs intégrés', quantity: nR400mDN16mm, price: 70000, totalPrice: Math.ceil(nR400mDN16mm * 70000) },
+                    { id: 1, ref: "1-b", designation: 'Vannette 3/4, M', quantity: v3_4M, price: 370, totalPrice: Math.ceil(v3_4M * 370) },
+                    { id: 2, ref: "1-c", designation: 'Té JR DN 25 mm 3/4 F', quantity: te3_4F, price: 700, totalPrice: Math.ceil(te3_4F * 700) },
+                    { id: 3, ref: "1-d", designation: 'Bouchon Cannelé  Tuyau souple 16 mm', quantity: b, price: 30, totalPrice: Math.ceil(b * 30) },
+                    { id: 4, ref: "1-e", designation: 'Té DN 63 EGO', quantity: teDN63egaux, price: 3550, totalPrice: Math.ceil(teDN63egaux * 3550) },
+                    { id: 5, ref: "1-f", designation: 'Manchon JR 63 mm, Sortie 2" M', quantity: a63_3, price: 3000, totalPrice: Math.ceil(a63_3 * 3000) },
+                    { id: 6, ref: "1-g", designation: 'Manchon JR 25 mm, Sortie 1" M', quantity: m25_1, price: 780, totalPrice: Math.ceil(m25_1 * 780) },
+                    { id: 7, ref: "1-h", designation: 'Réduction 2", 1"/1/2 FF', quantity: r2_1_ff, price: 2000, totalPrice: Math.ceil(r2_1_ff * 2000) },
+                    { id: 8, ref: "1-i", designation: 'Réduction 1" 1/2, 1" MF', quantity: r1_1_MF, price: 1500, totalPrice: Math.ceil(r1_1_MF * 150) },
+                    { id: 9, ref: "1-j", designation: 'Coude JR 25 mm, 1" M', quantity: cJR25, price: 780, totalPrice: Math.ceil(cJR25 * 780) },
+                    { id: 10, ref: "1-k", designation: 'Vanne JR 25 mm', quantity: vJR25, price: 2000, totalPrice: Math.ceil(vJR25 * 2000) },
+                    { id: 11, ref: "1-l", designation: 'Téflon', quantity: teflon, price: 350, totalPrice: Math.ceil(teflon * 350) },
+                    { id: 12, ref: "1-m", designation: 'Rouleau Anjou 25 mm, 50 m', quantity: lPR, price: 11000, totalPrice: Math.ceil(lPR * 11000) }
                     
                 ]
                 quotationGouttePlus = [
-                   { id: 13, ref: "1-n", designation: 'Rouleau Anjou 63 mm, 50 m', quantity: lCPDN63_2ha, price: 55690, totalPrice: Math.round(lCPDN63_2ha * 55690) },
-                    { id: 14, ref: "1-o", designation: 'Bouchon DN 25 mm', quantity: bDN25, price: 600, totalPrice: Math.round(bDN25 * 600) },
-                    { id: 15, ref: "1-p", designation: 'Bouchon DN 63 mm', quantity: bDN63, price: 3040, totalPrice: Math.round(bDN63 * 3040) }
+                   { id: 13, ref: "1-n", designation: 'Rouleau Anjou 63 mm, 50 m', quantity: lCPDN63_2ha, price: 55690, totalPrice: Math.ceil(lCPDN63_2ha * 55690) },
+                    { id: 14, ref: "1-o", designation: 'Bouchon DN 25 mm', quantity: bDN25, price: 600, totalPrice: Math.ceil(bDN25 * 600) },
+                    { id: 15, ref: "1-p", designation: 'Bouchon DN 63 mm', quantity: bDN63, price: 3040, totalPrice: Math.ceil(bDN63 * 3040) }
                 ]
-                totalPriceGoutte = Math.round(nR400mDN16mm * 70000 + v3_4M * 370 + te3_4F * 100 + b * 30 + teDN63egaux * 3550 + a63_3 * 3000 + m25_1 * 780 + r2_1_ff * 2000 + r1_1_MF * 1500 + cJR25 * 780 + vJR25 * 2000 + teflon * 350 + lCPDN63_2ha * 55690 + lPR * 11000 + bDN25 * 600 + bDN63 * 3040)
+                totalPriceGoutte = Math.ceil(nR400mDN16mm * 70000 + v3_4M * 370 + te3_4F * 700 + b * 30 + teDN63egaux * 3550 + a63_3 * 3000 + m25_1 * 780 + r2_1_ff * 2000 + r1_1_MF * 1500 + cJR25 * 780 + vJR25 * 2000 + teflon * 350 + lCPDN63_2ha * 55690 + lPR * 11000 + bDN25 * 600 + bDN63 * 3040)
             }
             if (typeTaster === 'goutteurBasseDensite') {
                 quotationGoutte = [
-                    { id: 0, ref: "1-a", designation: 'Rouleau de 16m de goutteurs intégrés', quantity: nR400mDN16mm, price: 30000, totalPrice: Math.round(nR400mDN16mm * 30000) },
-                    { id: 1, ref: "1-b", designation: 'Vannette 3/4, M', quantity: v3_4M, price: 370, totalPrice: Math.round(v3_4M * 370) },
-                    { id: 2, ref: "1-c", designation: 'Té Cannelé 3/4, F', quantity: te3_4F, price: 100, totalPrice: Math.round(te3_4F * 100) },
-                    { id: 3, ref: "1-d", designation: 'Bouchon Cannelé  Tuyau souple 16 mm', quantity: b, price: 30, totalPrice: Math.round(b * 30) },
-                    { id: 4, ref: "1-e", designation: 'Té DN 63 EGO', quantity: teDN63egaux, price: 3550, totalPrice: Math.round(teDN63egaux * 3550) },
-                    { id: 5, ref: "1-f", designation: 'Manchon JR 63 mm, Sortie 2" M', quantity: a63_3, price: 3000, totalPrice: Math.round(a63_3 * 3000) },
-                    { id: 6, ref: "1-g", designation: 'Manchon JR 25 mm, Sortie 1" M', quantity: m25_1, price: 780, totalPrice: Math.round(m25_1 * 780) },
-                    { id: 7, ref: "1-h", designation: 'Réduction 2", 1"/1/2 FF', quantity: r2_1_ff, price: 2000, totalPrice: Math.round(r2_1_ff * 2000) },
-                    { id: 8, ref: "1-i", designation: 'Réduction 1" 1/2, 1" MF', quantity: r1_1_MF, price: 1500, totalPrice: Math.round(r1_1_MF * 150) },
-                    { id: 9, ref: "1-j", designation: 'Coude JR 25 mm, 1" M', quantity: cJR25, price: 780, totalPrice: Math.round(cJR25 * 780) },
-                    { id: 10, ref: "1-k", designation: 'Vanne JR 25 mm', quantity: vJR25, price: 2000, totalPrice: Math.round(vJR25 * 2000) },
-                    { id: 11, ref: "1-l", designation: 'Téflon', quantity: teflon, price: 350, totalPrice: Math.round(teflon * 350) },
-                    { id: 12, ref: "1-m", designation: 'Rouleau Anjou 25 mm, 50 m', quantity: lPR, price: 11000, totalPrice: Math.round(lPR * 11000) }
+                    { id: 0, ref: "1-a", designation: 'Rouleau de 16m de goutteurs intégrés', quantity: nR400mDN16mm, price: 30000, totalPrice: Math.ceil(nR400mDN16mm * 30000) },
+                    { id: 1, ref: "1-b", designation: 'Vannette 3/4, M', quantity: v3_4M, price: 370, totalPrice: Math.ceil(v3_4M * 370) },
+                    { id: 2, ref: "1-c", designation: 'Té JR DN 25 mm 3/4 F', quantity: te3_4F, price: 700, totalPrice: Math.ceil(te3_4F * 700) },
+                    { id: 3, ref: "1-d", designation: 'Bouchon Cannelé  Tuyau souple 16 mm', quantity: b, price: 30, totalPrice: Math.ceil(b * 30) },
+                    { id: 4, ref: "1-e", designation: 'Té DN 63 EGO', quantity: teDN63egaux, price: 3550, totalPrice: Math.ceil(teDN63egaux * 3550) },
+                    { id: 5, ref: "1-f", designation: 'Manchon JR 63 mm, Sortie 2" M', quantity: a63_3, price: 3000, totalPrice: Math.ceil(a63_3 * 3000) },
+                    { id: 6, ref: "1-g", designation: 'Manchon JR 25 mm, Sortie 1" M', quantity: m25_1, price: 780, totalPrice: Math.ceil(m25_1 * 780) },
+                    { id: 7, ref: "1-h", designation: 'Réduction 2", 1"/1/2 FF', quantity: r2_1_ff, price: 2000, totalPrice: Math.ceil(r2_1_ff * 2000) },
+                    { id: 8, ref: "1-i", designation: 'Réduction 1" 1/2, 1" MF', quantity: r1_1_MF, price: 1500, totalPrice: Math.ceil(r1_1_MF * 1500) },
+                    { id: 9, ref: "1-j", designation: 'Coude JR 25 mm, 1" M', quantity: cJR25, price: 780, totalPrice: Math.ceil(cJR25 * 780) },
+                    { id: 10, ref: "1-k", designation: 'Vanne JR 25 mm', quantity: vJR25, price: 2000, totalPrice: Math.ceil(vJR25 * 2000) },
+                    { id: 11, ref: "1-l", designation: 'Téflon', quantity: teflon, price: 350, totalPrice: Math.ceil(teflon * 350) },
+                    { id: 12, ref: "1-m", designation: 'Rouleau Anjou 25 mm, 50 m', quantity: lPR, price: 11000, totalPrice: Math.ceil(lPR * 11000) }
                     
                 ]
                 quotationGouttePlus = [
-                   { id: 13, ref: "1-n", designation: 'Rouleau Anjou 63 mm, 50 m', quantity: lCPDN63_2ha, price: 55690, totalPrice: Math.round(lCPDN63_2ha * 55690) },
-                    { id: 14, ref: "1-o", designation: 'Bouchon DN 25 mm', quantity: bDN25, price: 600, totalPrice: Math.round(bDN25 * 600) },
-                    { id: 15, ref: "1-p", designation: 'Bouchon DN 63 mm', quantity: bDN63, price: 3040, totalPrice: Math.round(bDN63 * 3040) }
+                   { id: 13, ref: "1-n", designation: 'Rouleau Anjou 63 mm, 50 m', quantity: lCPDN63_2ha, price: 55690, totalPrice: Math.ceil(lCPDN63_2ha * 55690) },
+                    { id: 14, ref: "1-o", designation: 'Bouchon DN 25 mm', quantity: bDN25, price: 600, totalPrice: Math.ceil(bDN25 * 600) },
+                    { id: 15, ref: "1-p", designation: 'Bouchon DN 63 mm', quantity: bDN63, price: 3040, totalPrice: Math.ceil(bDN63 * 3040) }
                 ]
-                totalPriceGoutte = Math.round(nR400mDN16mm * 30000 + v3_4M * 370 + te3_4F * 100 + b * 30 + teDN63egaux * 3550 + a63_3 * 3000 + m25_1 * 780 + r2_1_ff * 2000 + r1_1_MF * 1500 + cJR25 * 780 + vJR25 * 2000 + teflon * 350 + lCPDN63_2ha * 55690 + lPR * 11000 + bDN25 * 600 + bDN63 * 3040)
+                totalPriceGoutte = Math.ceil(nR400mDN16mm * 30000 + v3_4M * 370 + te3_4F * 700 + b * 30 + teDN63egaux * 3550 + a63_3 * 3000 + m25_1 * 780 + r2_1_ff * 2000 + r1_1_MF * 1500 + cJR25 * 780 + vJR25 * 2000 + teflon * 350 + lCPDN63_2ha * 55690 + lPR * 11000 + bDN25 * 600 + bDN63 * 3040)
             }
             
         }
@@ -285,38 +287,39 @@ export default class ViewDevis extends Component {
                 console.log('nTLCPVC : ', nTLCPVC)
             }
             quotationAspersion = [
-                { id: 0, ref: "2-a", designation: 'Tuyau PVC DN 40 mm', quantity: nTLCPVC, price: 5500, totalPrice: Math.round(nTLCPVC * 5500) },
-                { id: 1, ref: "2-b", designation: 'Asperseur (Portée 13-20 m, débit 45-60,8 L/m, Pression 1,5-3 bar)', quantity: nTA, price: 3250, totalPrice: Math.round(nTA * 3250) },
-                { id: 2, ref: "2-c", designation: 'Tuyau PVC DN 75 mm', quantity: cPVCD75mm, price: 9000, totalPrice: Math.round(cPVCD75mm * 9000) },
-                { id: 3, ref: "2-d", designation: 'Té Pression DN 75 mm', quantity: tePDN75mm, price: 2000, totalPrice: Math.round(tePDN75mm * 2000) },
-                { id: 4, ref: "2-e", designation: 'Réduction DN 75/50 mm', quantity: rDN75_40, price: 700, totalPrice: Math.round(rDN75_40 * 700) },
-                { id: 5, ref: "2-f", designation: 'Réduction DN 50/40 mm', quantity: rDN75_40, price: 250, totalPrice: Math.round(rDN75_40 * 250) },
-                { id: 6, ref: "2-g", designation: 'Collier de prise en charge DN 40 mm, 1" F', quantity: cPCDN40_1, price: 650, totalPrice: Math.round(cPCDN40_1 * 650) },
-                { id: 7, ref: "2-h", designation: 'Vanne PVC DN 75 mm', quantity: vPVC75, price: 13000, totalPrice: Math.round(vPVC75 * 13000) },
-                { id: 8, ref: "2-i", designation: 'Bouchon PVC DN 40 mm', quantity: bPVCND40, price: 400, totalPrice: Math.round(bPVCND40 * 400) },
-                { id: 9, ref: "2-j", designation: 'Bouchon PVC DN 75 mm', quantity: bPVCND75, price: 1000, totalPrice: Math.round(bPVCND75 * 1000) },
-                { id: 10, ref: "2-k", designation: 'Colle PVC GM 1 Kg', quantity: potCollePVC, price: 6000, totalPrice: Math.round(potCollePVC * 6000) },
-                { id: 11, ref: "2-l", designation: 'Teflon GM', quantity: teflonA, price: 350, totalPrice: Math.round(teflonA * 350) },
-                { id: 12, ref: "2-m", designation: 'Vanne PVC DN 40 mm', quantity: vPVCDN40, price: 3102, totalPrice: Math.round(vPVCDN40 * 3102) }
+                { id: 0, ref: "2-a", designation: 'Tuyau PVC DN 40 mm', quantity: nTLCPVC, price: 5500, totalPrice: Math.ceil(nTLCPVC * 5500) },
+                { id: 1, ref: "2-b", designation: 'Asperseur (Portée 13-20 m, débit 45-60,8 L/m, Pression 1,5-3 bar)', quantity: nTA, price: 3250, totalPrice: Math.ceil(nTA * 3250) },
+                { id: 2, ref: "2-c", designation: 'Tuyau PVC DN 75 mm', quantity: cPVCD75mm, price: 9000, totalPrice: Math.ceil(cPVCD75mm * 9000) },
+                { id: 3, ref: "2-d", designation: 'Té Pression DN 75 mm', quantity: tePDN75mm, price: 2000, totalPrice: Math.ceil(tePDN75mm * 2000) },
+                { id: 4, ref: "2-e", designation: 'Réduction DN 75/50 mm', quantity: rDN75_40, price: 700, totalPrice: Math.ceil(rDN75_40 * 700) },
+                { id: 5, ref: "2-f", designation: 'Réduction DN 50/40 mm', quantity: rDN75_40, price: 250, totalPrice: Math.ceil(rDN75_40 * 250) },
+                { id: 6, ref: "2-g", designation: 'Collier de prise en charge DN 40 mm, 1" F', quantity: cPCDN40_1, price: 650, totalPrice: Math.ceil(cPCDN40_1 * 650) },
+                { id: 7, ref: "2-h", designation: 'Vanne PVC DN 75 mm', quantity: vPVC75, price: 13000, totalPrice: Math.ceil(vPVC75 * 13000) },
+                { id: 8, ref: "2-i", designation: 'Bouchon PVC DN 40 mm', quantity: bPVCND40, price: 400, totalPrice: Math.ceil(bPVCND40 * 400) },
+                { id: 9, ref: "2-j", designation: 'Bouchon PVC DN 75 mm', quantity: bPVCND75, price: 1000, totalPrice: Math.ceil(bPVCND75 * 1000) },
+                { id: 10, ref: "2-k", designation: 'Colle PVC GM 1 Kg', quantity: potCollePVC, price: 6000, totalPrice: Math.ceil(potCollePVC * 6000) },
+                { id: 11, ref: "2-l", designation: 'Teflon GM', quantity: teflonA, price: 350, totalPrice: Math.ceil(teflonA * 350) },
+                { id: 12, ref: "2-m", designation: 'Vanne PVC DN 40 mm', quantity: vPVCDN40, price: 3102, totalPrice: Math.ceil(vPVCDN40 * 3102) }
             ]
             quotationAspersionOnly = [
-                { id: 0, ref: "1-a", designation: 'Tuyau PVC DN 40 mm', quantity: nTLCPVC, price: 5500, totalPrice: Math.round(nTLCPVC * 5500) },
-                { id: 1, ref: "1-b", designation: 'Asperseur (Portée 13-20 m, débit 45-60,8 L/m, Pression 1,5-3 bar)', quantity: nTA, price: 3250, totalPrice: Math.round(nTA * 3250) },
-                { id: 2, ref: "1-c", designation: 'Tuyau PVC DN 75 mm', quantity: cPVCD75mm, price: 9000, totalPrice: Math.round(cPVCD75mm * 9000) },
-                { id: 3, ref: "1-d", designation: 'Té Pression DN 75 mm', quantity: tePDN75mm, price: 2000, totalPrice: Math.round(tePDN75mm * 2000) },
-                { id: 4, ref: "1-e", designation: 'Réduction DN 75/50 mm', quantity: rDN75_40, price: 700, totalPrice: Math.round(rDN75_40 * 700) },
-                { id: 5, ref: "1-f", designation: 'Réduction DN 50/40 mm', quantity: rDN75_40, price: 250, totalPrice: Math.round(rDN75_40 * 250) },
-                { id: 6, ref: "1-g", designation: 'Collier de prise en charge DN 40 mm, 1" F', quantity: cPCDN40_1, price: 650, totalPrice: Math.round(cPCDN40_1 * 650) },
-                { id: 7, ref: "1-h", designation: 'Vanne PVC DN 75 mm', quantity: vPVC75, price: 13000, totalPrice: Math.round(vPVC75 * 13000) },
-                { id: 8, ref: "1-i", designation: 'Bouchon PVC DN 40 mm', quantity: bPVCND40, price: 400, totalPrice: Math.round(bPVCND40 * 400) },
-                { id: 9, ref: "1-j", designation: 'Bouchon PVC DN 75 mm', quantity: bPVCND75, price: 1000, totalPrice: Math.round(bPVCND75 * 1000) },
-                { id: 10, ref: "1-k", designation: 'Colle PVC GM 1 Kg', quantity: potCollePVC, price: 6000, totalPrice: Math.round(potCollePVC * 6000) },
-                { id: 11, ref: "1-l", designation: 'Teflon GM', quantity: teflonA, price: 350, totalPrice: Math.round(teflonA * 350) },
-                { id: 12, ref: "1-m", designation: 'Vanne PVC DN 40 mm', quantity: vPVCDN40, price: 3102, totalPrice: Math.round(vPVCDN40 * 3102) }
+                { id: 0, ref: "1-a", designation: 'Tuyau PVC DN 40 mm', quantity: nTLCPVC, price: 5500, totalPrice: Math.ceil(nTLCPVC * 5500) },
+                { id: 1, ref: "1-b", designation: 'Asperseur (Portée 13-20 m, débit 45-60,8 L/m, Pression 1,5-3 bar)', quantity: nTA, price: 3250, totalPrice: Math.ceil(nTA * 3250) },
+                { id: 2, ref: "1-c", designation: 'Tuyau PVC DN 75 mm', quantity: cPVCD75mm, price: 9000, totalPrice: Math.ceil(cPVCD75mm * 9000) },
+                { id: 3, ref: "1-d", designation: 'Té Pression DN 75 mm', quantity: tePDN75mm, price: 2000, totalPrice: Math.ceil(tePDN75mm * 2000) },
+                { id: 4, ref: "1-e", designation: 'Réduction DN 75/50 mm', quantity: rDN75_40, price: 700, totalPrice: Math.ceil(rDN75_40 * 700) },
+                { id: 5, ref: "1-f", designation: 'Réduction DN 50/40 mm', quantity: rDN75_40, price: 250, totalPrice: Math.ceil(rDN75_40 * 250) },
+                { id: 6, ref: "1-g", designation: 'Collier de prise en charge DN 40 mm, 1" F', quantity: cPCDN40_1, price: 650, totalPrice: Math.ceil(cPCDN40_1 * 650) },
+                { id: 7, ref: "1-h", designation: 'Vanne PVC DN 75 mm', quantity: vPVC75, price: 13000, totalPrice: Math.ceil(vPVC75 * 13000) },
+                { id: 8, ref: "1-i", designation: 'Bouchon PVC DN 40 mm', quantity: bPVCND40, price: 400, totalPrice: Math.ceil(bPVCND40 * 400) },
+                { id: 9, ref: "1-j", designation: 'Bouchon PVC DN 75 mm', quantity: bPVCND75, price: 1000, totalPrice: Math.ceil(bPVCND75 * 1000) },
+                { id: 10, ref: "1-k", designation: 'Colle PVC GM 1 Kg', quantity: potCollePVC, price: 6000, totalPrice: Math.ceil(potCollePVC * 6000) },
+                { id: 11, ref: "1-l", designation: 'Teflon GM', quantity: teflonA, price: 350, totalPrice: Math.ceil(teflonA * 350) },
+                { id: 12, ref: "1-m", designation: 'Vanne PVC DN 40 mm', quantity: vPVCDN40, price: 3102, totalPrice: Math.ceil(vPVCDN40 * 3102) }
+                
             ]
         }
         
-        totalPriceAspersion = Math.round(1 * (nTLCPVC * 5500 + nTA * 3250 + cPVCD75mm * 9000 + tePDN75mm * 2000 + rDN75_40 * 700 + rDN75_40 * 250 + cPCDN40_1 * 650 + vPVC75 * 13000 + bPVCND40 * 400 + bPVCND75 * 1000 + potCollePVC * 6000 + teflonA * 350 + vPVCDN40 * 3102))
+        totalPriceAspersion = Math.ceil(1 * (nTLCPVC * 5500 + nTA * 3250 + cPVCD75mm * 9000 + tePDN75mm * 2000 + rDN75_40 * 700 + rDN75_40 * 250 + cPCDN40_1 * 650 + vPVC75 * 13000 + bPVCND40 * 400 + bPVCND75 * 1000 + potCollePVC * 6000 + teflonA * 350 + vPVCDN40 * 3102 + 8*450000+500000))
         const style = {
             color: "white",
             margin: "10px"
@@ -394,7 +397,7 @@ export default class ViewDevis extends Component {
                     </p>
                     <div className="border-double">
                         <h2 className="border text-center">
-                            DEVIS Nº {devis.ref_devis} POUR L'INSTALLATION D'UN SYSTEME {constGoutteAGoutte.length !== 0 && constAspersion.length === 0 ? 'GOUTTE À GOUTTE' : ''} {constGoutteAGoutte.length === 0 && constAspersion.length !== 0 ? 'ASPERSION' : ''} {constGoutteAGoutte.length !== 0 && constAspersion.length !== 0 ? "D'IRRIGATION" : ''} À l'INTENTION DE <span id="orange">{sex === 'Masculin' ? 'M.' + ' ' + firstname.toUpperCase() + ' ' + lastname.toUpperCase() : ''}</span>
+                            DEVIS Nº {devis.ref_devis} POUR L'INSTALLATION D'UN SYSTEME {constGoutteAGoutte.length !== 0 && constAspersion.length === 0 ? 'GOUTTE À GOUTTE' : ''} {constGoutteAGoutte.length === 0 && constAspersion.length !== 0 ? 'ASPERSION TOTALEMENT AUTOMATISE ET PILOTABLE À DISTANCE' : ''} {constGoutteAGoutte.length !== 0 && constAspersion.length !== 0 ? "D'IRRIGATION" : ''} À l'INTENTION DE <span id="orange">{sex === 'Masculin' ? 'M.' + ' ' + firstname.toUpperCase() + ' ' + lastname.toUpperCase() : ''}</span>
                             <span id="orange">{sex === 'Feminin' ? 'Mme.' + ' ' + firstname.toUpperCase() + ' ' + lastname.toUpperCase() : ''}</span>
                         </h2>
                     </div>
@@ -407,13 +410,13 @@ export default class ViewDevis extends Component {
                         <div className="border-client-orange">
                             <p>Date de manifestation d'intérêt : <span id="orange">{dateCreation}</span></p>
                             <p>Zone d'éxécution des travaux : <span id="orange">{zoneChamp}</span></p>
-                            <p>Superficie du champ agricole : <span id="orange">{totalSurface} {totalCloture > 1 ? "hectares" : "hectare"}</span></p>
+                            <p>Superficie du champ agricole : <span id="orange">{totalSurface} {parseInt(totalCloture) > 1 ? "hectares" : "hectares"}</span></p>
                         </div>
                     </div>
                     {constGoutteAGoutte.length !== 0 && constAspersion.length === 0 && typeTaster === 'goutteurNonPerfore' && (
                         <div id="pageNumbers" className="marginTable">
-                            <table className=" table table-bordered">
-                                <tbody className="thead-dark">
+                            <table className="table table-bordered">
+                                <tbody>
                                     <tr>
                                         <th>Ref</th>
                                         <th style={{ width: '400px' }}>Désignation</th>
@@ -433,10 +436,10 @@ export default class ViewDevis extends Component {
                                     {quotationGoutteView}
                                 </tbody>
                             </table>
-                            <div className="text-right text-right-one"><h5 id="one">1/2</h5></div>
+                            <div className="text-right text-right-one"><h5 id="one">1/3</h5></div>
                             <p style={{ pageBreakAfter: "always" }}></p>
                             <table className=" table table-bordered marginTop">
-                                <tbody className="thead-dark">
+                                <tbody>
                                     <tr>
                                         <th>Ref</th>
                                         <th style={{ width: '400px' }}>Désignation</th>
@@ -447,7 +450,34 @@ export default class ViewDevis extends Component {
                                 </tbody>
                                 <tbody>
                                     {quotationGouttePlusView}
-                                </tbody>  
+                                </tbody>
+                                <tbody>
+                                        <tr>
+                                            <td>2-a</td>
+                                            <td>Pompe solaire immergée debit 3.5 m3/h, HMT 50 mètres, puissance 400 Watts</td>
+                                            <td style={{ textAlign: 'right' }}>1</td>
+                                            <td style={{ textAlign: 'right' }}>250000</td>
+                                            <td style={{ textAlign: 'right' }}>250000</td>
+                                        </tr>
+                                </tbody>
+                                <tbody>
+                                        <tr>
+                                            <td>2-b</td>
+                                            <td>Panneau photovoltaïque 270 Watts l'unité </td>
+                                            <td style={{ textAlign: 'right' }}>2</td>
+                                            <td style={{ textAlign: 'right' }}>85000</td>
+                                            <td style={{ textAlign: 'right' }}>170000</td>
+                                        </tr>
+                                </tbody>
+                                <tbody>
+                                        <tr>
+                                            <td>2-c</td>
+                                            <td>Contrôleur de charges (Variateur de tension) pour pompe solaire immergée debit 3.5 m3/h, HMT 50 mètres, puissance 400 Watts </td>
+                                            <td style={{ textAlign: 'right' }}>1</td>
+                                            <td style={{ textAlign: 'right' }}>50000</td>
+                                            <td style={{ textAlign: 'right' }}>50000</td>
+                                        </tr>
+                                </tbody>
                                 {nCloture !== null && nCloture !== 0 && nEclairage === 0 && <>
                                     <tbody className="box-text">
                                         <tr>
@@ -555,12 +585,17 @@ export default class ViewDevis extends Component {
                                         <th></th>
                                         <th></th>
                                         <th style={{ textAlign: 'center' }}>Total (TTC)</th>
-                                        <th colspan="1" style={{ textAlign: 'right' }}>{1.18*(totalPriceGoutte + totalWorkForce + totalCloture + totalEclairage + totalSupportMetalique)}</th>
-                                        <th style={{ textAlign: 'right' }}>{1.18*(totalPriceGoutte + totalWorkForce + totalCloture + totalEclairage + totalSupportMetalique)}</th>
+                                        <th colspan="1" style={{ textAlign: 'right' }}>{Math.ceil(1.18*(totalPriceGoutte + totalWorkForce + totalCloture + totalEclairage + totalSupportMetalique + 470000))}</th>
+                                        <th style={{ textAlign: 'right' }}>{Math.ceil(1.18*(totalPriceGoutte + totalWorkForce + totalCloture + totalEclairage + totalSupportMetalique + 470000))}</th>
                                     </tr>
                                 </tbody>
                             </table>
-                            {nCloture === 0 && nEclairage === 0 && <div className="text-right-two"><h5 id="two">2/2</h5></div>}
+
+                            {nCloture === 0 && nEclairage === 0 && <> <div className="text-right-two"><h5 id="two">2/3</h5></div>
+                             <p style={{ pageBreakAfter: "always" }}></p>
+                             <div className="text-right-two-ppp"><h5 id="two">3/3</h5></div>
+                             </>
+                            }
                             {nCloture !== 0 && nEclairage === 0 && <div className="text-right-two-cloture"><h5 id="two">2/2</h5></div>}
                             {nCloture === 0 && nEclairage !== 0 && <div className="text-right-two-eclairage"><h5 id="two">2/2</h5></div>}
                             {nCloture !== 0 && nEclairage !== 0 && <div className="text-right-two-cloture-eclairage"><h5 id="two">2/2</h5></div>}
@@ -745,7 +780,7 @@ export default class ViewDevis extends Component {
                                     {quotationAspersionViewOnly}
                                 </tbody>
                             </table>
-                            <div className="text-right-a text-right-one"><h5 id="one">1/2</h5></div>
+                            <div className="text-right-a text-right-one-aspersion"><h5 id="one">1/2</h5></div>
                             <p style={{ pageBreakAfter: "always" }}></p>
                             <table className=" table table-bordered marginTop">
                                 <tbody className="thead-dark">
@@ -755,6 +790,24 @@ export default class ViewDevis extends Component {
                                         <th>Quantité</th>
                                         <th>Prix Unitaire fCFA</th>
                                         <th>Prix Total fCFA</th>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr>
+                                        <td>1-n</td>
+                                        <td>Electrovanne (DN 75 mm, débit 6 à 30 m3/h, tension 24 V, pression 1 à 10 bars</td>
+                                        <td style={{ textAlign: 'right' }}>8</td>
+                                        <td style={{ textAlign: 'right' }}>450000</td>
+                                        <td style={{ textAlign: 'right' }}>{8 * 450000}</td>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr>
+                                        <td>1-o</td>
+                                        <td>Programmateur d\'arrosage intelligent 8 voies 24 V CA(0.25 A)</td>
+                                        <td style={{ textAlign: 'right' }}>1</td>
+                                        <td style={{ textAlign: 'right' }}>500000</td>
+                                        <td style={{ textAlign: 'right' }}>500000</td>
                                     </tr>
                                 </tbody>
                                 {nCloture !== null && nCloture !== 0 && nEclairage === 0 && <>
@@ -850,7 +903,7 @@ export default class ViewDevis extends Component {
                                 }
                                 <tbody>
                                     <tr>
-                                        <th>1-t</th>
+                                        <th>1-p</th>
                                         <th>Main d'oeuvre pour l'installation technique détaillée comprenant toute l'ingénieurie hydraulique et électrique</th>
                                         <th style={{ textAlign: 'right' }}>1</th>
                                         <th colspan="1" style={{ textAlign: 'right' }}>{totalWorkForce !==0 ? totalWorkForce:'X'}</th>
@@ -1056,10 +1109,10 @@ export default class ViewDevis extends Component {
                 {constGoutteAGoutte.length !== 0 && constAspersion.length === 0 && nCloture === 0 && nEclairage === 0 && (
                     <div className="space-between-end">
                         <div>
-                            <p>Fait à Dakar (Sénégal), le {dateFrench}</p>
+                            <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
                         </div>
                         <div>
-                            <div className="space-right"><strong>LE SERVICE COMMERCIAL:</strong><br /></div>
+                            <div className="space-right"><h4>LE SERVICE TECHNIQUE:</h4><br /></div>
                             <h4 className="space-left">
                                 {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
                             </h4>
@@ -1108,12 +1161,12 @@ export default class ViewDevis extends Component {
                 {constGoutteAGoutte.length === 0 && constAspersion.length !== 0 && nCloture === 0 && nEclairage === 0 && (
                     <div className="space-between-end">
                         <div>
-                            <p>Fait à Dakar (Sénégal), le {dateFrench}</p>
+                            <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
                         </div>
                         <div>
                             <div className="space-right"><strong>LE SERVICE COMMERCIAL:</strong><br /></div>
                             <div className="space-left">
-                                {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                               <h4>{loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}</h4>
                             </div>
                         </div>
                     </div>

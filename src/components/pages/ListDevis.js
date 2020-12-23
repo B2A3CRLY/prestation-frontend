@@ -3,6 +3,7 @@ import { apiUrl } from "../../config.json";
 import http from '../../services/httpService';
 import { Table, Button, Form, Row, Col } from "react-bootstrap";
 import Spinners from '../../components/common/spinners';
+import Alerts from '../../components/common/Alerts';
 const apiEndpoint = apiUrl + "/devis/";
 export default class ListDevis extends Component {
     constructor(props, context) {
