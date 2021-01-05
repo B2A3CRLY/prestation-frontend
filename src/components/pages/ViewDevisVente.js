@@ -268,6 +268,8 @@ export default class ViewDevisVente extends Component {
         let produitsView5 = null;
         let produitsView6 = null;
         let produitsView7 = null;
+        let produitsView8 = null;
+        let produitsView9 = null;
         let totalView = null;
         let tst = 'pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp'
         let length = 48
@@ -361,7 +363,7 @@ export default class ViewDevisVente extends Component {
             {
                 id: 30, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
             },
-            /*{
+            {
                 id: 31, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
             },
             {
@@ -576,7 +578,58 @@ export default class ViewDevisVente extends Component {
             ,
             {
                 id: 91, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
-            }*/
+            },
+            {
+                id: 92, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 93, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            }
+            ,
+            {
+                id: 94, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            }
+            ,
+            {
+                id: 95, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 96, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 97, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 98, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            }
+            ,
+            {
+                id: 99, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 100, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 101, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            }
+            ,
+            {
+                id: 102, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            }
+            ,
+            {
+                id: 103, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 104, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 105, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 106, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            }
+            
          ]
         
 
@@ -607,12 +660,18 @@ export default class ViewDevisVente extends Component {
         console.log('array 1 :', produits1)
         console.log('array 2 :', produits2.length)
         console.log('array 3 :', produits3.length)
-        console.log('strimmedString:', trimmedString)
+        console.log('array 8:', produits8.length)
         produitsView1 = produits1.map(dev => {
             return (
                 <tr key={dev.id} style={{height:'30px'}}>
-                    <td style={{ width: '480px', height: '90px', paddingTop: '30px', paddingBottom: '20px', textAlign: 'left' }}>{
-                    this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>
+                    {
+                        dev.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '20px', paddingBottom: '5px', textAlign: 'left' }}>{
+                        this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>
+                    }
+                    {
+                        dev.designation.length < 56 && <td style={{ width: '480px', height: '90px', paddingTop: '30px', paddingBottom: '20px', textAlign: 'left' }}>{
+                        this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>
+                    }
                     <td style={{width:'46px',height:'90px',paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.quantity}</td>
                     <td style={{width:'170px',height:'90px',paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.price}</td>
                     <td style={{ height:'90px',paddingTop:'30px',paddingBottom:'20px',textAlign: 'right' }}>{dev.totalPrice}</td>
@@ -622,7 +681,7 @@ export default class ViewDevisVente extends Component {
         produitsView2 = produits2.map(dev => {
             return (
                 <tr key={dev.id} style={{height:'30px'}}>
-                    {dev.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '30px', paddingBottom: '20px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '20px', paddingBottom: '5px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
                     {dev.designation.length < 56 && <td style={{width:'480px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
                     <td style={{width:'46px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.quantity}</td>
                     <td style={{width:'170px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.price}</td>
@@ -633,7 +692,7 @@ export default class ViewDevisVente extends Component {
         produitsView3 = produits3.map(dev => {
             return (
                 <tr key={dev.id} style={{height:'30px'}}>
-                    {dev.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '30px', paddingBottom: '20px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '20px', paddingBottom: '5px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
                     {dev.designation.length < 56 && <td style={{width:'480px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
                     <td style={{width:'46px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.quantity}</td>
                     <td style={{width:'170px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.price}</td>
@@ -644,7 +703,7 @@ export default class ViewDevisVente extends Component {
         produitsView4 = produits4.map(dev => {
             return (
                 <tr key={dev.id} style={{height:'30px'}}>
-                    {dev.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '30px', paddingBottom: '20px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '20px', paddingBottom: '5px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
                     {dev.designation.length < 56 && <td style={{width:'480px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
                     <td style={{width:'46px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.quantity}</td>
                     <td style={{width:'170px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.price}</td>
@@ -655,7 +714,7 @@ export default class ViewDevisVente extends Component {
         produitsView5 = produits5.map(dev => {
             return (
                 <tr key={dev.id} style={{height:'30px'}}>
-                    {dev.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '30px', paddingBottom: '20px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '20px', paddingBottom: '5px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
                     {dev.designation.length < 56 && <td style={{width:'480px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
                     <td style={{width:'46px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.quantity}</td>
                     <td style={{width:'170px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.price}</td>
@@ -666,7 +725,7 @@ export default class ViewDevisVente extends Component {
         produitsView6 = produits6.map(dev => {
             return (
                 <tr key={dev.id} style={{height:'30px'}}>
-                    {dev.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '30px', paddingBottom: '20px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '20px', paddingBottom: '5px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
                     {dev.designation.length < 56 && <td style={{width:'480px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
                     <td style={{width:'46px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.quantity}</td>
                     <td style={{width:'170px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.price}</td>
@@ -677,7 +736,18 @@ export default class ViewDevisVente extends Component {
         produitsView7 = produits7.map(dev => {
             return (
                 <tr key={dev.id} style={{height:'30px'}}>
-                    {dev.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '30px', paddingBottom: '20px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '20px', paddingBottom: '5px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.designation.length < 56 && <td style={{width:'480px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    <td style={{width:'46px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.quantity}</td>
+                    <td style={{width:'170px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.price}</td>
+                    <td style={{height:'90px', paddingTop:'30px',paddingBottom:'20px', textAlign: 'right' }}>{dev.totalPrice}</td>
+                </tr>
+            );
+        })
+        produitsView8 = produits8.map(dev => {
+            return (
+                <tr key={dev.id} style={{height:'30px'}}>
+                    {dev.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '20px', paddingBottom: '5px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
                     {dev.designation.length < 56 && <td style={{width:'480px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
                     <td style={{width:'46px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.quantity}</td>
                     <td style={{width:'170px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.price}</td>
@@ -2530,7 +2600,7 @@ export default class ViewDevisVente extends Component {
                         <div className="text-right text-right-vente10_15_11_1_11_11"><h5>7/7</h5></div>
                         </>}
                         </>)}
-                        {produits1.length === 10 && produits2.length === 15 && produits3.length === 15 && produits4.length === 15 && produits5.length === 15 && produits6.length === 15 && produits7.length > 9 && (
+                        {produits1.length === 10 && produits2.length === 15 && produits3.length === 15 && produits4.length === 15 && produits5.length === 15 && produits6.length === 15 && produits7.length > 9 && produits7.length !==15 && produits8.length === 0 && (
                         <>
                         <table className="table table-striped">
                             <tbody>
@@ -2638,11 +2708,430 @@ export default class ViewDevisVente extends Component {
                         </div>
                         )}
                                 
-                        {produits1.length === 10 && produits2.length===15  && produits3.length === 15 && produits4.length === 15 && produits5.length === 15 && produits6.length === 15 && produits7.length === 10 && <>
+                        {produits6.length === 15 && produits7.length === 10 && <>
                         <div className="text-right text-right-vente10_15_11_1_11_12"><h5>7/8</h5>
                         </div>
                         <p style={{ pageBreakAfter: "always"}}></p>
                         <div className="text-right text-right-vente10_15_11_1_11_13"><h5>8/8</h5></div>
+                        </>}
+                        {produits6.length === 15 && produits7.length === 11 && <>
+                        <div className="text-right text-right-vente10_15_11_1_11_12_1"><h5>7/8</h5>
+                        </div>
+                        <p style={{ pageBreakAfter: "always"}}></p>
+                        <div className="text-right text-right-vente10_15_11_1_11_13"><h5>8/8</h5></div>
+                        </>}
+                        {produits6.length === 15 && produits7.length === 12 && <>
+                        <div className="text-right text-right-vente10_15_11_1_11_12_2"><h5>7/8</h5>
+                        </div>
+                        <p style={{ pageBreakAfter: "always"}}></p>
+                        <div className="text-right text-right-vente10_15_11_1_11_13"><h5>8/8</h5></div>
+                        </>}
+                        {produits6.length === 15 && produits7.length === 13 && <>
+                        <div className="text-right text-right-vente10_15_11_1_11_12_3"><h5>7/8</h5>
+                        </div>
+                        <p style={{ pageBreakAfter: "always"}}></p>
+                        <div className="text-right text-right-vente10_15_11_1_11_13"><h5>8/8</h5></div>
+                        </>}
+                        {produits6.length === 15 && produits7.length === 14 && <>
+                        <div className="text-right text-right-vente10_15_11_1_11_12_4"><h5>7/8</h5>
+                        </div>
+                        <p style={{ pageBreakAfter: "always"}}></p>
+                        <div className="text-right text-right-vente10_15_11_1_11_13"><h5>8/8</h5></div>
+                        </>}
+                        </>)}
+                        {produits1.length === 10 && produits2.length === 15 && produits3.length === 15 && produits4.length === 15 && produits5.length === 15 && produits6.length === 15 && produits7.length === 15 && produits8.length === 0 && (
+                        <>
+                        <table className="table table-striped">
+                            <tbody>
+                                {produitsView1}
+                            </tbody>
+                        </table>
+                        {produits1.length === 10 && produits2.length === 15 && produits3.length === 15 && produits4.length ===15 && produits5.length >0 && <><div className="text-right text-right-vente10_0"><h5>1/8</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        </>}
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView2}
+                            </tbody>
+                        </table>
+                        {produits1.length === 10 && produits2.length ===15 && produits3.length>=10 && produits4.length===15 && produits5.length >0 && <><div className="text-right text-right-vente10_15_0_e"><h5>2/8</h5></div>
+                        <p style={{ pageBreakAfter: "always"}}></p>
+                        </>}
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView3}
+                            </tbody>
+                        </table>
+                        {produits1.length === 10 && produits2.length ===15 && produits3.length>=10 && produits4.length===15 && produits5.length>0 &&<><div className="text-right text-right-vente10_15_0_e"><h5>3/8</h5></div>
+                        </>}
+                        <p style={{ pageBreakAfter: "always"}}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView4}
+                            </tbody>
+                        </table>
+                        {produits1.length === 10 && produits2.length ===15 && produits3.length>=10 && produits4.length===15 && produits5.length>0 &&<><div className="text-right text-right-vente10_15_0_e"><h5>4/8</h5></div>
+                        </>}
+                        <p style={{ pageBreakAfter: "always"}}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView5}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-vente10_15_0_ee"><h5>5/8</h5></div>
+                        <p style={{ pageBreakAfter: "always"}}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView6}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-vente10_15_0_ee"><h5>6/8</h5></div>
+                        <p style={{ pageBreakAfter: "always"}}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView7}
+                            </tbody>
+                        </table>
+                        <p style={{ pageBreakAfter: "always"}}></p>
+                        <div style={{marginTop:'25px'}}
+                            className="border-client-white-end row">
+                        <div className="space-between-resize text-size-order">
+                            <h5 style={{ width: '484px',paddingLeft:'-2px',paddingBottom: '-25px'}}></h5>
+                        <h5 style={{ width: '262px', marginLeft: '138px'}}></h5>
+                        </div>
+                        </div>
+                        {total >= 100 && total <1000 && (
+                        <div style={{marginTop:'5px'}}
+                            className="border-client-white-end row">
+                        <div className="space-between-resize text-size-order">
+                            <h5 style={{ width: '484px',paddingLeft:'-2px',paddingBottom: '5px'}}>Total TTC(francs CFA)</h5>
+                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        </div>
+                        </div>
+                        )}
+                        {total >= 1000 && total <10000 && (
+                        <div style={{marginTop:'5px', marginLeft:'400px'}}
+                            className="border-client-white-end row">
+                        <div className="space-between-resize text-size-order">
+                            <h5 style={{ width: '473px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        </div>
+                        </div>
+                        )}
+                        {total >= 10000 && total <100000 && (
+                        <div style={{marginTop:'5px', marginLeft:'400px'}}
+                            className="border-client-white-end row">
+                        <div className="space-between-resize text-size-order">
+                            <h5 style={{ width: '462px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        </div>
+                        </div>
+                        )}
+                        {total >= 100000 && total <1000000 && (
+                        <div style={{marginTop:'5px', marginLeft:'400px'}}
+                            className="border-client-white-end row">
+                        <div className="space-between-resize text-size-order">
+                            <h5 style={{ width: '445px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        </div>
+                        </div>
+                        )}
+                        {total >= 1000000 && total < 10000000 && (
+                        <div style={{marginTop:'5px', marginLeft:'400px'}}
+                            className="border-client-white-end row">
+                        <div className="space-between-resize text-size-order">
+                            <h5 style={{ width: '575px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginRight: '138px'}}>{1.18*total}</h5>
+                        </div>
+                        </div>
+                        )}
+                        {total >= 10000000 && total < 100000000 && (
+                        <div style={{marginTop:'5px', marginLeft:'400px'}}
+                            className="border-client-white-end row">
+                        <div className="space-between-resize text-size-order">
+                            <h5 style={{ width: '433px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        </div>
+                        </div>
+                        )}
+                        {total >= 100000000 && total < 1000000000 && (
+                        <div style={{marginTop:'5px', marginLeft:'400px'}}
+                            className="border-client-white-end row">
+                        <div className="space-between-resize text-size-order">
+                            <h5 style={{ width: '423px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        </div>
+                        </div>
+                        )}
+                        {produits6.length === 15 && produits7.length === 15 && <>
+                        <div className="text-right text-right-vente10_15_11_1_11_12_5"><h5>7/8</h5>
+                        </div>
+                        <p style={{ pageBreakAfter: "always"}}></p>
+                        <div className="text-right text-right-vente10_15_11_1_11_13"><h5>8/8</h5></div>
+                        </>}
+                        </>)}
+                        {produits7.length === 15 && produits8.length >= 1 && produits8.length <=9 && (
+                        <>
+                        <table className="table table-striped">
+                            <tbody>
+                                {produitsView1}
+                            </tbody>
+                        </table>
+                        {produits1.length === 10 && produits2.length === 15 && produits3.length === 15 && produits4.length ===15 && produits5.length >0 && <><div className="text-right text-right-vente10_0"><h5>1/8</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        </>}
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView2}
+                            </tbody>
+                        </table>
+                        {produits1.length === 10 && produits2.length ===15 && produits3.length>=10 && produits4.length===15 && produits5.length >0 && <><div className="text-right text-right-vente10_15_0_e"><h5>2/8</h5></div>
+                        <p style={{ pageBreakAfter: "always"}}></p>
+                        </>}
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView3}
+                            </tbody>
+                        </table>
+                        {produits1.length === 10 && produits2.length ===15 && produits3.length>=10 && produits4.length===15 && produits5.length>0 &&<><div className="text-right text-right-vente10_15_0_e"><h5>3/8</h5></div>
+                        </>}
+                        <p style={{ pageBreakAfter: "always"}}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView4}
+                            </tbody>
+                        </table>
+                        {produits1.length === 10 && produits2.length ===15 && produits3.length>=10 && produits4.length===15 && produits5.length>0 &&<><div className="text-right text-right-vente10_15_0_e"><h5>4/8</h5></div>
+                        </>}
+                        <p style={{ pageBreakAfter: "always"}}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView5}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-vente10_15_0_ee"><h5>5/8</h5></div>
+                        <p style={{ pageBreakAfter: "always"}}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView6}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-vente10_15_0_ee"><h5>6/8</h5></div>
+                        <p style={{ pageBreakAfter: "always"}}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView7}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-vente10_15_0_ee"><h5>7/8</h5>
+                        </div>
+                        <p style={{ pageBreakAfter: "always"}}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView8}
+                            </tbody>
+                        </table>
+                        {total >= 100 && total <1000 && (
+                        <div style={{marginTop:'-25px'}}
+                            className="border-client-white-end row">
+                        <div className="space-between-resize text-size-order">
+                            <h5 style={{ width: '484px',paddingLeft:'-2px',paddingBottom: '5px'}}>Total TTC(francs CFA)</h5>
+                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        </div>
+                        </div>
+                        )}
+                        {total >= 1000 && total <10000 && (
+                        <div style={{marginTop:'-25px', marginLeft:'400px'}}
+                            className="border-client-white-end row">
+                        <div className="space-between-resize text-size-order">
+                            <h5 style={{ width: '473px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        </div>
+                        </div>
+                        )}
+                        {total >= 10000 && total <100000 && (
+                        <div style={{marginTop:'-25px', marginLeft:'400px'}}
+                            className="border-client-white-end row">
+                        <div className="space-between-resize text-size-order">
+                            <h5 style={{ width: '462px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        </div>
+                        </div>
+                        )}
+                        {total >= 100000 && total <1000000 && (
+                        <div style={{marginTop:'-25px', marginLeft:'400px'}}
+                            className="border-client-white-end row">
+                        <div className="space-between-resize text-size-order">
+                            <h5 style={{ width: '445px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        </div>
+                        </div>
+                        )}
+                        {total >= 1000000 && total < 10000000 && (
+                        <div style={{marginTop:'-25px', marginLeft:'400px'}}
+                            className="border-client-white-end row">
+                        <div className="space-between-resize text-size-order">
+                            <h5 style={{ width: '575px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginRight: '138px'}}>{1.18*total}</h5>
+                        </div>
+                        </div>
+                        )}
+                        {total >= 10000000 && total < 100000000 && (
+                        <div style={{marginTop:'-25px', marginLeft:'400px'}}
+                            className="border-client-white-end row">
+                        <div className="space-between-resize text-size-order">
+                            <h5 style={{ width: '433px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        </div>
+                        </div>
+                        )}
+                        {produits7.length === 15 && produits8.length === 1 && <>
+                        <div className="text-right text-right-vente10_15_11_1_11_14"><h5>8/8</h5></div>
+                        </>}
+                        {produits7.length === 15 && produits8.length === 2 && <>
+                        <div className="text-right text-right-vente10_15_11_1_11_15"><h5>8/8</h5></div>
+                        </>}
+                        {produits7.length === 15 && produits8.length === 3 && <>
+                        <div className="text-right text-right-vente10_15_11_1_11_16"><h5>8/8</h5></div>
+                        </>}
+                        {produits7.length === 15 && produits8.length === 4 && <>
+                        <div className="text-right text-right-vente10_15_11_1_11_17"><h5>8/8</h5></div>
+                        </>}
+                        {produits7.length === 15 && produits8.length === 5 && <>
+                        <div className="text-right text-right-vente10_15_11_1_11_18"><h5>8/8</h5></div>
+                        </>}
+                        {produits7.length === 15 && produits8.length === 6 && <>
+                        <div className="text-right text-right-vente10_15_11_1_11_19"><h5>8/8</h5></div>
+                        </>}
+                        {produits7.length === 15 && produits8.length === 7 && <>
+                        <div className="text-right text-right-vente10_15_11_1_11_20"><h5>8/8</h5></div>
+                        </>}
+                        {produits7.length === 15 && produits8.length === 8 && <>
+                        <div className="text-right text-right-vente10_15_11_1_11_21"><h5>8/8</h5></div>
+                        </>}
+                        {produits7.length === 15 && produits8.length === 9 && <>
+                        <div className="text-right text-right-vente10_15_11_1_11_22"><h5>8/8</h5></div>
+                        </>}
+                        </>)}
+                        {produits7.length === 15 && produits8.length >= 10 && produits9.length===0 && (
+                        <>
+                        <table className="table table-striped">
+                            <tbody>
+                                {produitsView1}
+                            </tbody>
+                        </table>
+                        {produits1.length === 10 && produits2.length === 15 && produits3.length === 15 && produits4.length ===15 && produits5.length >0 && <><div className="text-right text-right-vente10_0"><h5>1/9</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        </>}
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView2}
+                            </tbody>
+                        </table>
+                        {produits1.length === 10 && produits2.length ===15 && produits3.length>=10 && produits4.length===15 && produits5.length >0 && <><div className="text-right text-right-vente10_15_0_e"><h5>2/9</h5></div>
+                        <p style={{ pageBreakAfter: "always"}}></p>
+                        </>}
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView3}
+                            </tbody>
+                        </table>
+                        {produits1.length === 10 && produits2.length ===15 && produits3.length>=10 && produits4.length===15 && produits5.length>0 &&<><div className="text-right text-right-vente10_15_0_e"><h5>3/9</h5></div>
+                        </>}
+                        <p style={{ pageBreakAfter: "always"}}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView4}
+                            </tbody>
+                        </table>
+                        {produits1.length === 10 && produits2.length ===15 && produits3.length>=10 && produits4.length===15 && produits5.length>0 &&<><div className="text-right text-right-vente10_15_0_e"><h5>4/9</h5></div>
+                        </>}
+                        <p style={{ pageBreakAfter: "always"}}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView5}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-vente10_15_0_ee"><h5>5/9</h5></div>
+                        <p style={{ pageBreakAfter: "always"}}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView6}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-vente10_15_0_ee"><h5>6/9</h5></div>
+                        <p style={{ pageBreakAfter: "always"}}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView7}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-vente10_15_0_ee"><h5>7/9</h5>
+                        </div>
+                        <p style={{ pageBreakAfter: "always"}}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView8}
+                            </tbody>
+                        </table>
+                        {total >= 100 && total <1000 && (
+                        <div style={{marginTop:'-25px'}}
+                            className="border-client-white-end row">
+                        <div className="space-between-resize text-size-order">
+                            <h5 style={{ width: '484px',paddingLeft:'-2px',paddingBottom: '5px'}}>Total TTC(francs CFA)</h5>
+                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        </div>
+                        </div>
+                        )}
+                        {total >= 1000 && total <10000 && (
+                        <div style={{marginTop:'-25px', marginLeft:'400px'}}
+                            className="border-client-white-end row">
+                        <div className="space-between-resize text-size-order">
+                            <h5 style={{ width: '473px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        </div>
+                        </div>
+                        )}
+                        {total >= 10000 && total <100000 && (
+                        <div style={{marginTop:'-25px', marginLeft:'400px'}}
+                            className="border-client-white-end row">
+                        <div className="space-between-resize text-size-order">
+                            <h5 style={{ width: '462px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        </div>
+                        </div>
+                        )}
+                        {total >= 100000 && total <1000000 && (
+                        <div style={{marginTop:'-25px', marginLeft:'400px'}}
+                            className="border-client-white-end row">
+                        <div className="space-between-resize text-size-order">
+                            <h5 style={{ width: '445px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        </div>
+                        </div>
+                        )}
+                        {total >= 1000000 && total < 10000000 && (
+                        <div style={{marginTop:'-25px', marginLeft:'400px'}}
+                            className="border-client-white-end row">
+                        <div className="space-between-resize text-size-order">
+                            <h5 style={{ width: '575px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginRight: '138px'}}>{1.18*total}</h5>
+                        </div>
+                        </div>
+                        )}
+                        {total >= 10000000 && total < 100000000 && (
+                        <div style={{marginTop:'-25px', marginLeft:'400px'}}
+                            className="border-client-white-end row">
+                        <div className="space-between-resize text-size-order">
+                            <h5 style={{ width: '433px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        </div>
+                        </div>
+                        )}
+                        {produits7.length === 15 && produits8.length === 10 && <>
+                        <div className="text-right text-right-vente10_15_11_1_11_23"><h5>8/9</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        <div className="text-right text-right-vente10_15_11_1_11_24"><h5>9/9</h5></div>
                         </>}
                         </>)}
                     </div>
@@ -3496,8 +3985,151 @@ export default class ViewDevisVente extends Component {
                     </div>
                 </div>
                 )}
-                {produits6.length === 15 && produits7.length === 10 && (
+                {produits6.length === 15 && (produits7.length === 10 || produits7.length === 11 || produits7.length === 12 || produits7.length === 13 || produits7.length === 14) && (
                 <div className="space-between-vente10_62">
+                    <div>
+                        <h3>Fait à Dakar (Sénégal), le {dateFrench}</h3>
+                    </div>
+                    <div>
+                        <div className="space-right"><h3>LE SERVICE COMMERCIAL:</h3><br /></div>
+                        <h3 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h3>
+                    </div>
+                </div>
+                )}
+                {produits6.length === 15 && produits7.length === 15 && produits8.length === 0 && (
+                <div className="space-between-vente10_63">
+                    <div>
+                        <h3>Fait à Dakar (Sénégal), le {dateFrench}</h3>
+                    </div>
+                    <div>
+                        <div className="space-right"><h3>LE SERVICE COMMERCIAL:</h3><br /></div>
+                        <h3 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h3>
+                    </div>
+                </div>
+                )}
+                {produits6.length === 15 && produits7.length === 15 && produits8.length === 1 && (
+                <div className="space-between-vente10_63">
+                    <div>
+                        <h3>Fait à Dakar (Sénégal), le {dateFrench}</h3>
+                    </div>
+                    <div>
+                        <div className="space-right"><h3>LE SERVICE COMMERCIAL:</h3><br /></div>
+                        <h3 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h3>
+                    </div>
+                </div>
+                )}
+                {produits6.length === 15 && produits7.length === 15 && produits8.length === 2 && (
+                <div className="space-between-vente10_64">
+                    <div>
+                        <h3>Fait à Dakar (Sénégal), le {dateFrench}</h3>
+                    </div>
+                    <div>
+                        <div className="space-right"><h3>LE SERVICE COMMERCIAL:</h3><br /></div>
+                        <h3 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h3>
+                    </div>
+                </div>
+                )}
+                {produits6.length === 15 && produits7.length === 15 && produits8.length === 3 && (
+                <div className="space-between-vente10_65">
+                    <div>
+                        <h3>Fait à Dakar (Sénégal), le {dateFrench}</h3>
+                    </div>
+                    <div>
+                        <div className="space-right"><h3>LE SERVICE COMMERCIAL:</h3><br /></div>
+                        <h3 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h3>
+                    </div>
+                </div>
+                )}
+                {produits6.length === 15 && produits7.length === 15 && produits8.length === 4 && (
+                <div className="space-between-vente10_66">
+                    <div>
+                        <h3>Fait à Dakar (Sénégal), le {dateFrench}</h3>
+                    </div>
+                    <div>
+                        <div className="space-right"><h3>LE SERVICE COMMERCIAL:</h3><br /></div>
+                        <h3 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h3>
+                    </div>
+                </div>
+                )}
+                {produits6.length === 15 && produits7.length === 15 && produits8.length === 5 && (
+                <div className="space-between-vente10_67">
+                    <div>
+                        <h3>Fait à Dakar (Sénégal), le {dateFrench}</h3>
+                    </div>
+                    <div>
+                        <div className="space-right"><h3>LE SERVICE COMMERCIAL:</h3><br /></div>
+                        <h3 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h3>
+                    </div>
+                </div>
+                )}
+                {produits6.length === 15 && produits7.length === 15 && produits8.length === 6 && (
+                <div className="space-between-vente10_68">
+                    <div>
+                        <h3>Fait à Dakar (Sénégal), le {dateFrench}</h3>
+                    </div>
+                    <div>
+                        <div className="space-right"><h3>LE SERVICE COMMERCIAL:</h3><br /></div>
+                        <h3 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h3>
+                    </div>
+                </div>
+                )}
+                {produits6.length === 15 && produits7.length === 15 && produits8.length === 7 && (
+                <div className="space-between-vente10_69">
+                    <div>
+                        <h3>Fait à Dakar (Sénégal), le {dateFrench}</h3>
+                    </div>
+                    <div>
+                        <div className="space-right"><h3>LE SERVICE COMMERCIAL:</h3><br /></div>
+                        <h3 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h3>
+                    </div>
+                </div>
+                )}
+                {produits6.length === 15 && produits7.length === 15 && produits8.length === 8 && (
+                <div className="space-between-vente10_70">
+                    <div>
+                        <h3>Fait à Dakar (Sénégal), le {dateFrench}</h3>
+                    </div>
+                    <div>
+                        <div className="space-right"><h3>LE SERVICE COMMERCIAL:</h3><br /></div>
+                        <h3 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h3>
+                    </div>
+                </div>
+                )}
+                {produits6.length === 15 && produits7.length === 15 && produits8.length === 9 && (
+                <div className="space-between-vente10_71">
+                    <div>
+                        <h3>Fait à Dakar (Sénégal), le {dateFrench}</h3>
+                    </div>
+                    <div>
+                        <div className="space-right"><h3>LE SERVICE COMMERCIAL:</h3><br /></div>
+                        <h3 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h3>
+                    </div>
+                </div>
+                )}
+                {produits6.length === 15 && produits7.length === 15 && (produits8.length === 10 || produits8.length === 11 || produits8.length === 12 || produits8.length === 13|| produits8.length === 14|| produits8.length ===15) && (
+                <div className="space-between-vente10_72">
                     <div>
                         <h3>Fait à Dakar (Sénégal), le {dateFrench}</h3>
                     </div>

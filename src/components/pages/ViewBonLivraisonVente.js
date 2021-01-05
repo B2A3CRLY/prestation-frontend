@@ -264,6 +264,10 @@ export default class ViewBonLivraisonVente extends Component {
         let produitsView2 = null;
         let produitsView3 = null;
         let produitsView4 = null;
+        let produitsView5 = null;
+        let produitsView6 = null;
+        let produitsView7 = null;
+        let produitsView8 = null;
         let totalView = null;
         let length = 48
         let maxlength = 96
@@ -384,6 +388,169 @@ export default class ViewBonLivraisonVente extends Component {
             {
                 id: 39, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
             },
+            {
+                id: 40, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 41, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 42, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 43, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 44, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 45, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 46, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 47, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 48, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 49, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 50, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 51, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 52, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 53, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 54, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 55, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 56, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 57, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 58, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 59, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 60, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 61, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 62, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 63, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 64, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 65, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 66, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 67, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 68, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 67, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 68, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 69, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 70, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 71, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 72, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 73, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 74, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 75, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 76, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 77, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 78, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 79, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 80, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 81, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 82, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 83, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 84, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 85, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 86, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 87, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 88, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 89, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            {
+                id: 90, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+            },
+            
+            
+            
+            
         ]
         
 
@@ -454,7 +621,42 @@ export default class ViewBonLivraisonVente extends Component {
                 </tr>
             );
         })
-    
+        produitsView5 = produits5.map(dev => {
+            return (
+                <tr key={dev.id} style={{height:'30px'}}>
+                    {dev.designation.length > 48 && <td style={{ width: '500px', height: '90px', paddingTop: '35px', paddingBottom: '10px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.designation.length < 48 && <td style={{width:'500px', height:'90px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    <td style={{width:'200px', height:'90px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'center'}}>{dev.quantity}</td>
+                </tr>
+            );
+        })
+        produitsView6 = produits6.map(dev => {
+            return (
+                <tr key={dev.id} style={{height:'30px'}}>
+                    {dev.designation.length > 48 && <td style={{ width: '500px', height: '90px', paddingTop: '35px', paddingBottom: '10px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.designation.length < 48 && <td style={{width:'500px', height:'90px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    <td style={{width:'200px', height:'90px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'center'}}>{dev.quantity}</td>
+                </tr>
+            );
+        })
+        produitsView7 = produits7.map(dev => {
+            return (
+                <tr key={dev.id} style={{height:'30px'}}>
+                    {dev.designation.length > 48 && <td style={{ width: '500px', height: '90px', paddingTop: '35px', paddingBottom: '10px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.designation.length < 48 && <td style={{width:'500px', height:'90px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    <td style={{width:'200px', height:'90px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'center'}}>{dev.quantity}</td>
+                </tr>
+            );
+        })
+        produitsView8 = produits8.map(dev => {
+            return (
+                <tr key={dev.id} style={{height:'30px'}}>
+                    {dev.designation.length > 48 && <td style={{ width: '500px', height: '90px', paddingTop: '35px', paddingBottom: '10px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.designation.length < 48 && <td style={{width:'500px', height:'90px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    <td style={{width:'200px', height:'90px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'center'}}>{dev.quantity}</td>
+                </tr>
+            );
+        })
         return (
             <div>
                 <div className="margin-vente">
@@ -759,7 +961,7 @@ export default class ViewBonLivraisonVente extends Component {
                         )}
                         
                         </>)}
-                        {produits1.length === 8 && produits2.length === 12 && produits3.length !== 0 && produits4.length !== 0 && produits5.length === 0 && (
+                        {produits1.length === 8 && produits2.length === 12 && produits3.length !== 0 && produits4.length <= 7 && produits5.length === 0 && (
                         <>
                         <table className="table table-striped">
                             <tbody>
@@ -832,6 +1034,838 @@ export default class ViewBonLivraisonVente extends Component {
                         {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 7 && (
                             <>
                             <div className="text-right text-right-venteBL_31"><h5>4/4</h5></div>
+                            </>
+                        )}
+                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 8 && (
+                            <>
+                            <div className="text-right text-right-venteBL_32"><h5>4/4</h5></div>
+                            </>
+                        )}
+                        </>)}
+                        {produits1.length === 8 && produits2.length === 12 && produits3.length !== 0 && produits4.length > 7 && produits5.length === 0 && (
+                        <>
+                        <table className="table table-striped">
+                            <tbody>
+                                {produitsView1}
+                            </tbody>
+                        </table>
+                        {produits1.length === 8 && produits2.length === 12 && produits3.length > 7 
+                        &&<><div className="text-right text-right-venteBL_0"><h5>1/5</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        </>}
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView2}
+                            </tbody>
+                        </table>
+                        {produits1.length === 8 && produits2.length === 12 && produits3.length > 7  && (
+                            <>
+                                <div className="text-right text-right-venteBL_12">
+                                    <h5>2/5</h5>
+                                </div>
+                                <p style={{ pageBreakAfter: "always" }}></p>
+                            </>
+                        )}
+                         <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView3}
+                            </tbody>
+                        </table>
+                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && (
+                            <>
+                            <div className="text-right text-right-venteBL_24"><h5>3/5</h5></div>
+                            <p style={{ pageBreakAfter: "always" }}></p>
+                            </>
+                        )}
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView4}
+                            </tbody>
+                        </table>
+                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 8 && (
+                            <>
+                            <div className="text-right text-right-venteBL_32"><h5>4/5</h5></div>
+                            <p style={{ pageBreakAfter: "always" }}></p>
+                            <div className="text-right text-right-venteBL_33"><h5>5/5</h5></div>
+                            </>
+                        )}
+                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 9 && (
+                            <>
+                            <div className="text-right text-right-venteBL_32_1"><h5>4/5</h5></div>
+                            <p style={{ pageBreakAfter: "always" }}></p>
+                            <div className="text-right text-right-venteBL_33"><h5>5/5</h5></div>
+                            </>
+                        )}
+                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 10 && (
+                            <>
+                            <div className="text-right text-right-venteBL_32_2"><h5>4/5</h5></div>
+                            <p style={{ pageBreakAfter: "always" }}></p>
+                            <div className="text-right text-right-venteBL_33"><h5>5/5</h5></div>
+                            </>
+                        )}
+                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 11 && (
+                            <>
+                            <div className="text-right text-right-venteBL_32_3"><h5>4/5</h5></div>
+                            <p style={{ pageBreakAfter: "always" }}></p>
+                            <div className="text-right text-right-venteBL_33"><h5>5/5</h5></div>
+                            </>
+                        )}
+                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 12 && (
+                            <>
+                            <div className="text-right text-right-venteBL_32_4"><h5>4/5</h5></div>
+                            <p style={{ pageBreakAfter: "always" }}></p>
+                            <div className="text-right text-right-venteBL_33"><h5>5/5</h5></div>
+                            </>
+                        )}
+                        </>)}
+                        {produits1.length === 8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 12 && produits5.length <=7 && produits6.length === 0 (
+                        <>
+                        <table className="table table-striped">
+                            <tbody>
+                                {produitsView1}
+                            </tbody>
+                        </table>
+                        {produits1.length === 8 && produits2.length === 12 && produits3.length > 7 
+                        &&<><div className="text-right text-right-venteBL_0"><h5>1/5</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        </>}
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView2}
+                            </tbody>
+                        </table>
+                        {produits1.length === 8 && produits2.length === 12 && produits3.length > 7  && (
+                            <>
+                                <div className="text-right text-right-venteBL_12">
+                                    <h5>2/5</h5>
+                                </div>
+                                <p style={{ pageBreakAfter: "always" }}></p>
+                            </>
+                        )}
+                         <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView3}
+                            </tbody>
+                        </table>
+                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && (
+                            <>
+                            <div className="text-right text-right-venteBL_24"><h5>3/5</h5></div>
+                            <p style={{ pageBreakAfter: "always" }}></p>
+                            </>
+                        )}
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView4}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-venteBL_32_4"><h5>4/5</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView5}
+                            </tbody>
+                        </table>
+                        {produits4.length === 12 && produits5.length === 1 && (
+                            <>
+                            <div className="text-right text-right-venteBL_34"><h5>5/5</h5></div>
+                            </>
+                        )}
+                        {produits4.length === 12 && produits5.length === 2 && (
+                            <>
+                            <div className="text-right text-right-venteBL_35"><h5>5/5</h5></div>
+                            </>
+                        )}
+                        {produits4.length === 12 && produits5.length === 3 && (
+                            <>
+                            <div className="text-right text-right-venteBL_36"><h5>5/5</h5></div>
+                            </>
+                        )}
+                        {produits4.length === 12 && produits5.length === 4 && (
+                            <>
+                            <div className="text-right text-right-venteBL_37"><h5>5/5</h5></div>
+                            </>
+                        )}
+                        {produits4.length === 12 && produits5.length === 5 && (
+                            <>
+                            <div className="text-right text-right-venteBL_38"><h5>5/5</h5></div>
+                            </>
+                        )}
+                        {produits4.length === 12 && produits5.length === 6 && (
+                            <>
+                            <div className="text-right text-right-venteBL_39"><h5>5/5</h5></div>
+                            </>
+                        )}
+                        {produits4.length === 12 && produits5.length === 7 && (
+                            <>
+                            <div className="text-right text-right-venteBL_40"><h5>5/5</h5></div>
+                            </>
+                        )}
+                        </>)}
+                        {produits1.length === 8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 12 && produits5.length > 7 && produits6.length === 0 && (
+                        <>
+                        <table className="table table-striped">
+                            <tbody>
+                                {produitsView1}
+                            </tbody>
+                        </table>
+                        {produits1.length === 8 && produits2.length === 12 && produits3.length > 7 
+                        &&<><div className="text-right text-right-venteBL_0"><h5>1/6</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        </>}
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView2}
+                            </tbody>
+                        </table>
+                        {produits1.length === 8 && produits2.length === 12 && produits3.length > 7  && (
+                            <>
+                                <div className="text-right text-right-venteBL_12">
+                                    <h5>2/6</h5>
+                                </div>
+                                <p style={{ pageBreakAfter: "always" }}></p>
+                            </>
+                        )}
+                         <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView3}
+                            </tbody>
+                        </table>
+                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && (
+                            <>
+                            <div className="text-right text-right-venteBL_24"><h5>3/6</h5></div>
+                            <p style={{ pageBreakAfter: "always" }}></p>
+                            </>
+                        )}
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView4}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-venteBL_32_4"><h5>4/6</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView5}
+                            </tbody>
+                        </table>
+                        {produits4.length === 12 && produits5.length === 8 && (
+                            <>
+                            <div className="text-right text-right-venteBL_41"><h5>5/6</h5></div>
+                            <p style={{ pageBreakAfter: "always" }}></p>
+                            <div className="text-right text-right-venteBL_42"><h5>6/6</h5></div>
+                            </>
+                        )}
+                        {produits4.length === 12 && produits5.length === 9 && (
+                            <>
+                            <div className="text-right text-right-venteBL_41_1"><h5>5/6</h5></div>
+                            <p style={{ pageBreakAfter: "always" }}></p>
+                            <div className="text-right text-right-venteBL_42"><h5>6/6</h5></div>
+                            </>
+                        )}
+                        {produits4.length === 12 && produits5.length === 10 && (
+                            <>
+                            <div className="text-right text-right-venteBL_41_2"><h5>5/6</h5></div>
+                            <p style={{ pageBreakAfter: "always" }}></p>
+                            <div className="text-right text-right-venteBL_42"><h5>6/6</h5></div>
+                            </>
+                        )}
+                        {produits4.length === 12 && produits5.length === 11 && (
+                            <>
+                            <div className="text-right text-right-venteBL_41_3"><h5>5/6</h5></div>
+                            <p style={{ pageBreakAfter: "always" }}></p>
+                            <div className="text-right text-right-venteBL_42"><h5>6/6</h5></div>
+                            </>
+                        )}
+                        {produits4.length === 12 && produits5.length === 12 && (
+                            <>
+                            <div className="text-right text-right-venteBL_41_4"><h5>5/6</h5></div>
+                            <p style={{ pageBreakAfter: "always" }}></p>
+                            <div className="text-right text-right-venteBL_42"><h5>6/6</h5></div>
+                            </>
+                        )}
+                        </>)}
+                        {produits1.length === 8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 12 && produits5.length === 12 && produits6.length <= 7 && produits6.length !== 0 && produits7.length === 0 && (
+                        <>
+                        <table className="table table-striped">
+                            <tbody>
+                                {produitsView1}
+                            </tbody>
+                        </table>
+                        {produits1.length === 8 && produits2.length === 12 && produits3.length > 7 
+                        &&<><div className="text-right text-right-venteBL_0"><h5>1/6</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        </>}
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView2}
+                            </tbody>
+                        </table>
+                        {produits1.length === 8 && produits2.length === 12 && produits3.length > 7  && (
+                            <>
+                                <div className="text-right text-right-venteBL_12">
+                                    <h5>2/6</h5>
+                                </div>
+                                <p style={{ pageBreakAfter: "always" }}></p>
+                            </>
+                        )}
+                         <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView3}
+                            </tbody>
+                        </table>
+                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && (
+                            <>
+                            <div className="text-right text-right-venteBL_24"><h5>3/6</h5></div>
+                            <p style={{ pageBreakAfter: "always" }}></p>
+                            </>
+                        )}
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView4}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-venteBL_32_4"><h5>4/6</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView5}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-venteBL_41_4"><h5>5/6</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView6}
+                            </tbody>
+                        </table>
+                        {produits5.length === 12 && produits6.length === 1 && (
+                            <>
+                            <div className="text-right text-right-venteBL_43"><h5>6/6</h5></div>
+                            </>
+                        )}
+                        {produits5.length === 12 && produits6.length === 2 && (
+                            <>
+                            <div className="text-right text-right-venteBL_44"><h5>6/6</h5></div>
+                            </>
+                        )}
+                        {produits5.length === 12 && produits6.length === 3 && (
+                            <>
+                            <div className="text-right text-right-venteBL_45"><h5>6/6</h5></div>
+                            </>
+                        )}
+                        {produits5.length === 12 && produits6.length === 4 && (
+                            <>
+                            <div className="text-right text-right-venteBL_46"><h5>6/6</h5></div>
+                            </>
+                        )}
+                        {produits5.length === 12 && produits6.length === 5 && (
+                            <>
+                            <div className="text-right text-right-venteBL_47"><h5>6/6</h5></div>
+                            </>
+                        )}
+                        {produits5.length === 12 && produits6.length === 6 && (
+                            <>
+                            <div className="text-right text-right-venteBL_48"><h5>6/6</h5></div>
+                            </>
+                        )}
+                        {produits5.length === 12 && produits6.length === 7 && (
+                            <>
+                            <div className="text-right text-right-venteBL_49"><h5>6/6</h5></div>
+                            </>
+                        )}
+                        </>)}
+                        {produits1.length === 8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 12 && produits5.length === 12 && produits6.length > 7 && produits6.length !== 0 && produits7.length === 0 && (
+                        <>
+                        <table className="table table-striped">
+                            <tbody>
+                                {produitsView1}
+                            </tbody>
+                        </table>
+                        {produits1.length === 8 && produits2.length === 12 && produits3.length > 7 
+                        &&<><div className="text-right text-right-venteBL_0"><h5>1/7</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        </>}
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView2}
+                            </tbody>
+                        </table>
+                        {produits1.length === 8 && produits2.length === 12 && produits3.length > 7  && (
+                            <>
+                                <div className="text-right text-right-venteBL_12">
+                                    <h5>2/7</h5>
+                                </div>
+                                <p style={{ pageBreakAfter: "always" }}></p>
+                            </>
+                        )}
+                         <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView3}
+                            </tbody>
+                        </table>
+                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && (
+                            <>
+                            <div className="text-right text-right-venteBL_24"><h5>3/7</h5></div>
+                            <p style={{ pageBreakAfter: "always" }}></p>
+                            </>
+                        )}
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView4}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-venteBL_32_4"><h5>4/7</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView5}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-venteBL_41_4"><h5>5/7</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView6}
+                            </tbody>
+                        </table>
+                    
+                        {produits5.length === 12 && produits6.length === 8 && (
+                            <>
+                            <div className="text-right text-right-venteBL_50"><h5>6/7</h5></div>
+                            <p style={{ pageBreakAfter: "always" }}></p>
+                            <div className="text-right text-right-venteBL_51"><h5>7/7</h5></div>
+                            </>
+                        )}
+                        {produits5.length === 12 && produits6.length === 9 && (
+                            <>
+                            <div className="text-right text-right-venteBL_50_1"><h5>6/7</h5></div>
+                            <p style={{ pageBreakAfter: "always" }}></p>
+                            <div className="text-right text-right-venteBL_51"><h5>7/7</h5></div>
+                            </>
+                        )}
+                        {produits5.length === 12 && produits6.length === 10 && (
+                            <>
+                            <div className="text-right text-right-venteBL_50_2"><h5>6/7</h5></div>
+                            <p style={{ pageBreakAfter: "always" }}></p>
+                            <div className="text-right text-right-venteBL_51"><h5>7/7</h5></div>
+                            </>
+                        )}
+                        {produits5.length === 12 && produits6.length === 11 && (
+                            <>
+                            <div className="text-right text-right-venteBL_50_3"><h5>6/7</h5></div>
+                            <p style={{ pageBreakAfter: "always" }}></p>
+                            <div className="text-right text-right-venteBL_51"><h5>7/7</h5></div>
+                            </>
+                        )}
+                        {produits5.length === 12 && produits6.length === 12 && (
+                            <>
+                            <div className="text-right text-right-venteBL_50_4"><h5>6/7</h5></div>
+                            <p style={{ pageBreakAfter: "always" }}></p>
+                            <div className="text-right text-right-venteBL_51"><h5>7/7</h5></div>
+                            </>
+                        )}
+                        </>)}
+                        {produits1.length === 8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 12 && produits5.length === 12 && produits6.length === 12 && produits7.length !== 0 && produits7.length <= 7 && produits8.length === 0 && (
+                        <>
+                        <table className="table table-striped">
+                            <tbody>
+                                {produitsView1}
+                            </tbody>
+                        </table>
+                        {produits1.length === 8 && produits2.length === 12 && produits3.length > 7 
+                        &&<><div className="text-right text-right-venteBL_0"><h5>1/7</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        </>}
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView2}
+                            </tbody>
+                        </table>
+                        {produits1.length === 8 && produits2.length === 12 && produits3.length > 7  && (
+                            <>
+                                <div className="text-right text-right-venteBL_12">
+                                    <h5>2/7</h5>
+                                </div>
+                                <p style={{ pageBreakAfter: "always" }}></p>
+                            </>
+                        )}
+                         <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView3}
+                            </tbody>
+                        </table>
+                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && (
+                            <>
+                            <div className="text-right text-right-venteBL_24"><h5>3/7</h5></div>
+                            <p style={{ pageBreakAfter: "always" }}></p>
+                            </>
+                        )}
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView4}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-venteBL_32_4"><h5>4/7</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView5}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-venteBL_41_4"><h5>5/7</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView6}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-venteBL_50_4"><h5>6/7</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView7}
+                            </tbody>
+                        </table>
+                        {produits6.length === 12 && produits7.length === 1 && (
+                            <>
+                            <div className="text-right text-right-venteBL_52"><h5>7/7</h5></div>
+                            </>
+                        )}
+                        {produits6.length === 12 && produits7.length === 2 && (
+                            <>
+                            <div className="text-right text-right-venteBL_53"><h5>7/7</h5></div>
+                            </>
+                        )}
+                        {produits6.length === 12 && produits7.length === 3 && (
+                            <>
+                            <div className="text-right text-right-venteBL_54"><h5>7/7</h5></div>
+                            </>
+                        )}
+                        {produits6.length === 12 && produits7.length === 4 && (
+                            <>
+                            <div className="text-right text-right-venteBL_55"><h5>7/7</h5></div>
+                            </>
+                        )}
+                        {produits6.length === 12 && produits7.length === 5 && (
+                            <>
+                            <div className="text-right text-right-venteBL_56"><h5>7/7</h5></div>
+                            </>
+                        )}
+                        {produits6.length === 12 && produits7.length === 6 && (
+                            <>
+                            <div className="text-right text-right-venteBL_57"><h5>7/7</h5></div>
+                            </>
+                        )}
+                        {produits6.length === 12 && produits7.length === 7 && (
+                            <>
+                            <div className="text-right text-right-venteBL_58"><h5>7/7</h5></div>
+                            </>
+                        )}
+                        </>)}
+                        {produits1.length === 8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 12 && produits5.length === 12 && produits6.length === 12 && produits7.length !== 0 && produits7.length > 7 && produits8.length === 0 && (
+                        <>
+                        <table className="table table-striped">
+                            <tbody>
+                                {produitsView1}
+                            </tbody>
+                        </table>
+                        {produits1.length === 8 && produits2.length === 12 && produits3.length > 7 
+                        &&<><div className="text-right text-right-venteBL_0"><h5>1/8</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        </>}
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView2}
+                            </tbody>
+                        </table>
+                        {produits1.length === 8 && produits2.length === 12 && produits3.length > 7  && (
+                            <>
+                                <div className="text-right text-right-venteBL_12">
+                                    <h5>2/8</h5>
+                                </div>
+                                <p style={{ pageBreakAfter: "always" }}></p>
+                            </>
+                        )}
+                         <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView3}
+                            </tbody>
+                        </table>
+                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && (
+                            <>
+                            <div className="text-right text-right-venteBL_24"><h5>3/8</h5></div>
+                            <p style={{ pageBreakAfter: "always" }}></p>
+                            </>
+                        )}
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView4}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-venteBL_32_4"><h5>4/8</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView5}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-venteBL_41_4"><h5>5/8</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView6}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-venteBL_50_4"><h5>6/8</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView7}
+                            </tbody>
+                        </table>
+                        {produits6.length === 12 && produits7.length === 8 && (
+                            <>
+                            <div className="text-right text-right-venteBL_59"><h5>7/8</h5></div>
+                                <p style={{ pageBreakAfter: "always" }}></p>
+                            <div className="text-right text-right-venteBL_60"><h5>8/8</h5></div>
+                            </>
+                        )}
+                        {produits6.length === 12 && produits7.length === 9 && (
+                            <>
+                            <div className="text-right text-right-venteBL_59_1"><h5>7/8</h5></div>
+                                <p style={{ pageBreakAfter: "always" }}></p>
+                            <div className="text-right text-right-venteBL_60"><h5>8/8</h5></div>
+                            </>
+                        )}
+                        {produits6.length === 12 && produits7.length === 10 && (
+                            <>
+                            <div className="text-right text-right-venteBL_59_2"><h5>7/8</h5></div>
+                                <p style={{ pageBreakAfter: "always" }}></p>
+                            <div className="text-right text-right-venteBL_60"><h5>8/8</h5></div>
+                            </>
+                        )}
+                        {produits6.length === 12 && produits7.length === 11 && (
+                            <>
+                            <div className="text-right text-right-venteBL_59_3"><h5>7/8</h5></div>
+                                <p style={{ pageBreakAfter: "always" }}></p>
+                            <div className="text-right text-right-venteBL_60"><h5>8/8</h5></div>
+                            </>
+                        )}
+                        {produits6.length === 12 && produits7.length === 12 && (
+                            <>
+                            <div className="text-right text-right-venteBL_59_4"><h5>7/8</h5></div>
+                                <p style={{ pageBreakAfter: "always" }}></p>
+                            <div className="text-right text-right-venteBL_60"><h5>8/8</h5></div>
+                            </>
+                        )}
+                        
+                        </>)}
+                        {produits7.length === 12 && produits8.length !== 0 && produits8.length <=7 && (
+                        <>
+                        <table className="table table-striped">
+                            <tbody>
+                                {produitsView1}
+                            </tbody>
+                        </table>
+                        {produits1.length === 8 && produits2.length === 12 && produits3.length > 7 
+                        &&<><div className="text-right text-right-venteBL_0"><h5>1/8</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        </>}
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView2}
+                            </tbody>
+                        </table>
+                        {produits1.length === 8 && produits2.length === 12 && produits3.length > 7  && (
+                            <>
+                                <div className="text-right text-right-venteBL_12">
+                                    <h5>2/8</h5>
+                                </div>
+                                <p style={{ pageBreakAfter: "always" }}></p>
+                            </>
+                        )}
+                         <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView3}
+                            </tbody>
+                        </table>
+                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && (
+                            <>
+                            <div className="text-right text-right-venteBL_24"><h5>3/8</h5></div>
+                            <p style={{ pageBreakAfter: "always" }}></p>
+                            </>
+                        )}
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView4}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-venteBL_32_4"><h5>4/8</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView5}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-venteBL_41_4"><h5>5/8</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView6}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-venteBL_50_4"><h5>6/8</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView7}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-venteBL_59_4"><h5>7/8</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView8}
+                            </tbody>
+                        </table>
+                        {produits7.length === 12 && produits8.length === 1 && (
+                            <>
+                                <div className="text-right text-right-venteBL_61"><h5>8/8</h5></div>
+                            </>
+                        )}
+                        {produits7.length === 12 && produits8.length === 2 && (
+                            <>
+                                <div className="text-right text-right-venteBL_62"><h5>8/8</h5></div>
+                            </>
+                        )}
+                        {produits7.length === 12 && produits8.length === 3 && (
+                            <>
+                                <div className="text-right text-right-venteBL_63"><h5>8/8</h5></div>
+                            </>
+                        )}
+                        {produits7.length === 12 && produits8.length === 4 && (
+                            <>
+                                <div className="text-right text-right-venteBL_64"><h5>8/8</h5></div>
+                            </>
+                        )}
+                        {produits7.length === 12 && produits8.length === 5 && (
+                            <>
+                                <div className="text-right text-right-venteBL_65"><h5>8/8</h5></div>
+                            </>
+                        )}
+                        {produits7.length === 12 && produits8.length === 6 && (
+                            <>
+                                <div className="text-right text-right-venteBL_66"><h5>8/8</h5></div>
+                            </>
+                        )}
+                        {produits7.length === 12 && produits8.length === 7 && (
+                            <>
+                                <div className="text-right text-right-venteBL_67"><h5>8/8</h5></div>
+                            </>
+                        )}
+                        </>)}
+                        {produits7.length === 12 && produits8.length !== 0 && produits8.length > 7
+                        && produits9.length === 0 && (
+                        <>
+                        <table className="table table-striped">
+                            <tbody>
+                                {produitsView1}
+                            </tbody>
+                        </table>
+                        {produits1.length === 8 && produits2.length === 12 && produits3.length > 7 
+                        &&<><div className="text-right text-right-venteBL_0"><h5>1/9</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        </>}
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView2}
+                            </tbody>
+                        </table>
+                        {produits1.length === 8 && produits2.length === 12 && produits3.length > 7  && (
+                            <>
+                                <div className="text-right text-right-venteBL_12">
+                                    <h5>2/9</h5>
+                                </div>
+                                <p style={{ pageBreakAfter: "always" }}></p>
+                            </>
+                        )}
+                         <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView3}
+                            </tbody>
+                        </table>
+                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && (
+                            <>
+                            <div className="text-right text-right-venteBL_24"><h5>3/9</h5></div>
+                            <p style={{ pageBreakAfter: "always" }}></p>
+                            </>
+                        )}
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView4}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-venteBL_32_4"><h5>4/9</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView5}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-venteBL_41_4"><h5>5/9</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView6}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-venteBL_50_4"><h5>6/9</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView7}
+                            </tbody>
+                        </table>
+                        <div className="text-right text-right-venteBL_59_4"><h5>7/9</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        <table style={{marginTop:'70px'}} className="table table-striped">
+                            <tbody>
+                                {produitsView8}
+                            </tbody>
+                        </table>
+                        {produits7.length === 12 && produits8.length === 8 && (
+                            <>  
+                                <div className="text-right text-right-venteBL_68"><h5>8/9</h5></div>
+                                    <p style={{ pageBreakAfter: "always" }}></p>
+                                <div className="text-right text-right-venteBL_69"><h5>9/9</h5></div>
+                            </>
+                        )}
+                        {produits7.length === 12 && produits8.length === 9 && (
+                            <>  
+                                <div className="text-right text-right-venteBL_68_1"><h5>8/9</h5></div>
+                                    <p style={{ pageBreakAfter: "always" }}></p>
+                                <div className="text-right text-right-venteBL_69"><h5>9/9</h5></div>
+                            </>
+                        )}
+                        {produits7.length === 12 && produits8.length === 10 && (
+                            <>  
+                                <div className="text-right text-right-venteBL_68_2"><h5>8/9</h5></div>
+                                    <p style={{ pageBreakAfter: "always" }}></p>
+                                <div className="text-right text-right-venteBL_69"><h5>9/9</h5></div>
+                            </>
+                        )}
+                        {produits7.length === 12 && produits8.length === 11 && (
+                            <>  
+                                <div className="text-right text-right-venteBL_68_3"><h5>8/9</h5></div>
+                                    <p style={{ pageBreakAfter: "always" }}></p>
+                                <div className="text-right text-right-venteBL_69"><h5>9/9</h5></div>
+                            </>
+                        )}
+                        {produits7.length === 12 && produits8.length === 12 && (
+                            <>  
+                                <div className="text-right text-right-venteBL_68_4"><h5>8/9</h5></div>
+                                    <p style={{ pageBreakAfter: "always" }}></p>
+                                <div className="text-right text-right-venteBL_69"><h5>9/9</h5></div>
                             </>
                         )}
                         </>)}
@@ -1188,8 +2222,424 @@ export default class ViewBonLivraisonVente extends Component {
                     </div>
                 </div>
                 )}
-                {produits1.length === 8 && produits2.length ===  12 && produits3.length ===  12 && produits4.length === 8 && (
-                <div className="space-between-venteBL_23">
+                {produits1.length === 8 && produits2.length ===  12 && produits3.length ===  12 && (produits4.length === 8 || produits4.length === 9 || produits4.length === 10 || produits4.length === 11 || produits4.length === 12) && produits5.length === 0 && (
+                <div className="space-between-venteBL_24">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits5.length === 1 && (
+                <div className="space-between-venteBL_25">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits5.length === 2 && (
+                <div className="space-between-venteBL_26">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits5.length === 3 && (
+                <div className="space-between-venteBL_27">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits5.length === 4 && (
+                <div className="space-between-venteBL_28">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits5.length === 5 && (
+                <div className="space-between-venteBL_29">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits5.length === 6 && (
+                <div className="space-between-venteBL_30">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits5.length === 7 && (
+                <div className="space-between-venteBL_31">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {(produits5.length === 8 || produits5.length === 9 || produits5.length === 10 || produits5.length === 11 || produits5.length === 12) && produits6.length === 0 && (
+                <div className="space-between-venteBL_32">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits6.length === 1 && (
+                <div className="space-between-venteBL_33">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits6.length === 2 && (
+                <div className="space-between-venteBL_34">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits6.length === 3 && (
+                <div className="space-between-venteBL_35">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                 {produits6.length === 4 && (
+                <div className="space-between-venteBL_36">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits6.length === 5 && (
+                <div className="space-between-venteBL_37">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits6.length === 6 && (
+                <div className="space-between-venteBL_38">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits6.length === 7 && (
+                <div className="space-between-venteBL_39">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {(produits6.length === 8 || produits6.length === 9 || produits6.length === 10 || produits6.length === 11 || produits6.length === 12) && produits7.length === 0 && (
+                <div className="space-between-venteBL_40">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits7.length === 1 && (
+                <div className="space-between-venteBL_41">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits7.length === 2 && (
+                <div className="space-between-venteBL_42">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits7.length === 3 && (
+                <div className="space-between-venteBL_43">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits7.length === 4 && (
+                <div className="space-between-venteBL_44">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits7.length === 5 && (
+                <div className="space-between-venteBL_45">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits7.length === 6 && (
+                <div className="space-between-venteBL_46">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits7.length === 7 && (
+                <div className="space-between-venteBL_47">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {(produits7.length === 8 || produits7.length === 9 || produits7.length === 10 || produits7.length === 11 || produits7.length === 12) && produits8.length === 0 && (
+                <div className="space-between-venteBL_48">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits8.length === 1 && (
+                <div className="space-between-venteBL_49">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits8.length === 2 && (
+                <div className="space-between-venteBL_50">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits8.length === 3 && (
+                <div className="space-between-venteBL_51">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits8.length === 4 && (
+                <div className="space-between-venteBL_52">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits8.length === 5 && (
+                <div className="space-between-venteBL_53">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits8.length === 6 && (
+                <div className="space-between-venteBL_54">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits8.length === 7 && (
+                <div className="space-between-venteBL_55">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {(produits8.length === 8 ||produits8.length === 9 || produits8.length === 10 || produits8.length === 11 || produits8.length === 12) && produits9.length === 0 && (
+                <div className="space-between-venteBL_56">
                     <div>
                         <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
                     </div>

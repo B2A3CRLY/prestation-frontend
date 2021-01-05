@@ -361,7 +361,7 @@ export default class ViewDevisVente extends Component {
             {
                 id: 30, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
             },
-            /*{
+            {
                 id: 31, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
             },
             {
@@ -576,7 +576,7 @@ export default class ViewDevisVente extends Component {
             ,
             {
                 id: 91, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
-            }*/
+            }
          ]
         
 
@@ -3502,7 +3502,7 @@ export default class ViewDevisVente extends Component {
                     </div>
                 </div>
                 )}
-                {produits6.length === 15 && produits7.length === 10 && (
+                {produits6.length === 15 && (produits7.length === 10 || produits7.length === 11 || produits7.length === 12 || produits7.length === 13 || produits7.length === 14 || produits7.length === 15 ) && (
                 <div className="space-between-vente10_62">
                     <div>
                         <h3>Fait à Dakar (Sénégal), le {dateFrench}</h3>

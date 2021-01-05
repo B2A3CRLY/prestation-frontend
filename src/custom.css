@@ -634,7 +634,12 @@ ul li:hover .sub-menu-1 ul li{
 .space-between-vente10_50, .space-between-vente10_51, .space-between-vente10_52,
 .space-between-vente10_53, .space-between-vente10_54, .space-between-vente10_55,
 .space-between-vente10_56, .space-between-vente10_57, .space-between-vente10_58, .space-between-vente10_59, .space-between-vente10_60, .space-between-vente10_61,
-.space-between-vente10_62, .space-between-venteBL1_1{
+.space-between-vente10_62,.space-between-vente10_63,.space-between-vente10_64,
+.space-between-vente10_65,.space-between-vente10_66,.space-between-vente10_67,
+.space-between-vente10_68,.space-between-vente10_69,.space-between-vente10_70,
+.space-between-vente10_71,.space-between-vente10_72,.space-between-vente10_73,
+.space-between-vente10_74,.space-between-vente10_75,.space-between-vente10_76,
+.space-between-venteBL1_1{
   display: flex;
   justify-content: space-between;
   padding: 2px 2px 0px 2px;
@@ -662,7 +667,17 @@ ul li:hover .sub-menu-1 ul li{
 .space-between-venteBL_21, .space-between-venteBL_22, .space-between-venteBL_23,
 .space-between-venteBL_24, .space-between-venteBL_25, .space-between-venteBL_26,
 .space-between-venteBL_27, .space-between-venteBL_28, .space-between-venteBL_29,
-.space-between-venteBL_30{
+.space-between-venteBL_30, .space-between-venteBL_31, .space-between-venteBL_32,
+.space-between-venteBL_33, .space-between-venteBL_34, .space-between-venteBL_35,
+.space-between-venteBL_36, .space-between-venteBL_37, .space-between-venteBL_38,
+.space-between-venteBL_39, .space-between-venteBL_40, .space-between-venteBL_41,
+.space-between-venteBL_42, .space-between-venteBL_43, .space-between-venteBL_44,
+.space-between-venteBL_45, .space-between-venteBL_46,.space-between-venteBL_47,
+.space-between-venteBL_48, .space-between-venteBL_49, .space-between-venteBL_50, 
+.space-between-venteBL_51, .space-between-venteBL_52, .space-between-venteBL_53,
+.space-between-venteBL_54, .space-between-venteBL_55, .space-between-venteBL_56,
+.space-between-venteBL_57, .space-between-venteBL_58, .space-between-venteBL_59,
+.space-between-venteBL_60{
   display: flex;
   justify-content: space-between;
   padding: 2px 2px 0px 2px;
@@ -840,7 +855,24 @@ tfoot{
 .text-right-venteBL_19,.text-right-venteBL_20,.text-right-venteBL_20_1,.text-right-venteBL_21,
 .text-right-venteBL_22, .text-right-venteBL_23, .text-right-venteBL_24, .text-right-venteBL_25, 
 .text-right-venteBL_26, .text-right-venteBL_27, .text-right-venteBL_28, .text-right-venteBL_29,
-.text-right-venteBL_30,.text-right-venteBL_31,.text-right-venteBL_32,.text-right-venteBL_33,.text-right-venteBL_34,.text-right-venteBL_35,.text-right-venteBL_36,.text-right-venteBL_37,.text-right-venteBL_38,.text-right-venteBL_39,.text-right-venteBL_40,
+.text-right-venteBL_30,.text-right-venteBL_31,.text-right-venteBL_32,.text-right-venteBL_32_1,
+.text-right-venteBL_32_2,.text-right-venteBL_32_3,.text-right-venteBL_32_4,.text-right-venteBL_32_5,
+.text-right-venteBL_32_6,.text-right-venteBL_32_7,.text-right-venteBL_32_8,
+.text-right-venteBL_33,
+.text-right-venteBL_34,.text-right-venteBL_35,.text-right-venteBL_36,.text-right-venteBL_37,
+.text-right-venteBL_38,.text-right-venteBL_39,.text-right-venteBL_40,.text-right-venteBL_41,
+.text-right-venteBL_41_1,.text-right-venteBL_41_2, .text-right-venteBL_41_3,.text-right-venteBL_41_4,
+.text-right-venteBL_42,.text-right-venteBL_43,.text-right-venteBL_44,.text-right-venteBL_45,
+.text-right-venteBL_46,.text-right-venteBL_47,.text-right-venteBL_48,.text-right-venteBL_49,
+.text-right-venteBL_50,.text-right-venteBL_50_1,.text-right-venteBL_50_2,.text-right-venteBL_50_3,
+.text-right-venteBL_50_4,.text-right-venteBL_51,.text-right-venteBL_52,.text-right-venteBL_53,
+.text-right-venteBL_54,.text-right-venteBL_55,.text-right-venteBL_56,.text-right-venteBL_57,
+.text-right-venteBL_58,.text-right-venteBL_59,.text-right-venteBL_59_1,.text-right-venteBL_59_2,
+.text-right-venteBL_59_3,.text-right-venteBL_59_4,.text-right-venteBL_60,.text-right-venteBL_61,
+.text-right-venteBL_62,.text-right-venteBL_63,.text-right-venteBL_64,.text-right-venteBL_65,
+.text-right-venteBL_66,.text-right-venteBL_67,.text-right-venteBL_68,.text-right-venteBL_68_1,
+.text-right-venteBL_68_2,.text-right-venteBL_68_3,.text-right-venteBL_68_4,
+.text-right-venteBL_69,.text-right-venteBL_70,.text-right-venteBL_71,.text-right-venteBL_72,.text-right-venteBL_73,
 .text-right-vente10_2,.text-right-vente10_3,.text-right-vente10_4,.text-right-vente10_5,
 .text-right-vente10_6, .text-right-vente10_7, .text-right-vente10_8, .text-right-vente10_9,
 .text-right-vente10_10,.text-right-vente10_10_1,.text-right-vente10_11,.text-right-vente10_12,.text-right-vente10_13,.text-right-vente10_14,.text-right-vente10_15_0,.text-right-vente10_15_0_e,
@@ -856,7 +888,17 @@ tfoot{
 .text-right-vente10_15_11_1_11_3,.text-right-vente10_15_11_1_11_4,.text-right-vente10_15_11_1_11_6,
 .text-right-vente10_15_11_1_11_7,.text-right-vente10_15_11_1_11_8,.text-right-vente10_15_11_1_11_9,
 .text-right-vente10_15_11_1_11_10,.text-right-vente10_15_11_1_11_11,
-.text-right-vente10_15_11_1_11_12,.text-right-vente10_15_11_1_11_13,
+.text-right-vente10_15_11_1_11_12,.text-right-vente10_15_11_1_11_12_1,
+.text-right-vente10_15_11_1_11_12_2,.text-right-vente10_15_11_1_11_12_3,
+.text-right-vente10_15_11_1_11_12_4,.text-right-vente10_15_11_1_11_12_5,
+.text-right-vente10_15_11_1_11_13,.text-right-vente10_15_11_1_11_14,
+.text-right-vente10_15_11_1_11_15,.text-right-vente10_15_11_1_11_16,
+.text-right-vente10_15_11_1_11_17,.text-right-vente10_15_11_1_11_18,
+.text-right-vente10_15_11_1_11_19,
+.text-right-vente10_15_11_1_11_20,.text-right-vente10_15_11_1_11_21,
+.text-right-vente10_15_11_1_11_22,.text-right-vente10_15_11_1_11_23,
+.text-right-vente10_15_11_1_11_24,.text-right-vente10_15_11_1_11_25,.text-right-vente10_15_11_1_11_26,.text-right-vente10_15_11_1_11_27,.text-right-vente10_15_11_1_11_28,
+.text-right-vente10_15_11_1_11_29,.text-right-vente10_15_11_1_11_30,
 .text-right-vente10_15_11_1_13,.text-right-vente10_15_11_1_14, .text-right-vente10_15_11_1_15, .text-right-vente10_15_11_1_16, .text-right-vente10_15_11_1_17, .text-right-vente10_15_11_1_18,.text-right-vente10_15_11_1_19,
 .text-right-vente10_15_11_1_20,.text-right-vente10_15_11_1_21,.text-right-vente10_15_11_1_22,
 .text-right-vente10_15_11_1_23,.text-right-vente10_15_11_1_24,.text-right-vente10_15_11_1_25,
@@ -1369,6 +1411,36 @@ table{
 .space-between-vente10_62{
   margin-top:-1500px;
 }
+.space-between-vente10_63{
+  margin-top:-1230px;
+}
+.space-between-vente10_64{
+  margin-top:-1130px;
+}
+.space-between-vente10_65{
+  margin-top:-1030px;
+}
+.space-between-vente10_66{
+  margin-top:-950px;
+}
+.space-between-vente10_67{
+  margin-top:-850px;
+}
+.space-between-vente10_68{
+  margin-top:-760px;
+}
+.space-between-vente10_69{
+  margin-top:-660px;
+}
+.space-between-vente10_70{
+  margin-top:-580px;
+}
+.space-between-vente10_71{
+  margin-top:-520px;
+}
+.space-between-vente10_72{
+  margin-top:-1480px;
+}
 /*BON DE LIVRAISON CSS*/
 /********One page********/
 .space-between-venteBL1_1{
@@ -1457,6 +1529,102 @@ table{
 }
 .space-between-venteBL_23{
   margin-top:-520px;
+}
+.space-between-venteBL_24{
+  margin-top:-1200px;
+}
+.space-between-venteBL_25{
+  margin-top:-950px;
+}
+.space-between-venteBL_26{
+  margin-top:-900px;
+}
+.space-between-venteBL_27{
+  margin-top:-855px;
+}
+.space-between-venteBL_28{
+  margin-top:-760px;
+}
+.space-between-venteBL_29{
+  margin-top:-660px;
+}
+.space-between-venteBL_30{
+  margin-top:-560px;
+}
+.space-between-venteBL_31{
+  margin-top:-480px;
+}
+.space-between-venteBL_32{
+  margin-top:-1200px;
+}
+.space-between-venteBL_33{
+  margin-top:-1000px;
+}
+.space-between-venteBL_34{
+  margin-top:-920px;
+}
+.space-between-venteBL_35{
+  margin-top:-820px;
+}
+.space-between-venteBL_36{
+  margin-top:-740px;
+}
+.space-between-venteBL_37{
+  margin-top:-640px;
+}
+.space-between-venteBL_38{
+  margin-top:-570px;
+}
+.space-between-venteBL_39{
+  margin-top:-500px;
+}
+.space-between-venteBL_40{
+  margin-top:-1200px;
+}
+.space-between-venteBL_41{
+  margin-top:-1050px;
+}
+.space-between-venteBL_42{
+  margin-top:-910px;
+}
+.space-between-venteBL_43{
+  margin-top:-880px;
+}
+.space-between-venteBL_44{
+  margin-top:-800px;
+}
+.space-between-venteBL_45{
+  margin-top:-710px;
+}
+.space-between-venteBL_46{
+  margin-top:-620px;
+}
+.space-between-venteBL_47{
+  margin-top:-530px;
+}
+.space-between-venteBL_48{
+  margin-top:-1220px;
+}
+.space-between-venteBL_49{
+  margin-top:-1050px;
+}
+.space-between-venteBL_51{
+  margin-top:-880px;
+}
+.space-between-venteBL_52{
+  margin-top:-800px;
+}
+.space-between-venteBL_53{
+  margin-top:-700px;
+}
+.space-between-venteBL_54{
+  margin-top:-600px;
+}
+.space-between-venteBL_55{
+  margin-top:-520px;
+}
+.space-between-venteBL_56{
+  margin-top:-1220px;
 }
 /*BON DE LIVRAISON END*/
 .space-between-end{
@@ -1872,6 +2040,360 @@ body {
   margin-top:525px;/*****90******/
   display: block
 }
+.text-right-venteBL_32{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:430px;/*****90******/
+  display: block
+}
+.text-right-venteBL_32_1{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:335px;/*****90******/
+  display: block
+}
+.text-right-venteBL_32_2{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:245px;/*****90******/
+  display: block
+}
+.text-right-venteBL_32_3{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:158px;/*****90******/
+  display: block
+}
+.text-right-venteBL_32_4{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:70px;/*****90******/
+  display: block
+}
+.text-right-venteBL_33{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:1220px;/*****90******/
+  display: block
+}
+.text-right-venteBL_34{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:1055px;/*****90******/
+  display: block
+}
+.text-right-venteBL_35{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:968px;/*****90******/
+  display: block
+}
+.text-right-venteBL_36{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:878px;/*****90******/
+  display: block
+}
+.text-right-venteBL_37{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:790px;/*****90******/
+  display: block
+}
+.text-right-venteBL_38{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:700px;/*****90******/
+  display: block
+}
+.text-right-venteBL_39{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:610px;/*****90******/
+  display: block
+}
+.text-right-venteBL_40{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:520px;/*****90******/
+  display: block
+}
+.text-right-venteBL_41{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:420px;/*****90******/
+  display: block
+}
+.text-right-venteBL_41_1{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:338px;/*****90******/
+  display: block
+}
+.text-right-venteBL_41_2{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:245px;/*****90******/
+  display: block
+}
+.text-right-venteBL_41_3{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:155px;/*****90******/
+  display: block
+}
+.text-right-venteBL_41_4{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:70px;/*****90******/
+  display: block
+}
+.text-right-venteBL_42{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:1225px;/*****90******/
+  display: block
+}
+.text-right-venteBL_43{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:1060px;/*****90******/
+  display: block
+}
+.text-right-venteBL_44{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:970px;/*****90******/
+  display: block
+}
+.text-right-venteBL_45{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:880px;/*****90******/
+  display: block
+}
+.text-right-venteBL_46{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:794px;/*****90******/
+  display: block
+}
+.text-right-venteBL_47{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:696px;/*****90******/
+  display: block
+}
+.text-right-venteBL_48{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:609px;/*****90******/
+  display: block
+}
+.text-right-venteBL_49{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:518px;/*****90******/
+  display: block
+}
+.text-right-venteBL_50{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:430px;/*****90******/
+  display: block
+}
+.text-right-venteBL_50_1{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:340px;/*****90******/
+  display: block
+}
+.text-right-venteBL_50_2{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:250px;/*****90******/
+  display: block
+}
+.text-right-venteBL_50_3{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:157px;/*****90******/
+  display: block
+}
+.text-right-venteBL_50_4{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:68px;/*****90******/
+  display: block
+}
+.text-right-venteBL_51{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:1219px;/*****90******/
+  display: block
+}
+.text-right-venteBL_52{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:1063px;/*****90******/
+  display: block
+}
+.text-right-venteBL_53{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:970px;/*****90******/
+  display: block
+}
+.text-right-venteBL_54{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:882px;/*****90******/
+  display: block
+}
+.text-right-venteBL_55{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:792px;/*****90******/
+  display: block
+}
+.text-right-venteBL_56{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:707px;/*****90******/
+  display: block
+}
+.text-right-venteBL_57{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:613px;/*****90******/
+  display: block
+}
+.text-right-venteBL_58{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:525px;/*****90******/
+  display: block
+}
+.text-right-venteBL_59{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:435px;/*****90******/
+  display: block
+}
+.text-right-venteBL_59_1{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:344px;/*****90******/
+  display: block
+}
+.text-right-venteBL_59_2{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:255px;/*****90******/
+  display: block
+}
+.text-right-venteBL_59_3{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:165px;/*****90******/
+  display: block
+}
+.text-right-venteBL_59_4{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:73px;/*****90******/
+  display: block
+}
+.text-right-venteBL_60{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:1225px;/*****90******/
+  display: block
+}
+.text-right-venteBL_61{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:1060px;/*****90******/
+  display: block
+}
+.text-right-venteBL_62{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:970px;/*****90******/
+  display: block
+}
+.text-right-venteBL_63{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:885px;/*****90******/
+  display: block
+}
+.text-right-venteBL_64{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:795px;/*****90******/
+  display: block
+}
+.text-right-venteBL_65{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:705px;/*****90******/
+  display: block
+}
+.text-right-venteBL_66{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:615px;/*****90******/
+  display: block
+}
+.text-right-venteBL_67{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:525px;/*****90******/
+  display: block
+}
+.text-right-venteBL_68{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:434px;/*****90******/
+  display: block
+}
+.text-right-venteBL_68_1{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:343px;/*****90******/
+  display: block
+}
+.text-right-venteBL_68_2{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:253px;/*****90******/
+  display: block
+}
+.text-right-venteBL_68_3{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:160px;/*****90******/
+  display: block
+}
+.text-right-venteBL_68_4{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:73px;/*****90******/
+  display: block
+}
+.text-right-venteBL_69{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:1225px;/*****90******/
+  display: block
+}
+.text-right-venteBL_70{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:1225px;/*****90******/
+  display: block
+}
 .text-right-venteBL_20_1{
   margin-right: -2px;
   text-align: right;
@@ -2233,10 +2755,107 @@ body {
   margin-top:455px;/*****90******/
   display: block
 }
+.text-right-vente10_15_11_1_11_12_1{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:365px;/*****90******/
+  display: block
+}
+.text-right-vente10_15_11_1_11_12_2{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:265px;/*****90******/
+  display: block
+}
+.text-right-vente10_15_11_1_11_12_3{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:175px;/*****90******/
+  display: block
+}
+.text-right-vente10_15_11_1_11_12_4{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:90px;/*****90******/
+  display: block
+}
+.text-right-vente10_15_11_1_11_12_5{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:-300px;/*****90******/
+  display: block
+}
 .text-right-vente10_15_11_1_11_13{
   margin-right: -2px;
   text-align: right;
-  margin-top:1510px;/*****90******/
+  margin-top:1520px;/*****90******/
+  display: block
+}
+/*produits8 >= 1*/
+.text-right-vente10_15_11_1_11_14{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:1265px;/*****90******/
+  display: block
+}
+.text-right-vente10_15_11_1_11_15{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:1175px;/*****90******/
+  display: block
+}
+.text-right-vente10_15_11_1_11_16{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:1090px;/*****90******/
+  display: block
+}
+.text-right-vente10_15_11_1_11_17{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:1000px;/*****90******/
+  display: block
+}
+.text-right-vente10_15_11_1_11_18{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:908px;/*****90******/
+  display: block
+}
+.text-right-vente10_15_11_1_11_19{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:818px;/*****90******/
+  display: block
+}
+.text-right-vente10_15_11_1_11_20{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:725px;/*****90******/
+  display: block
+}
+.text-right-vente10_15_11_1_11_21{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:635px;/*****90******/
+  display: block
+}
+.text-right-vente10_15_11_1_11_22{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:540px;/*****90******/
+  display: block
+}
+.text-right-vente10_15_11_1_11_23{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:455px;/*****90******/
+  display: block
+}
+.text-right-vente10_15_11_1_11_24{
+  margin-right: -2px;
+  text-align: right;
+  margin-top:1520px;/*****90******/
   display: block
 }
 .text-right-vente10_15_11_1_12{
