@@ -1,10 +1,25 @@
 import jwtDecode from 'jwt-decode';
 import http from './httpService';
+import { Notyf } from 'notyf';
 import {
   apiUrl
 } from '../config.json';
 const apiEndpoint= apiUrl + '/auth/login';
 const tokenKey = 'token';
+const notyf = new Notyf({
+  duration: 4000,
+  position: {
+      x: 'right',
+      y:'top'
+  },
+  types: [
+      {
+          type: 'error',
+          duration: '4000',
+          dismissible:'true'
+      },
+  ]
+});
 
 http.setJwt(getJwt());
 
@@ -14,7 +29,11 @@ export async function login(username, password) {
   } = await http.post(apiEndpoint, {
     username,
     password
-  });
+  })
+  if (jwt.id) {
+    notyf.success('Connexion Succes !')
+  }
+  
   localStorage.setItem(tokenKey, jwt.token);
 }
 

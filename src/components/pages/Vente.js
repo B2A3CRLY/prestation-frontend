@@ -1,7 +1,10 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
+import Hero from '../common/hero';
 import http from '../../services/httpService';
 import Select from 'react-select';
 import Image from '../common/image';
+import { Notyf } from 'notyf';
+import Pagination from "react-js-pagination";
 import { Button, Form, Modal,Table} from 'react-bootstrap';
 import auth from "../../services/authService";
 import {
@@ -14,6 +17,36 @@ const apiProduct = apiUrl + '/quantityVenteCreate/';
 const options = [{ value: 'Masculin', label: 'Masculin' }, { value: 'Feminin', label: 'Feminin' }];
 const tokenKey = 'token';
 const idProductCollected = [];
+const notyf = new Notyf({
+    duration: 4000,
+    position: {
+        x: 'right',
+        y:'top'
+    },
+    types: [
+        {
+            type: 'error',
+            duration: '4000',
+            dismissible:'true'
+        },
+        {
+            type: 'success',
+            duration: '4000',
+            dismissible:'true'
+        },
+        {
+            type: 'warning',
+            duration: '4000',
+            dismissible: 'true',
+            background: 'orange',
+            icon: {
+                className: 'material-icons',
+                tagName: 'i',
+                text: 'warning'
+            }
+        }
+    ]
+});
 export default class Vente extends Component{
     constructor(props, context) {
         super(props, context)
@@ -25,6 +58,8 @@ export default class Vente extends Component{
             firstName: '',
             lastName: '',
             selectedOption: '',
+            activePage:1,
+            clientsPerPage:5,
             quantity: '',
             sexe: '',
             address: '',
@@ -85,6 +120,10 @@ export default class Vente extends Component{
     handleChangeSelect = selectedOption => {
         this.setState({ selectedOption });
     }
+    handlePageChange(pageNumber) {
+        console.log(`active page is ${pageNumber}`);
+        this.setState({activePage: pageNumber});
+    }
     setChecked = (checked) => {
         this.setState({ checked: !checked, checkedNo: checked})
     }
@@ -135,13 +174,13 @@ export default class Vente extends Component{
                  id: res.data.data.id
                  });
                  if (res.status === 200) {
-                     alert('Client ajouté avec succés !');
+                     notyf.success('Client ajouté avec succés !');
                      console.log('idClient : ', this.state.id)
                      this.setState({
                          showAdd : false
                      })
                } else {
-                 alert("Une erreur s'est produite");
+                 notyf.error("Une erreur s'est produite");
              }
              });
          }
@@ -160,13 +199,13 @@ export default class Vente extends Component{
                 idProduct: res.data.id
             });
             if (res.status === 200) {
-                alert('produit ajouté avec succés !');
+                notyf.success('produit ajouté avec succés !');
                 idProductCollected.push({id : this.state.idProduct})
                 this.setState({ showProduct: false })
                 console.log('productCollected: ', idProductCollected)
                 
           } else {
-            alert("Une erreur s'est produite");
+            notyf.error("Une erreur s'est produite");
         }
         });
     }
@@ -187,13 +226,13 @@ export default class Vente extends Component{
 
                  });
                  if (res.status === 200) {
-                     alert('produit ajouté avec succés !');
+                     notyf.success('produit ajouté avec succés !');
                      this.getVentes();
                      this.setState({
                          createProduct : false
                      })
                } else {
-                 alert("Une erreur s'est produite");
+                 notyf.error("Une erreur s'est produite");
              }
              });
     }
@@ -223,14 +262,18 @@ export default class Vente extends Component{
     }
     onSubmitDevis = (e) => {
         e.preventDefault();
+        let token = auth.getJwt(tokenKey);
         const devis = {
-            client: {id: this.state.id },
+            client: {id:this.state.id},
             sales: idProductCollected,
             isQuotation: this.state.checked,
             isInvoice: this.state.checkedNo
         }
-        http.post(apiDevis, devis)
-                .then(res => {
+        http.post(apiDevis, devis, {
+            headers: {
+                "Content-type": "application/json",
+                "Authorization": `Token ${token}`
+            },}).then(res => {
                     console.log('devis:', res.data);
                     console.log('id:', res.data.id);
                     console.log('status :', res.status);
@@ -240,22 +283,26 @@ export default class Vente extends Component{
                   } else {
                     alert("Une erreur s'est produite");
                 }
-                });
+                })
         } 
     toDevis = () =>{
-        window.location.href = '/devis-vente';
+        window.location.href = '/liste-devis-vente';
     }
     
     render() {
-        const { clients, ventes, sexe, selectedOption, checked, checkedNo, quantity} = this.state;
+        const { clients, ventes, sexe, selectedOption, checked, checkedNo, quantity,activePage,clientsPerPage, id } = this.state;
+        const indexOfLastClient = activePage * clientsPerPage;
+        const indexOfFirstClient = indexOfLastClient - clientsPerPage;
+        const currentClients = clients.slice(indexOfFirstClient, indexOfLastClient);
         console.log('devis : ', checked)
+        console.log('idClient : ', id)
         console.log('facture : ', checkedNo)
         console.log('selectedOption: ', selectedOption, 'quantité:', quantity);
         const isEnabledProduct = this.canBeSubmittedProduct();
         const isEnabledCreateProduct = this.canBeSubmittedCreateProduct()
         console.log('img:',selectedOption ? selectedOption.img: '')
         const isEnabledAdd = this.canBeSubmittedClient();
-        let filterClient = clients.length ? clients.filter((client)=>{
+        let filterClient = currentClients.length ? currentClients.filter((client)=>{
             let clientInfos = client.clientFirstName.toLowerCase() + client.clientLastName.toLowerCase() +
                 + client.phone;
             return clientInfos.indexOf(this.state.search.toLowerCase())!==-1;
@@ -270,6 +317,7 @@ export default class Vente extends Component{
             )
           })
         return (
+            <Hero hero="defaultHeroVente">
             <div className="container">
                 <div className="row">
                 <div className="col-md-3"></div>
@@ -307,7 +355,7 @@ export default class Vente extends Component{
                                 onChange={this.handleChange}
                                 />
                                 <Button variant="secondary" size="sm" className="mt-2 mr-2" onClick={this.handleShowCreateProduct}>Créer produit</Button>
-                                <Button variant="secondary" size="sm" className="mt-2" onClick={this.handleShowProduct}>Ajouter produitt</Button>
+                                <Button variant="secondary" size="sm" className="mt-2" onClick={this.handleShowProduct}>Ajouter produit</Button>
                             </div>
                             <div className="form-check">
                                     <input className="form-check-input" type="radio"
@@ -364,7 +412,18 @@ export default class Vente extends Component{
                                  <tbody>
                                         {customers}
                                  </tbody>
-                            </Table>    
+                            </Table>
+                            <Pagination
+                                itemClass="page-item"
+                                linkClass="page-link"
+                                prevPageText='prev'
+                                nextPageText='next'
+                                activePage={activePage}
+                                itemsCountPerPage={clientsPerPage}
+                                totalItemsCount={clients.length}
+                                pageRangeDisplayed={5}
+                                onChange={this.handlePageChange.bind(this)}
+                            />    
                         </div>
                     </Modal.Body>
                     </Modal>
@@ -569,7 +628,7 @@ export default class Vente extends Component{
                     </Modal>
                 </div>
             </div>
-            
+            </Hero>
         )   
     }
     

@@ -192,29 +192,27 @@ export default class ViewDevis extends Component {
             if (typeTaster === 'goutteurNonPerfore') {
                 quotationGoutte = [
                     { id: 0, ref: "1-a", designation: 'Rouleau de 400 m de tuyau PEHD souple 16 mm', quantity: nR400mDN16mm, price: 60000, totalPrice: Math.ceil(nR400mDN16mm * 60000) },
-                    { id: 1, ref: "1-b", designation: 'Paquets de 100 goutteurs réglables', quantity: nP100PCS, price: 8500, totalPrice: Math.ceil(nP100PCS * 8500) },
-                    { id: 2, ref: "1-c", designation: 'Vannette 3/4, M', quantity: v3_4M, price: 370, totalPrice: Math.ceil(v3_4M * 370) },
-                    { id: 3, ref: "1-d", designation: 'Té JR DN 25 mm 3/4 F', quantity: te3_4F, price: 700, totalPrice: Math.ceil(te3_4F * 700) },
-                    { id: 4, ref: "1-e", designation: 'Bouchon Cannelé  Tuyau souple 16 mm', quantity: b, price: 30, totalPrice: Math.ceil(b * 30) },
-                    { id: 5, ref: "1-f", designation: 'Té DN 63 EGO', quantity: teDN63egaux, price: 3550, totalPrice: Math.ceil(teDN63egaux * 3550) },
-                    { id: 6, ref: "1-g", designation: 'Manchon JR 63 mm, Sortie 2" M', quantity: a63_3, price: 3000, totalPrice: Math.ceil(a63_3 * 3000) },
-                    { id: 7, ref: "1-h", designation: 'Manchon JR 25 mm, Sortie 1" M', quantity: m25_1, price: 780, totalPrice: Math.ceil(m25_1 * 780) },
-                    { id: 8, ref: "1-i", designation: 'Réduction 2", 1"/1/2 FF', quantity: r2_1_ff, price: 2000, totalPrice: Math.ceil(r2_1_ff * 2000) },
-                    
-                    
+                    { id: 1, ref: "1-c", designation: 'Paquets de 100 goutteurs réglables', quantity: nP100PCS, price: 8500, totalPrice: Math.ceil(nP100PCS * 8500) },
+                    { id: 2, ref: "1-d", designation: 'Vannette 3/4, M', quantity: v3_4M, price: 370, totalPrice: Math.ceil(v3_4M* 370) },
+                    { id: 3, ref: "1-e", designation: 'Té JR DN 25 mm 3/4 F', quantity: te3_4F, price: 700, totalPrice: Math.ceil(te3_4F * 700) },
+                    { id: 4, ref: "1-f", designation: 'Bouchon Cannelé  Tuyau souple 16 mm', quantity: b, price: 30, totalPrice: Math.ceil(b * 30) },
+                    { id: 5, ref: "1-g", designation: 'Té DN 63 EGO', quantity: teDN63egaux, price: 3550, totalPrice: Math.ceil(teDN63egaux * 3550) },
+                    { id: 6, ref: "1-h", designation: 'Manchon JR 63 mm, Sortie 2" M', quantity: a63_3, price: 3000, totalPrice: Math.ceil(a63_3 * 3000) },
+                    { id: 7, ref: "1-i", designation: 'Manchon JR 25 mm, Sortie 1" M', quantity: m25_1, price: 780, totalPrice: Math.ceil(m25_1 * 780) },
+                    { id: 8, ref: "1-j", designation: 'Réduction 2", 1"/1/2 FF', quantity: r2_1_ff, price: 2000, totalPrice: Math.ceil(r2_1_ff * 2000) },
                     
                 ]
                 quotationGouttePlus = [
-                    { id: 9, ref: "1-j", designation: 'Réduction 1" 1/2, 1" MF', quantity: r1_1_MF, price: 1500, totalPrice: Math.ceil(r1_1_MF * 1500) },
-                    { id: 10, ref: "1-k", designation: 'Coude JR 25 mm, 1" M', quantity: cJR25, price: 780, totalPrice: Math.ceil(cJR25 * 780) },
-                    { id: 11, ref: "1-l", designation: 'Vanne JR 25 mm', quantity: vJR25, price: 2000, totalPrice: Math.ceil(vJR25 * 2000) },
-                    { id: 12, ref: "1-m", designation: 'Téflon', quantity: teflon, price: 350, totalPrice: Math.ceil(teflon * 350) },
-                    { id: 13, ref: "1-n", designation: 'Rouleau Anjou 25 mm, 50 m', quantity: lPR, price: 11000, totalPrice: Math.ceil(lPR * 11000) },
-                    { id: 14, ref: "1-o", designation: 'Rouleau Anjou 63 mm, 50 m', quantity: lCPDN63_2ha, price: 55690, totalPrice: Math.ceil(lCPDN63_2ha * 55690) },
-                    { id: 15, ref: "1-p", designation: 'Bouchon DN 25 mm', quantity: bDN25, price: 600, totalPrice: Math.ceil(bDN25 * 600) },
-                    { id: 16, ref: "1-q", designation: 'Bouchon DN 63 mm', quantity: bDN63, price: 3040, totalPrice: Math.ceil(bDN63 * 3040) }
+                    { id: 9, ref: "1-k", designation: 'Réduction 1" 1/2, 1" MF', quantity: r1_1_MF, price: 1500, totalPrice: Math.ceil(r1_1_MF * 1500) },
+                    { id: 10, ref: "1-l", designation: 'Coude JR 25 mm, 1" M', quantity: cJR25, price: 780, totalPrice: Math.ceil(cJR25 * 780) },
+                    { id: 11, ref: "1-m", designation: 'Vanne JR 25 mm', quantity: vJR25, price: 2000, totalPrice: Math.ceil(vJR25 * 2000) },
+                    { id: 12, ref: "1-n", designation: 'Téflon', quantity: teflon, price: 350, totalPrice: Math.ceil(teflon * 350) },
+                    { id: 13, ref: "1-o", designation: 'Rouleau Anjou 25 mm, 50 m', quantity: lPR, price: 11000, totalPrice: Math.ceil(lPR* 11000) },
+                    { id: 14, ref: "1-p", designation: 'Rouleau Anjou 63 mm, 50 m', quantity: lCPDN63_2ha, price: 55690, totalPrice: Math.ceil(lCPDN63_2ha * 55690) },
+                    { id: 15, ref: "1-q", designation: 'Bouchon DN 25 mm', quantity: bDN25, price: 600, totalPrice: Math.ceil(bDN25 * 600) },
+                    { id: 16, ref: "1-r", designation: 'Bouchon DN 63 mm', quantity: bDN63, price: 3040, totalPrice: Math.ceil(bDN63 * 3040) }
                 ]
-                totalPriceGoutte = Math.ceil(nR400mDN16mm * 60000 + nP100PCS * 8500 + v3_4M * 370 + te3_4F * 700 + b * 30 + teDN63egaux * 3550 + a63_3 * 3000 + m25_1 * 780 + r2_1_ff * 2000 + r1_1_MF * 1500 + cJR25 * 780 + vJR25 * 2000 + teflon * 350 + lCPDN63_2ha * 55690 + lPR * 11000 + bDN25 * 600 + bDN63 * 3040)
+                totalPriceGoutte = Math.ceil(nR400mDN16mm * 60000  + nP100PCS * 8500 + v3_4M * 370 + te3_4F * 700 + b*30 + teDN63egaux * 3550 + a63_3 * 3000 + m25_1 * 780 + r2_1_ff * 2000 + r1_1_MF * 1500 + 28*cJR25 * 780 + vJR25 * 2000 + teflon * 350 + lCPDN63_2ha * 55690 + lPR * 11000 + bDN25 * 600 + bDN63 * 3040)
             }
             if (typeTaster === 'goutteurIntegre') {
                 quotationGoutte = [
@@ -397,7 +395,7 @@ export default class ViewDevis extends Component {
                     </p>
                     <div className="border-double">
                         <h2 className="border text-center">
-                            DEVIS Nº {devis.ref_devis} POUR L'INSTALLATION D'UN SYSTEME {constGoutteAGoutte.length !== 0 && constAspersion.length === 0 ? 'GOUTTE À GOUTTE' : ''} {constGoutteAGoutte.length === 0 && constAspersion.length !== 0 ? 'ASPERSION TOTALEMENT AUTOMATISE ET PILOTABLE À DISTANCE' : ''} {constGoutteAGoutte.length !== 0 && constAspersion.length !== 0 ? "D'IRRIGATION" : ''} À l'INTENTION DE <span id="orange">{sex === 'Masculin' ? 'M.' + ' ' + firstname.toUpperCase() + ' ' + lastname.toUpperCase() : ''}</span>
+                            DEVIS Nº {devis.ref_devis} POUR L'INSTALLATION D'UN SYSTEME {constGoutteAGoutte.length !== 0 && constAspersion.length === 0 ? 'GOUTTE À GOUTTE' : ''} {constGoutteAGoutte.length === 0 && constAspersion.length !== 0 ? 'ASPERSION TOTALEMENT AUTOMATISE ET PILOTABLE À DISTANCE' : ''} {constGoutteAGoutte.length !== 0 && constAspersion.length !== 0 ? "D'IRRIGATION" : ''} À l'INTENTION DE <span id="orange">{sex === 'Masculin' ? 'M.' + ' ' + firstname.toUpperCase(): ''}</span>
                             <span id="orange">{sex === 'Feminin' ? 'Mme.' + ' ' + firstname.toUpperCase() + ' ' + lastname.toUpperCase() : ''}</span>
                         </h2>
                     </div>
@@ -410,7 +408,7 @@ export default class ViewDevis extends Component {
                         <div className="border-client-orange">
                             <p>Date de manifestation d'intérêt : <span id="orange">{dateCreation}</span></p>
                             <p>Zone d'éxécution des travaux : <span id="orange">{zoneChamp}</span></p>
-                            <p>Superficie du champ agricole : <span id="orange">{totalSurface} {parseInt(totalCloture) > 1 ? "hectares" : "hectares"}</span></p>
+                            <p>Superficie du champ agricole : <span id="orange">{totalSurface} {parseFloat(totalCloture) > 1 ? "hectares" : "hectare"}</span></p>
                         </div>
                     </div>
                     {constGoutteAGoutte.length !== 0 && constAspersion.length === 0 && typeTaster === 'goutteurNonPerfore' && (
@@ -451,7 +449,7 @@ export default class ViewDevis extends Component {
                                 <tbody>
                                     {quotationGouttePlusView}
                                 </tbody>
-                                <tbody>
+                                {/*<tbody>
                                         <tr>
                                             <td>2-a</td>
                                             <td>Pompe solaire immergée debit 3.5 m3/h, HMT 50 mètres, puissance 400 Watts</td>
@@ -478,6 +476,7 @@ export default class ViewDevis extends Component {
                                             <td style={{ textAlign: 'right' }}>50000</td>
                                         </tr>
                                 </tbody>
+                                */}
                                 {nCloture !== null && nCloture !== 0 && nEclairage === 0 && <>
                                     <tbody className="box-text">
                                         <tr>
@@ -575,9 +574,9 @@ export default class ViewDevis extends Component {
                                     <tr>
                                         <th>1-s</th>
                                         <th>Main d'oeuvre pour l'installation technique détaillée comprenant toute l'ingénieurie hydraulique et électrique</th>
-                                        <th style={{ textAlign: 'right' }}>{totalWorkForce !==0 ? 1:'X'}</th>
-                                        <th colspan="1" style={{ textAlign: 'right' }}>{totalWorkForce !==0 ? totalWorkForce:'X'}</th>
-                                        <th style={{ textAlign: 'right' }}>{totalWorkForce !==0 ? totalWorkForce:'X'}</th>
+                                        <th style={{ textAlign: 'right',paddingTop:'48px'}}>{totalWorkForce !==0 ? 1:'200000'}</th>
+                                        <th colspan="1" style={{ textAlign: 'right',paddingTop:'48px' }}>{totalWorkForce !==0 ? totalWorkForce:'200000'}</th>
+                                        <th style={{ textAlign: 'right',paddingTop:'48px' }}>{totalWorkForce !==0 ? totalWorkForce:'200000'}</th>
                                     </tr>
                                 </tbody>
                                 <tbody>
@@ -585,8 +584,8 @@ export default class ViewDevis extends Component {
                                         <th></th>
                                         <th></th>
                                         <th style={{ textAlign: 'center' }}>Total (TTC)</th>
-                                        <th colspan="1" style={{ textAlign: 'right' }}>{Math.ceil(1.18*(totalPriceGoutte + totalWorkForce + totalCloture + totalEclairage + totalSupportMetalique + 470000))}</th>
-                                        <th style={{ textAlign: 'right' }}>{Math.ceil(1.18*(totalPriceGoutte + totalWorkForce + totalCloture + totalEclairage + totalSupportMetalique + 470000))}</th>
+                                        <th colspan="1" style={{ textAlign: 'right' }}>{Math.ceil(1.18*(totalPriceGoutte + totalWorkForce + totalCloture + totalEclairage + totalSupportMetalique + 200000))}</th>
+                                        <th style={{ textAlign: 'right' }}>{Math.ceil(1.18*(totalPriceGoutte + totalWorkForce + totalCloture + totalEclairage + totalSupportMetalique + 200000))}</th>
                                     </tr>
                                 </tbody>
                             </table>

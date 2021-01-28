@@ -14,6 +14,7 @@ export default class ViewBonLivraisonVente extends Component {
         super(props, context);
         this.state = {
             devis: '',
+            sales:'',
             ventes:'',
             client: '',
             firstname: '',
@@ -31,7 +32,7 @@ export default class ViewBonLivraisonVente extends Component {
         const idDevis = this.props.valueFromPrint;
         console.log('id : ',idDevis)
         const { data: devis } = await http.get(apiDevis + 'detail/' + idDevis);
-        this.setState({ devis, client: devis.client, firstname: devis.client.clientFirstName, lastname: devis.client.clientLastName,adresse:devis.client.clientAddress,phone: devis.client.clientPhone, dateCreation: devis.date_creation,sex:devis.client.gender,idDevis,isQuotation:devis.isQuotation, isInvoice: devis.isInvoice});
+        this.setState({ devis, client: devis.client, firstname: devis.client.clientFirstName, lastname: devis.client.clientLastName,adresse:devis.client.clientAddress,phone: devis.client.clientPhone, dateCreation: devis.date_creation,sex:devis.client.gender,idDevis,isQuotation:devis.isQuotation, isInvoice: devis.isInvoice, sales: devis.sales});
     }
     async componentDidMount() {
         this.refreshDevis();
@@ -233,7 +234,7 @@ export default class ViewBonLivraisonVente extends Component {
     return result;
     }
     render() {
-        const { devis, firstname, lastname, phone, dateCreation, sex, adresse, isQuotation, isInvoice, loginUserByUsername } = this.state;
+        const { devis, firstname, lastname, phone, dateCreation, sex, adresse, isQuotation, isInvoice, loginUserByUsername, sales} = this.state;
         let dateFrench = now.toLocaleDateString('fr-FR', this.optionsDate);
         let returnArrays = null;
         console.log('devis:', devis)
@@ -269,8 +270,9 @@ export default class ViewBonLivraisonVente extends Component {
         let produitsView7 = null;
         let produitsView8 = null;
         let totalView = null;
-        let length = 48
-        let maxlength = 96
+        let length = 55
+        let maxlength = 55
+        let addresslength = 17
         let tst = 'Pulvérisateur à dos manuel Ingco 16 litrespppppppppppppp'
         
         console.log('tst:', tst.length)
@@ -332,7 +334,7 @@ export default class ViewBonLivraisonVente extends Component {
                 id: 20, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
             },
             {
-                id: 21, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
+                id: 21, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
             },
             {
                 id: 22, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
@@ -415,7 +417,7 @@ export default class ViewBonLivraisonVente extends Component {
             {
                 id: 48, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
             },
-            {
+            /*{
                 id: 49, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
             },
             {
@@ -546,7 +548,7 @@ export default class ViewBonLivraisonVente extends Component {
             },
             {
                 id: 90, designation: 'Pulvérisateur à dos manuel Ingco 16 litresppppppppppppppppp', quantity: 2, price: 16000, totalPrice: Math.round(2 * 16000),
-            },
+            },*/
             
             
             
@@ -554,7 +556,8 @@ export default class ViewBonLivraisonVente extends Component {
         ]
         
 
-        returnArrays = this.getArraysVente(produitsTest,8,12)
+        //returnArrays = this.getArraysVente(sales,8,12)
+        returnArrays = this.getArraysVente(produitsTest,9,13)
         if (returnArrays) {
             produits1 = returnArrays.l1
             produits2 = returnArrays.l2
@@ -585,75 +588,75 @@ export default class ViewBonLivraisonVente extends Component {
             return (
                 <tr key={dev.id} style={{height:'30px'}}>
                     {
-                        dev.designation.length > 48 && <td style={{ width: '500px', height: '90px', paddingTop: '35px', paddingBottom: '10px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>
+                        dev.designation.length > 48 && <td style={{ width: '500px', height: '80px', paddingTop: '25px', paddingBottom: '20px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>
                     }
                     {
-                        dev.designation.length < 48 && <td style={{ width: '500px', height: '90px', paddingTop: '35px', paddingBottom: '10px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>
+                        dev.designation.length < 48 && <td style={{ width: '500px', height: '80px', paddingTop: '25px', paddingBottom: '20px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>
                     }
-                    <td style={{width:'200px',height:'90px',paddingTop:'35px',paddingBottom:'10px',textAlign: 'center'}}>{dev.quantity}</td>
+                    <td style={{width:'200px',height:'80px',paddingTop:'25px',paddingBottom:'20px',textAlign: 'center'}}>{dev.quantity}</td>
                 </tr>
             );
         })
         produitsView2 = produits2.map(dev => {
             return (
                 <tr key={dev.id} style={{height:'30px'}}>
-                    {dev.designation.length > 48 && <td style={{ width: '500px', height: '90px', paddingTop: '35px', paddingBottom: '10px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
-                    {dev.designation.length < 48 && <td style={{width:'500px', height:'90px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
-                    <td style={{width:'200px', height:'90px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'center'}}>{dev.quantity}</td>
+                    {dev.designation.length > 48 && <td style={{ width: '500px', height: '80px', paddingTop: '25px', paddingBottom: '20px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.designation.length < 48 && <td style={{width:'500px', height:'80px', paddingTop:'25px',paddingBottom:'20px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    <td style={{width:'200px', height:'80px', paddingTop:'25px',paddingBottom:'20px',textAlign: 'center'}}>{dev.quantity}</td>
                 </tr>
             );
         })
         produitsView3 = produits3.map(dev => {
             return (
                 <tr key={dev.id} style={{height:'30px'}}>
-                    {dev.designation.length > 48 && <td style={{ width: '500px', height: '90px', paddingTop: '35px', paddingBottom: '10px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
-                    {dev.designation.length < 48 && <td style={{width:'500px', height:'90px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
-                    <td style={{width:'200px', height:'90px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'center'}}>{dev.quantity}</td>
+                    {dev.designation.length > 48 && <td style={{ width: '500px', height: '80px', paddingTop: '25px', paddingBottom: '20px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.designation.length < 48 && <td style={{width:'500px', height:'80px', paddingTop:'25px',paddingBottom:'20px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    <td style={{width:'200px', height:'80px', paddingTop:'25px',paddingBottom:'20px',textAlign: 'center'}}>{dev.quantity}</td>
                 </tr>
             );
         })
         produitsView4 = produits4.map(dev => {
             return (
                 <tr key={dev.id} style={{height:'30px'}}>
-                    {dev.designation.length > 48 && <td style={{ width: '500px', height: '90px', paddingTop: '35px', paddingBottom: '10px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
-                    {dev.designation.length < 48 && <td style={{width:'500px', height:'90px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
-                    <td style={{width:'200px', height:'90px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'center'}}>{dev.quantity}</td>
+                    {dev.designation.length > 48 && <td style={{ width: '500px', height: '80px', paddingTop: '25px', paddingBottom: '20px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.designation.length < 48 && <td style={{width:'500px', height:'80px', paddingTop:'25px',paddingBottom:'20px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    <td style={{width:'200px', height:'80px', paddingTop:'25px',paddingBottom:'20px',textAlign: 'center'}}>{dev.quantity}</td>
                 </tr>
             );
         })
         produitsView5 = produits5.map(dev => {
             return (
                 <tr key={dev.id} style={{height:'30px'}}>
-                    {dev.designation.length > 48 && <td style={{ width: '500px', height: '90px', paddingTop: '35px', paddingBottom: '10px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
-                    {dev.designation.length < 48 && <td style={{width:'500px', height:'90px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
-                    <td style={{width:'200px', height:'90px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'center'}}>{dev.quantity}</td>
+                    {dev.designation.length > 48 && <td style={{ width: '500px', height: '80px', paddingTop: '35px', paddingBottom: '10px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.designation.length < 48 && <td style={{width:'500px', height:'80px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    <td style={{width:'200px', height:'80px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'center'}}>{dev.quantity}</td>
                 </tr>
             );
         })
         produitsView6 = produits6.map(dev => {
             return (
                 <tr key={dev.id} style={{height:'30px'}}>
-                    {dev.designation.length > 48 && <td style={{ width: '500px', height: '90px', paddingTop: '35px', paddingBottom: '10px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
-                    {dev.designation.length < 48 && <td style={{width:'500px', height:'90px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
-                    <td style={{width:'200px', height:'90px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'center'}}>{dev.quantity}</td>
+                    {dev.designation.length > 48 && <td style={{ width: '500px', height: '80px', paddingTop: '35px', paddingBottom: '10px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.designation.length < 48 && <td style={{width:'500px', height:'80px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    <td style={{width:'200px', height:'80px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'center'}}>{dev.quantity}</td>
                 </tr>
             );
         })
         produitsView7 = produits7.map(dev => {
             return (
                 <tr key={dev.id} style={{height:'30px'}}>
-                    {dev.designation.length > 48 && <td style={{ width: '500px', height: '90px', paddingTop: '35px', paddingBottom: '10px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
-                    {dev.designation.length < 48 && <td style={{width:'500px', height:'90px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
-                    <td style={{width:'200px', height:'90px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'center'}}>{dev.quantity}</td>
+                    {dev.designation.length > 48 && <td style={{ width: '500px', height: '80px', paddingTop: '35px', paddingBottom: '10px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.designation.length < 48 && <td style={{width:'500px', height:'80px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    <td style={{width:'200px', height:'80px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'center'}}>{dev.quantity}</td>
                 </tr>
             );
         })
         produitsView8 = produits8.map(dev => {
             return (
                 <tr key={dev.id} style={{height:'30px'}}>
-                    {dev.designation.length > 48 && <td style={{ width: '500px', height: '90px', paddingTop: '35px', paddingBottom: '10px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
-                    {dev.designation.length < 48 && <td style={{width:'500px', height:'90px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
-                    <td style={{width:'200px', height:'90px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'center'}}>{dev.quantity}</td>
+                    {dev.designation.length > 48 && <td style={{ width: '500px', height: '80px', paddingTop: '35px', paddingBottom: '10px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.designation.length < 48 && <td style={{width:'500px', height:'80px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    <td style={{width:'200px', height:'80px', paddingTop:'35px',paddingBottom:'10px',textAlign: 'center'}}>{dev.quantity}</td>
                 </tr>
             );
         })
@@ -666,9 +669,9 @@ export default class ViewBonLivraisonVente extends Component {
                     <h2 style={{ marginBottom: '10px', fontWeight: 'bold' }}>BON DE LIVRAISON</h2>
                     <div className="space-between-home">
                         <div className="text-size-order">
-                            <p style={{paddingTop:'35px'}}><span>{sex === 'Masculin' ? 'M.' + ' ' + firstname.toUpperCase() + ' ' + lastname.toUpperCase() : ''}</span></p>
+                            <p style={{paddingTop:'35px'}}><span>{sex === 'Masculin' ? ('M.' + ' ' + firstname.toUpperCase() + ' ' + lastname.toUpperCase()).substring(0,17) : ''}</span></p>
                             <p><span>{sex === 'Feminin' ? 'Mme.' +' '+ firstname.toUpperCase()  +' '+lastname.toUpperCase() :''}</span></p>
-                            <p><span>{adresse.toUpperCase()}</span></p>
+                            <p><span>{(adresse.toUpperCase()).substring(0,addresslength)}</span></p>
                             <p><span>{phone}</span></p>
                         </div>
                         <div className="text-size-order">
@@ -721,18 +724,23 @@ export default class ViewBonLivraisonVente extends Component {
                         <div className="text-right-venteBL1_4_1"><h5>2/2</h5></div>
                         </>
                         }
+                        {produits1.length === 9  && <><div className="text-right text-right-venteBL1_9"><h5>1/2</h5></div>
+                        <p style={{ pageBreakAfter: "always" }}></p>
+                        <div className="text-right-venteBL1_4_1"><h5>2/2</h5></div>
+                        </>
+                        }
                         </>)}
-                        {produits1.length === 8 && produits2.length !== 0 && produits3.length === 0&& (
+                        {produits1.length === 9 && produits2.length !== 0 && produits3.length === 0 && (
                         <>
                         <table className="table table-striped">
                             <tbody>
                                 {produitsView1}
                             </tbody>
                         </table>
-                        {produits1.length === 8 && produits2.length <= 7 && <><div className="text-right text-right-venteBL_0"><h5>1/2</h5></div>
+                        {produits1.length === 9 && produits2.length <= 7 && <><div className="text-right text-right-venteBL_0"><h5>1/2</h5></div>
                         <p style={{ pageBreakAfter: "always" }}></p>
                         </>}
-                        {produits1.length === 8 && produits2.length > 7 && <><div className="text-right text-right-venteBL_0"><h5>1/3</h5></div>
+                        {produits1.length === 9 && produits2.length > 7 && <><div className="text-right text-right-venteBL_0"><h5>1/3</h5></div>
                         <p style={{ pageBreakAfter: "always" }}></p>
                         </>}
                         <table style={{marginTop:'70px'}} className="table table-striped">
@@ -740,42 +748,42 @@ export default class ViewBonLivraisonVente extends Component {
                                 {produitsView2}
                             </tbody>
                         </table>
-                        {produits1.length===8 && produits2.length === 1 && (
+                        {produits1.length===9 && produits2.length === 1 && (
                             <div className="text-right text-right-venteBL_1">
                                 <h5>2/2</h5>
                             </div>
                         )}
-                        {produits1.length===8 && produits2.length === 2 && (
+                        {produits1.length===9 && produits2.length === 2 && (
                             <div className="text-right text-right-venteBL_2">
                                 <h5>2/2</h5>
                             </div>
                         )}
-                        {produits1.length===8 && produits2.length === 3 && (
+                        {produits1.length===9 && produits2.length === 3 && (
                             <div className="text-right text-right-venteBL_3">
                                 <h5>2/2</h5>
                             </div>
                         )}
-                        {produits1.length===8 && produits2.length === 4 && (
+                        {produits1.length===9 && produits2.length === 4 && (
                             <div className="text-right text-right-venteBL_4">
                                 <h5>2/2</h5>
                             </div>
                         )}
-                        {produits1.length===8 && produits2.length === 5 && (
+                        {produits1.length===9 && produits2.length === 5 && (
                             <div className="text-right text-right-venteBL_5">
                                 <h5>2/2</h5>
                             </div>
                         )}
-                        {produits1.length===8 && produits2.length === 6 && (
+                        {produits1.length===9 && produits2.length === 6 && (
                             <div className="text-right text-right-venteBL_6">
                                 <h5>2/2</h5>
                             </div>
                         )}
-                        {produits1.length===8 && produits2.length === 7 && (
+                        {produits1.length===9 && produits2.length === 7 && (
                             <div className="text-right text-right-venteBL_7">
                                 <h5>2/2</h5>
                             </div>
                         )}
-                        {produits1.length===8 && produits2.length === 8 && (
+                        {produits1.length===9 && produits2.length === 8 && (
                             <>
                             <div className="text-right text-right-venteBL_8">
                                 <h5>2/3</h5>
@@ -786,7 +794,7 @@ export default class ViewBonLivraisonVente extends Component {
                             </div>
                             </>
                         )}
-                        {produits1.length===8 && produits2.length === 9 && (
+                        {produits1.length===9 && produits2.length === 9 && (
                             <>
                             <div className="text-right text-right-venteBL_9">
                                 <h5>2/3</h5>
@@ -797,7 +805,7 @@ export default class ViewBonLivraisonVente extends Component {
                             </div>
                             </>
                         )}
-                        {produits1.length===8 && produits2.length === 10 && (
+                        {produits1.length===9 && produits2.length === 10 && (
                             <>
                             <div className="text-right text-right-venteBL_10">
                                 <h5>2/3</h5>
@@ -808,7 +816,7 @@ export default class ViewBonLivraisonVente extends Component {
                             </div>
                             </>
                         )}
-                         {produits1.length===8 && produits2.length === 11 && (
+                         {produits1.length===9 && produits2.length === 11 && (
                             <>
                             <div className="text-right text-right-venteBL_11">
                                 <h5>2/3</h5>
@@ -819,7 +827,7 @@ export default class ViewBonLivraisonVente extends Component {
                             </div>
                             </>
                         )}
-                        {produits1.length===8 && produits2.length === 12 && (
+                        {produits1.length===9 && produits2.length === 12 && (
                             <>
                             <div className="text-right text-right-venteBL_12">
                                 <h5>2/3</h5>
@@ -830,20 +838,31 @@ export default class ViewBonLivraisonVente extends Component {
                             </div>
                             </>
                         )}
+                        {produits1.length===9 && produits2.length === 13 && (
+                            <>
+                            <div className="text-right text-right-venteBL_12_1">
+                                <h5>2/3</h5>
+                            </div>
+                            <p style={{ pageBreakAfter: "always" }}></p>
+                            <div className="text-right text-right-venteBL_8_1">
+                                <h5>3/3</h5>
+                            </div>
+                            </>
+                        )}
     
                         </>)}
-                        {produits1.length === 8 && produits2.length === 12 && produits3.length !== 0 && produits4.length === 0 && (
+                        {produits1.length === 9 && produits2.length === 13 && produits3.length !== 0 && produits4.length === 0 && (
                         <>
                         <table className="table table-striped">
                             <tbody>
                                 {produitsView1}
                             </tbody>
                         </table>
-                        {produits1.length === 8 && produits2.length === 12 && produits3.length <=7 
+                        {produits1.length === 9 && produits2.length === 13 && produits3.length !==0 && produits3.length <=8 
                         &&<><div className="text-right text-right-venteBL_0"><h5>1/3</h5></div>
                         <p style={{ pageBreakAfter: "always" }}></p>
                         </>}
-                        {produits1.length === 8 && produits2.length === 12 && produits3.length > 7 
+                        {produits1.length === 9 && produits2.length === 13 && produits3.length > 8 
                         &&<><div className="text-right text-right-venteBL_0"><h5>1/4</h5></div>
                         <p style={{ pageBreakAfter: "always" }}></p>
                         </>}
@@ -852,7 +871,7 @@ export default class ViewBonLivraisonVente extends Component {
                                 {produitsView2}
                             </tbody>
                         </table>
-                        {produits1.length === 8 && produits2.length === 12 && produits3.length <=7  && (
+                        {produits1.length === 9 && produits2.length === 13 && produits3.length <=8  && (
                             <>
                                 <div className="text-right text-right-venteBL_12">
                                     <h5>2/3</h5>
@@ -860,7 +879,7 @@ export default class ViewBonLivraisonVente extends Component {
                                 <p style={{ pageBreakAfter: "always" }}></p>
                             </>
                         )}
-                        {produits1.length === 8 && produits2.length === 12 && produits3.length > 7  && (
+                        {produits1.length === 9 && produits2.length === 13 && produits3.length > 8  && (
                             <>
                                 <div className="text-right text-right-venteBL_12">
                                     <h5>2/4</h5>
@@ -873,28 +892,28 @@ export default class ViewBonLivraisonVente extends Component {
                                 {produitsView3}
                             </tbody>
                         </table>
-                        {produits1.length===8 && produits2.length === 12 && produits3.length===1 && (
+                        {produits1.length===9 && produits2.length === 13 && produits3.length===1 && (
                             <>
                             <div className="text-right text-right-venteBL_13">
                                 <h5>3/3</h5>
                             </div>
                             </>
                         )}
-                        {produits1.length===8 && produits2.length === 12 && produits3.length===2 && (
+                        {produits1.length===9 && produits2.length === 13 && produits3.length===2 && (
                             <>
                             <div className="text-right text-right-venteBL_14">
                                 <h5>3/3</h5>
                             </div>
                             </>
                         )}
-                        {produits1.length===8 && produits2.length === 12 && produits3.length===3 && (
+                        {produits1.length===9 && produits2.length === 13 && produits3.length===3 && (
                             <>
                             <div className="text-right text-right-venteBL_15">
                                 <h5>3/3</h5>
                             </div>
                             </>
                         )}
-                        {produits1.length===8 && produits2.length === 12 && produits3.length===4 && (
+                        {produits1.length===9 && produits2.length === 13 && produits3.length===4 && (
                             <>
                             <div className="text-right text-right-venteBL_16">
                                 <h5>3/3</h5>
@@ -902,7 +921,7 @@ export default class ViewBonLivraisonVente extends Component {
                             </>
                         )}
                         
-                        {produits1.length===8 && produits2.length === 12 && produits3.length===5 && (
+                        {produits1.length===9 && produits2.length === 13 && produits3.length===5 && (
                             <>
                             <div className="text-right text-right-venteBL_17">
                                 <h5>3/3</h5>
@@ -910,65 +929,72 @@ export default class ViewBonLivraisonVente extends Component {
                             </>
                         )}
                         
-                        {produits1.length===8 && produits2.length === 12 && produits3.length===6 && (
+                        {produits1.length===9 && produits2.length === 13 && produits3.length===6 && (
                             <>
                             <div className="text-right text-right-venteBL_18">
                                 <h5>3/3</h5>
                             </div>
                             </>
                         )}
-                        {produits1.length===8 && produits2.length === 12 && produits3.length=== 7 && (
+                        {produits1.length===9 && produits2.length === 13 && produits3.length=== 7 && (
                             <>
                             <div className="text-right text-right-venteBL_19">
                                 <h5>3/3</h5>
                             </div>
                             </>
                         )}
-                        {produits1.length===8 && produits2.length === 12 && produits3.length=== 8 && (
+                        {produits1.length===9 && produits2.length === 13 && produits3.length=== 8 && (
                             <>
-                            <div className="text-right text-right-venteBL_20"><h5>3/4</h5></div>
-                            <p style={{ pageBreakAfter: "always" }}></p>
-                            <div className="text-right text-right-venteBL_20_1"><h5>4/4</h5></div>
+                            <div className="text-right text-right-venteBL_20"><h5>3/3</h5></div>
                             </>
                         )}
-                        {produits1.length===8 && produits2.length === 12 && produits3.length=== 9 && (
+                        {produits1.length===9 && produits2.length === 13 && produits3.length=== 9 && (
                             <>
                             <div className="text-right text-right-venteBL_21"><h5>3/4</h5></div>
                             <p style={{ pageBreakAfter: "always" }}></p>
                             <div className="text-right text-right-venteBL_20_1"><h5>4/4</h5></div>
                             </>
                         )}
-                        {produits1.length===8 && produits2.length === 12 && produits3.length=== 10 && (
+                        {produits1.length===9 && produits2.length === 13 && produits3.length=== 10 && (
                             <>
                             <div className="text-right text-right-venteBL_22"><h5>3/4</h5></div>
                             <p style={{ pageBreakAfter: "always" }}></p>
                             <div className="text-right text-right-venteBL_20_1"><h5>4/4</h5></div>
                             </>
                         )}
-                        {produits1.length===8 && produits2.length === 12 && produits3.length=== 11 && (
+                        {produits1.length===9 && produits2.length === 13 && produits3.length=== 11 && (
                             <>
                             <div className="text-right text-right-venteBL_23"><h5>3/4</h5></div>
                             <p style={{ pageBreakAfter: "always" }}></p>
                             <div className="text-right text-right-venteBL_20_1"><h5>4/4</h5></div>
                             </>
                         )}
-                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && (
+                        {produits1.length===9 && produits2.length === 13 && produits3.length === 12 && (
                             <>
                             <div className="text-right text-right-venteBL_24"><h5>3/4</h5></div>
                             <p style={{ pageBreakAfter: "always" }}></p>
                             <div className="text-right text-right-venteBL_20_1"><h5>4/4</h5></div>
                             </>
                         )}
+                        {produits1.length===9 && produits2.length === 13 && produits3.length === 13 && (
+                            <>
+                            <div className="text-right text-right-venteBL_24_1"><h5>3/4</h5></div>
+                            <p style={{ pageBreakAfter: "always" }}></p>
+                            <div className="text-right text-right-venteBL_20_1"><h5>4/4</h5></div>
+                            </>
+                        )}
                         
                         </>)}
-                        {produits1.length === 8 && produits2.length === 12 && produits3.length !== 0 && produits4.length <= 7 && produits5.length === 0 && (
+                        {produits1.length === 9 && produits2.length === 13 && produits3.length === 13
+                        && produits4.length <= 8 && produits4.length !== 0  && produits5.length === 0 
+                        && (
                         <>
                         <table className="table table-striped">
                             <tbody>
                                 {produitsView1}
                             </tbody>
                         </table>
-                        {produits1.length === 8 && produits2.length === 12 && produits3.length > 7 
+                        {produits1.length === 9 && produits2.length === 13 && produits3.length === 13 
                         &&<><div className="text-right text-right-venteBL_0"><h5>1/4</h5></div>
                         <p style={{ pageBreakAfter: "always" }}></p>
                         </>}
@@ -977,7 +1003,7 @@ export default class ViewBonLivraisonVente extends Component {
                                 {produitsView2}
                             </tbody>
                         </table>
-                        {produits1.length === 8 && produits2.length === 12 && produits3.length > 7  && (
+                        {produits1.length === 9 && produits2.length === 13 && produits3.length === 13  && (
                             <>
                                 <div className="text-right text-right-venteBL_12">
                                     <h5>2/4</h5>
@@ -990,7 +1016,7 @@ export default class ViewBonLivraisonVente extends Component {
                                 {produitsView3}
                             </tbody>
                         </table>
-                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && (
+                        {produits1.length===9 && produits2.length === 13 && produits3.length === 13 && (
                             <>
                             <div className="text-right text-right-venteBL_24"><h5>3/4</h5></div>
                             <p style={{ pageBreakAfter: "always" }}></p>
@@ -1001,55 +1027,55 @@ export default class ViewBonLivraisonVente extends Component {
                                 {produitsView4}
                             </tbody>
                         </table>
-                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 1 && (
+                        {produits1.length===9 && produits2.length === 13 && produits3.length === 13 && produits4.length === 1 && (
                             <>
                             <div className="text-right text-right-venteBL_25"><h5>4/4</h5></div>
                             </>
                         )}
-                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 2 && (
+                        {produits1.length===9 && produits2.length === 13 && produits3.length === 13 && produits4.length === 2 && (
                             <>
                             <div className="text-right text-right-venteBL_26"><h5>4/4</h5></div>
                             </>
                         )}
-                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 3 && (
+                        {produits1.length===9 && produits2.length === 13 && produits3.length === 13 && produits4.length === 3 && (
                             <>
                             <div className="text-right text-right-venteBL_27"><h5>4/4</h5></div>
                             </>
                         )}
-                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 4 && (
+                        {produits1.length===9 && produits2.length === 13 && produits3.length === 13 && produits4.length === 4 && (
                             <>
                             <div className="text-right text-right-venteBL_28"><h5>4/4</h5></div>
                             </>
                         )}
-                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 5 && (
+                        {produits1.length===9 && produits2.length === 13 && produits3.length === 13 && produits4.length === 5 && (
                             <>
                             <div className="text-right text-right-venteBL_29"><h5>4/4</h5></div>
                             </>
                         )}
-                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 6 && (
+                        {produits1.length===9 && produits2.length === 13 && produits3.length === 13 && produits4.length === 6 && (
                             <>
                             <div className="text-right text-right-venteBL_30"><h5>4/4</h5></div>
                             </>
                         )}
-                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 7 && (
+                        {produits1.length===9 && produits2.length === 13 && produits3.length === 13 && produits4.length === 7 && (
                             <>
                             <div className="text-right text-right-venteBL_31"><h5>4/4</h5></div>
                             </>
                         )}
-                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 8 && (
+                        {produits1.length===9 && produits2.length === 13 && produits3.length === 13 && produits4.length === 8 && (
                             <>
                             <div className="text-right text-right-venteBL_32"><h5>4/4</h5></div>
                             </>
                         )}
                         </>)}
-                        {produits1.length === 8 && produits2.length === 12 && produits3.length !== 0 && produits4.length > 7 && produits5.length === 0 && (
+                        {produits1.length === 9 && produits2.length === 13 && produits3.length === 13 && produits4.length > 8  && produits5.length === 0 && (
                         <>
                         <table className="table table-striped">
                             <tbody>
                                 {produitsView1}
                             </tbody>
                         </table>
-                        {produits1.length === 8 && produits2.length === 12 && produits3.length > 7 
+                        {produits1.length === 9 && produits2.length === 13 && produits3.length > 8 
                         &&<><div className="text-right text-right-venteBL_0"><h5>1/5</h5></div>
                         <p style={{ pageBreakAfter: "always" }}></p>
                         </>}
@@ -1058,7 +1084,7 @@ export default class ViewBonLivraisonVente extends Component {
                                 {produitsView2}
                             </tbody>
                         </table>
-                        {produits1.length === 8 && produits2.length === 12 && produits3.length > 7  && (
+                        {produits1.length === 9 && produits2.length === 13 && produits3.length > 8  && (
                             <>
                                 <div className="text-right text-right-venteBL_12">
                                     <h5>2/5</h5>
@@ -1071,7 +1097,7 @@ export default class ViewBonLivraisonVente extends Component {
                                 {produitsView3}
                             </tbody>
                         </table>
-                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && (
+                        {produits1.length===9 && produits2.length === 13 && produits3.length === 13 && (
                             <>
                             <div className="text-right text-right-venteBL_24"><h5>3/5</h5></div>
                             <p style={{ pageBreakAfter: "always" }}></p>
@@ -1082,50 +1108,50 @@ export default class ViewBonLivraisonVente extends Component {
                                 {produitsView4}
                             </tbody>
                         </table>
-                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 8 && (
-                            <>
-                            <div className="text-right text-right-venteBL_32"><h5>4/5</h5></div>
-                            <p style={{ pageBreakAfter: "always" }}></p>
-                            <div className="text-right text-right-venteBL_33"><h5>5/5</h5></div>
-                            </>
-                        )}
-                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 9 && (
+                        {produits1.length===9 && produits2.length === 13 && produits3.length === 13 && produits4.length === 9 && (
                             <>
                             <div className="text-right text-right-venteBL_32_1"><h5>4/5</h5></div>
                             <p style={{ pageBreakAfter: "always" }}></p>
                             <div className="text-right text-right-venteBL_33"><h5>5/5</h5></div>
                             </>
                         )}
-                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 10 && (
+                        {produits1.length===9 && produits2.length === 13 && produits3.length === 13 && produits4.length === 10 && (
                             <>
                             <div className="text-right text-right-venteBL_32_2"><h5>4/5</h5></div>
                             <p style={{ pageBreakAfter: "always" }}></p>
                             <div className="text-right text-right-venteBL_33"><h5>5/5</h5></div>
                             </>
                         )}
-                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 11 && (
+                        {produits1.length===9 && produits2.length === 13 && produits3.length === 13 && produits4.length === 11 && (
                             <>
                             <div className="text-right text-right-venteBL_32_3"><h5>4/5</h5></div>
                             <p style={{ pageBreakAfter: "always" }}></p>
                             <div className="text-right text-right-venteBL_33"><h5>5/5</h5></div>
                             </>
                         )}
-                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 12 && (
+                        {produits1.length===9 && produits2.length === 13 && produits3.length === 13 && produits4.length === 12 && (
                             <>
                             <div className="text-right text-right-venteBL_32_4"><h5>4/5</h5></div>
                             <p style={{ pageBreakAfter: "always" }}></p>
                             <div className="text-right text-right-venteBL_33"><h5>5/5</h5></div>
                             </>
                         )}
+                        {produits1.length===9 && produits2.length === 13 && produits3.length === 13 && produits4.length === 13 && (
+                            <>
+                            <div className="text-right text-right-venteBL_32_5"><h5>4/5</h5></div>
+                            <p style={{ pageBreakAfter: "always" }}></p>
+                            <div className="text-right text-right-venteBL_33"><h5>5/5</h5></div>
+                            </>
+                        )}
                         </>)}
-                        {produits1.length === 8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 12 && produits5.length <=7 && produits6.length === 0 (
+                        {produits1.length === 8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 12 && produits5.length !==0 && produits6.length === 0 (
                         <>
                         <table className="table table-striped">
                             <tbody>
                                 {produitsView1}
                             </tbody>
                         </table>
-                        {produits1.length === 8 && produits2.length === 12 && produits3.length > 7 
+                        {produits1.length === 9 && produits2.length === 13 && produits3.length > 7 
                         &&<><div className="text-right text-right-venteBL_0"><h5>1/5</h5></div>
                         <p style={{ pageBreakAfter: "always" }}></p>
                         </>}
@@ -1134,7 +1160,7 @@ export default class ViewBonLivraisonVente extends Component {
                                 {produitsView2}
                             </tbody>
                         </table>
-                        {produits1.length === 8 && produits2.length === 12 && produits3.length > 7  && (
+                        {produits1.length === 9 && produits2.length === 13 && produits3.length > 7  && (
                             <>
                                 <div className="text-right text-right-venteBL_12">
                                     <h5>2/5</h5>
@@ -1147,7 +1173,7 @@ export default class ViewBonLivraisonVente extends Component {
                                 {produitsView3}
                             </tbody>
                         </table>
-                        {produits1.length===8 && produits2.length === 12 && produits3.length === 12 && (
+                        {produits1.length===9 && produits2.length === 13 && produits3.length === 13 && (
                             <>
                             <div className="text-right text-right-venteBL_24"><h5>3/5</h5></div>
                             <p style={{ pageBreakAfter: "always" }}></p>
@@ -1201,7 +1227,7 @@ export default class ViewBonLivraisonVente extends Component {
                             </>
                         )}
                         </>)}
-                        {produits1.length === 8 && produits2.length === 12 && produits3.length === 12 && produits4.length === 12 && produits5.length > 7 && produits6.length === 0 && (
+                        {produits1.length === 9 && produits2.length === 13 && produits3.length === 13 && produits4.length === 13 && produits5.length > 7 && produits6.length === 0 && (
                         <>
                         <table className="table table-striped">
                             <tbody>
@@ -1910,7 +1936,7 @@ export default class ViewBonLivraisonVente extends Component {
                  </div>
                 </div>
                 )}
-                {(produits1.length === 4 || produits1.length === 5 || produits1.length === 6 || produits1.length === 7 || produits1.length === 8) && produits2.length === 0 && (
+                {(produits1.length === 4 || produits1.length === 5 || produits1.length === 6 || produits1.length === 7 || produits1.length === 8 || produits1.length === 9) && produits2.length === 0 && (
                  <div className="space-between-venteBL1_4">
                  <div>
                      <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
@@ -1923,7 +1949,7 @@ export default class ViewBonLivraisonVente extends Component {
                  </div>
                 </div>
                 )}
-                {produits1.length === 8 && produits2.length === 1 && (
+                {produits1.length === 9 && produits2.length === 1 && (
                 <div className="space-between-venteBL_1">
                     <div>
                         <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
@@ -1936,7 +1962,7 @@ export default class ViewBonLivraisonVente extends Component {
                     </div>
                 </div>
                 )}
-                {produits1.length === 8 && produits2.length === 2 && (
+                {produits1.length === 9 && produits2.length === 2 && (
                 <div className="space-between-venteBL_2">
                     <div>
                         <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
@@ -1949,7 +1975,7 @@ export default class ViewBonLivraisonVente extends Component {
                     </div>
                 </div>
                 )}
-                {produits1.length === 8 && produits2.length === 3 && (
+                {produits1.length === 9 && produits2.length === 3 && (
                 <div className="space-between-venteBL_3">
                     <div>
                         <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
@@ -1962,7 +1988,7 @@ export default class ViewBonLivraisonVente extends Component {
                     </div>
                 </div>
                 )}
-                {produits1.length === 8 && produits2.length === 4 && (
+                {produits1.length === 9 && produits2.length === 4 && (
                 <div className="space-between-venteBL_4">
                     <div>
                         <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
@@ -1975,7 +2001,7 @@ export default class ViewBonLivraisonVente extends Component {
                     </div>
                 </div>
                 )}
-                {produits1.length === 8 && produits2.length === 5 && (
+                {produits1.length === 9 && produits2.length === 5 && (
                 <div className="space-between-venteBL_5">
                     <div>
                         <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
@@ -1988,7 +2014,7 @@ export default class ViewBonLivraisonVente extends Component {
                     </div>
                 </div>
                 )}
-                {produits1.length === 8 && produits2.length === 6 && (
+                {produits1.length === 9 && produits2.length === 6 && (
                 <div className="space-between-venteBL_6">
                     <div>
                         <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
@@ -2001,7 +2027,7 @@ export default class ViewBonLivraisonVente extends Component {
                     </div>
                 </div>
                 )}
-                {produits1.length === 8 && produits2.length === 7 && (
+                {produits1.length === 9 && produits2.length === 7 && (
                 <div className="space-between-venteBL_7">
                     <div>
                         <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
@@ -2014,7 +2040,7 @@ export default class ViewBonLivraisonVente extends Component {
                     </div>
                 </div>
                 )}
-                {produits1.length === 8 && (produits2.length === 8 ||produits2.length === 9 || produits2.length === 10 || produits2.length ===  11 || produits2.length ===  12)&& produits3.length ===0 && (
+                {produits1.length === 9 && (produits2.length === 8 ||produits2.length === 9 || produits2.length === 10 || produits2.length ===  11 || produits2.length ===  12 || produits2.length ===  13)&& produits3.length ===0 && (
                 <div className="space-between-venteBL_8">
                     <div>
                         <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
@@ -2027,7 +2053,7 @@ export default class ViewBonLivraisonVente extends Component {
                     </div>
                 </div>
                 )}
-                {produits1.length === 8 && produits2.length ===  12 && produits3.length ===  1 && (
+                {produits1.length === 9 && produits2.length ===  13 && produits3.length ===  1 && (
                 <div className="space-between-venteBL_9">
                     <div>
                         <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
@@ -2040,7 +2066,7 @@ export default class ViewBonLivraisonVente extends Component {
                     </div>
                 </div>
                 )}
-                {produits1.length === 8 && produits2.length ===  12 && produits3.length ===  2 && (
+                {produits1.length === 9 && produits2.length ===  13 && produits3.length ===  2 && (
                 <div className="space-between-venteBL_10">
                     <div>
                         <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
@@ -2053,7 +2079,7 @@ export default class ViewBonLivraisonVente extends Component {
                     </div>
                 </div>
                 )}
-                {produits1.length === 8 && produits2.length ===  12 && produits3.length ===  3 && (
+                {produits1.length === 9 && produits2.length ===  13 && produits3.length ===  3 && (
                 <div className="space-between-venteBL_11">
                     <div>
                         <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
@@ -2066,7 +2092,7 @@ export default class ViewBonLivraisonVente extends Component {
                     </div>
                 </div>
                 )}
-                {produits1.length === 8 && produits2.length ===  12 && produits3.length ===  4 && (
+                {produits1.length === 9 && produits2.length ===  13 && produits3.length ===  4 && (
                 <div className="space-between-venteBL_12">
                     <div>
                         <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
@@ -2079,7 +2105,7 @@ export default class ViewBonLivraisonVente extends Component {
                     </div>
                 </div>
                 )}
-                {produits1.length === 8 && produits2.length ===  12 && produits3.length ===  5 && (
+                {produits1.length === 9 && produits2.length ===  13 && produits3.length ===  5 && (
                 <div className="space-between-venteBL_13">
                     <div>
                         <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
@@ -2092,7 +2118,7 @@ export default class ViewBonLivraisonVente extends Component {
                     </div>
                 </div>
                 )}
-                {produits1.length === 8 && produits2.length ===  12 && produits3.length ===  6 && (
+                {produits1.length === 9 && produits2.length ===  13 && produits3.length ===  6 && (
                 <div className="space-between-venteBL_14">
                     <div>
                         <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
@@ -2105,7 +2131,7 @@ export default class ViewBonLivraisonVente extends Component {
                     </div>
                 </div>
                 )}
-                {produits1.length === 8 && produits2.length ===  12 && produits3.length ===  7 && (
+                {produits1.length === 9 && produits2.length ===  13 && produits3.length ===  7 && (
                 <div className="space-between-venteBL_15">
                     <div>
                         <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
@@ -2118,7 +2144,7 @@ export default class ViewBonLivraisonVente extends Component {
                     </div>
                 </div>
                 )}
-                {produits1.length === 8 && produits2.length ===  12 && (produits3.length ===  8||produits3.length === 9 || produits3.length === 10 || produits3.length ===  11 || produits3.length ===  12) && produits4.length === 0 && (
+                 {produits1.length === 9 && produits2.length ===  13 && produits3.length ===  8 && (
                 <div className="space-between-venteBL_16">
                     <div>
                         <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
@@ -2131,7 +2157,20 @@ export default class ViewBonLivraisonVente extends Component {
                     </div>
                 </div>
                 )}
-                {produits1.length === 8 && produits2.length ===  12 && produits3.length ===  12 && produits4.length === 1 && (
+                {produits1.length === 9 && produits2.length ===  13 && (produits3.length === 9 || produits3.length === 10 || produits3.length ===  11 || produits3.length ===  12 || produits3.length ===  13) && produits4.length === 0 && (
+                <div className="space-between-venteBL_16_1">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits1.length === 9 && produits2.length ===  13 && produits3.length ===  13 && produits4.length === 1 && (
                 <div className="space-between-venteBL_17">
                     <div>
                         <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
@@ -2144,7 +2183,7 @@ export default class ViewBonLivraisonVente extends Component {
                     </div>
                 </div>
                 )}
-                {produits1.length === 8 && produits2.length ===  12 && produits3.length ===  12 && produits4.length === 2 && (
+                {produits1.length === 9 && produits2.length ===  13 && produits3.length ===  13 && produits4.length === 2 && (
                 <div className="space-between-venteBL_18">
                     <div>
                         <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
@@ -2157,7 +2196,7 @@ export default class ViewBonLivraisonVente extends Component {
                     </div>
                 </div>
                 )}
-                {produits1.length === 8 && produits2.length ===  12 && produits3.length ===  12 && produits4.length === 3 && (
+                {produits1.length === 9 && produits2.length ===  13 && produits3.length ===  13 && produits4.length === 3 && (
                 <div className="space-between-venteBL_19">
                     <div>
                         <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
@@ -2170,7 +2209,7 @@ export default class ViewBonLivraisonVente extends Component {
                     </div>
                 </div>
                 )}
-                 {produits1.length === 8 && produits2.length ===  12 && produits3.length ===  12 && produits4.length === 4 && (
+                 {produits1.length === 9 && produits2.length ===  13 && produits3.length ===  13 && produits4.length === 4 && (
                 <div className="space-between-venteBL_20">
                     <div>
                         <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
@@ -2183,7 +2222,7 @@ export default class ViewBonLivraisonVente extends Component {
                     </div>
                 </div>
                 )}
-                {produits1.length === 8 && produits2.length ===  12 && produits3.length ===  12 && produits4.length === 5 && (
+                {produits1.length === 9 && produits2.length ===  13 && produits3.length ===  13 && produits4.length === 5 && (
                 <div className="space-between-venteBL_21">
                     <div>
                         <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
@@ -2196,7 +2235,7 @@ export default class ViewBonLivraisonVente extends Component {
                     </div>
                 </div>
                 )}
-                {produits1.length === 8 && produits2.length ===  12 && produits3.length ===  12 && produits4.length === 6 && (
+                {produits1.length === 9 && produits2.length ===  13 && produits3.length ===  13 && produits4.length === 6 && (
                 <div className="space-between-venteBL_22">
                     <div>
                         <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
@@ -2209,7 +2248,7 @@ export default class ViewBonLivraisonVente extends Component {
                     </div>
                 </div>
                 )}
-                {produits1.length === 8 && produits2.length ===  12 && produits3.length ===  12 && produits4.length === 7 && (
+                {produits1.length === 9 && produits2.length ===  13 && produits3.length ===  13 && produits4.length === 7 && (
                 <div className="space-between-venteBL_23">
                     <div>
                         <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
@@ -2222,7 +2261,20 @@ export default class ViewBonLivraisonVente extends Component {
                     </div>
                 </div>
                 )}
-                {produits1.length === 8 && produits2.length ===  12 && produits3.length ===  12 && (produits4.length === 8 || produits4.length === 9 || produits4.length === 10 || produits4.length === 11 || produits4.length === 12) && produits5.length === 0 && (
+                {produits4.length === 8 && (
+                <div className="space-between-venteBL_23_8">
+                    <div>
+                        <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                    </div>
+                    <div>
+                        <div className="space-right"><h4>LE SERVICE COMMERCIAL:</h4><br /></div>
+                        <h4 className="space-left">
+                            {loginUserByUsername[0] ? loginUserByUsername[0].first_name : ''} {' '} {loginUserByUsername[0] ? loginUserByUsername[0].last_name : ''}
+                        </h4>
+                    </div>
+                </div>
+                )}
+                {produits1.length === 9 && produits2.length ===  13 && produits3.length ===  13 && (produits4.length === 9 || produits4.length === 10 || produits4.length === 11 || produits4.length === 12 || produits4.length === 13) && produits5.length === 0 && (
                 <div className="space-between-venteBL_24">
                     <div>
                         <h4>Fait à Dakar (Sénégal), le {dateFrench}</h4>

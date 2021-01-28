@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { NavLink} from 'react-router-dom';
 
 
@@ -22,19 +22,19 @@ const Navbar = ({ user,loginUser}) => {
 				</NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link" to="/home-service">
+          <NavLink className="nav-link" to="/home-service-list">
             <i class="fab fa-paypal"></i>
             Liste devis
           </NavLink>
           <div className="sub-menu-1">
             <ul>
-                <li><NavLink to="/devis"><a href>Devis agricole</a></NavLink></li>
-                <li><NavLink to="/devis-domestique">Devis domestique</NavLink></li>
+                <li><NavLink to="/liste-devis-agricole"><a href>Devis agricole</a></NavLink></li>
+                <li><NavLink to="/liste-devis-domestique">Devis domestique</NavLink></li>
             </ul>
           </div>
 				</li>
         <li className="nav-item">
-          <NavLink className="nav-link" to="/home-service">
+          <NavLink className="nav-link" to="/home-service-prestation">
             <i class="fab fa-accusoft"></i>
             Devis Prestations
           </NavLink>
@@ -46,14 +46,14 @@ const Navbar = ({ user,loginUser}) => {
           </div>
 				</li>
         <li className="nav-item">
-          <NavLink className="nav-link" to="/home-service">
+          <NavLink className="nav-link" to="/home-service-vente">
             <i class="fa fa-users"></i>
             Devis Ventes
           </NavLink>
           <div className="sub-menu-1">
             <ul> 
                 <li><NavLink to="/vente"><a href>Création Devis</a></NavLink></li>
-                <li><NavLink to="/devis-vente">Liste Devis</NavLink></li>
+                <li><NavLink to="/liste-devis-vente">Liste Devis</NavLink></li>
             </ul>
           </div>
 				</li>

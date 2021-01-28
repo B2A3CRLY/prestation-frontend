@@ -1,16 +1,26 @@
 import React, { Component } from 'react'
 import { apiUrl } from "../../config.json";
 import http from '../../services/httpService';
+import { Notyf } from 'notyf';
+import Pagination from "react-js-pagination";
 import { Table, Button, Form, Row, Col } from "react-bootstrap";
 import Spinners from '../../components/common/spinners';
 const apiEndpoint = apiUrl + "/devisVente/";
-
+const notyf = new Notyf({
+    duration: 4000,
+    position: {
+        x: 'center',
+        y: 'top'
+    },
+})
 export default class ListDevisVente extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
             devis: [],
             loaded: false,
+            activePage: 1,
+            devisPerPage:5,
             search: ""
         };
     }
@@ -40,7 +50,9 @@ export default class ListDevisVente extends Component {
     gotoContenuQuotation(id) {
         window.location.href = '/view/contenu-vente/' + id
     }
-
+    gotoValiderCommande(id) {
+        window.location.href = '/view/confirmation/' + id
+    }
     deleteQuotation(id, quotation) {
         const mes = window.confirm(
             "Do you really want to delete " + quotation + " ?"
@@ -51,16 +63,21 @@ export default class ListDevisVente extends Component {
             });
         }
     }
-  
+    handlePageChange(pageNumber) {
+        this.setState({ activePage: pageNumber });
+    }
     render() {
-        const { devis, loaded } = this.state;
+        const { devis, loaded, activePage, devisPerPage} = this.state;
         console.log('devis : ', devis)
+        const indexOfLastDevis = activePage * devisPerPage;
+        const indexOfFirstAgent = indexOfLastDevis - devisPerPage;
+        const currentDevis = devis.slice(indexOfFirstAgent, indexOfLastDevis);
         let devisVente = null;
         if (!this.state.loaded) {
             devisVente = <Spinners />
         }
         else {
-            let filterDevis = devis.filter(dev => {
+            let filterDevis = currentDevis.filter(dev => {
                 let devInfos =
                         dev.ref_devis ? dev.ref_devis.toLowerCase() : '' +
                         dev.client ? dev.client.clientFirstName.toLowerCase() : '' +
@@ -78,7 +95,6 @@ export default class ListDevisVente extends Component {
                             dev.client.clientFirstName.toUpperCase() : ''} {dev.client ? dev.client.clientLastName.toUpperCase() : ''} </td>
                         <td style={{ textAlign: 'center' }}>{dev.client ? dev.client.clientAddress.toUpperCase() : ''}</td>
                         <td>{dev.client ? dev.client.clientPhone : ''}</td>
-                        <td>{dev.date_creation}</td>
                         <td>
                             <Button
                                 variant="danger"
@@ -91,11 +107,14 @@ export default class ListDevisVente extends Component {
                             <Button variant="warning" size="sm" className="mr-2" onClick={this.gotoViewInvoice.bind(this, dev.id)}>
                                 Facture
                             </Button>
-                            <Button variant="success" size="sm" className="mr-2" onClick={this.gotoViewQuotation.bind(this, dev.id)}>
+                            <Button variant="secondary" size="sm" className="mr-2" onClick={this.gotoViewQuotation.bind(this, dev.id)}>
                                 Devis
                             </Button>
                             <Button variant="dark" size="sm" className="mr-2" onClick={this.gotoViewBL.bind(this, dev.id)}>
                                 B. Livraison
+                            </Button>
+                            <Button variant="success" size="sm" className="mr-2" onClick={this.gotoValiderCommande.bind(this, dev.id)}>
+                            Valider
                             </Button>
                             <Button variant="primary" size="sm" className="mt-1" onClick={this.gotoContenuQuotation.bind(this, dev.id)}>
                                 contenu
@@ -141,7 +160,6 @@ export default class ListDevisVente extends Component {
                       <th>Nom</th>
                       <th>Adresse</th>
                       <th>Téléphone</th>
-                      <th>Date Création</th>
                       <th>actions sur client</th>
                     </tr>
                   </thead>
@@ -149,6 +167,19 @@ export default class ListDevisVente extends Component {
                       {devisVente}
                     </tbody>
                   </Table>
+                  <div className="alignement">
+                        <Pagination
+                        itemClass="page-item"
+                        linkClass="page-link"
+                        prevPageText='prev'
+                        nextPageText='next'
+                        activePage={activePage}
+                        itemsCountPerPage={devisPerPage}
+                        totalItemsCount={devis.length}
+                        pageRangeDisplayed={5}
+                        onChange={this.handlePageChange.bind(this)}
+                        /> 
+                   </div>                
                 </React.Fragment>
                 }
                 {!loaded && <React.Fragment>{devisVente}</React.Fragment>}

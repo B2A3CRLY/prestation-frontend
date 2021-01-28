@@ -1,7 +1,13 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
+import Hero from '../common/hero';
 import http from '../../services/httpService';
+import { Notyf } from 'notyf';
 import Select from 'react-select';
-import { Button, Form, Modal,Table} from 'react-bootstrap';
+import Pagination from "react-js-pagination";
+import PhoneInput from 'react-phone-number-input'
+import 'react-phone-number-input/style.css'
+import { Button, Form, Modal, Table } from 'react-bootstrap';
+import { CountryDropdown} from 'react-country-region-selector';
 import {
     apiUrl
   } from '../../config.json';
@@ -32,7 +38,36 @@ const optionDomestique = [
     { value: 'R+18', label: 'Kit kirikou Building R+18'},
     { value: 'R+19', label: 'Kit kirikou Building R+19'}
   ]
-
+  const notyf = new Notyf({
+    duration: 4000,
+    position: {
+        x: 'center',
+        y:'top'
+    },
+    types: [
+        {
+            type: 'error',
+            duration: '4000',
+            dismissible:'true'
+        },
+        {
+            type: 'success',
+            duration: '10000',
+            dismissible:'true'
+        },
+        {
+            type: 'warning',
+            duration: '4000',
+            dismissible: 'true',
+            background: 'orange',
+            icon: {
+                className: 'material-icons',
+                tagName: 'i',
+                text: 'warning'
+            }
+        }
+    ]
+});
 export default class Domestique extends Component{
     constructor(props, context) {
         super(props, context)
@@ -46,8 +81,12 @@ export default class Domestique extends Component{
             address: '',
             email: '',
             pays:'',
+            country: '',
+            region:'',
             phone: '',
             people: '',
+            activePage: 1,
+            clientsPerPage:5,
             selectedOption: '',
             selectedPerson: '',
             selectedBuilding: '',
@@ -59,6 +98,13 @@ export default class Domestique extends Component{
             checkedNoStairs: false,
             search:''
         }
+    }
+    selectCountry (country) {
+        this.setState({ country});
+    }
+    
+      selectRegion (region) {
+        this.setState({ region});
     }
     handleChange = (e) => {
         this.setState({
@@ -109,7 +155,7 @@ export default class Domestique extends Component{
     }
     canBeSubmittedClient(){
         if(this.state.sexe){
-       return(this.state.firstName.length>0 && this.state.lastName.length > 0 && this.state.phone.length > 0 && this.state.address.length>0 && this.state.pays.length > 0);
+       return(this.state.firstName.length>0 && this.state.lastName.length > 0 && this.state.phone.length > 0 && this.state.address.length>0 && this.state.country.length > 0);
         }
     }
     onChoice(id,clientFirstName,clientLastName, phone){
@@ -124,6 +170,15 @@ export default class Domestique extends Component{
     updateSearch(event){
         this.setState({search:event.target.value.substr(0,20)});
     }
+    handlePageChange(pageNumber) {
+        this.setState({ activePage: pageNumber });
+    }
+    setPhone = (phone) => {
+        this.setState({phone})
+    }
+      setPhone = (phone) => {
+        this.setState({phone})
+    }
     onSubmitClient = (e) =>{
         e.preventDefault();
            const client = {
@@ -134,7 +189,7 @@ export default class Domestique extends Component{
            gender:this.state.sexe["value"],
            clientEmail:this.state.email ? this.state.email : null,
            isdomestique: true,
-           pays: this.state.pays
+           pays: this.state.country
           };
           http.post(apiClient + 'create/',client)
              .then(res => {
@@ -147,17 +202,17 @@ export default class Domestique extends Component{
                  email: '',    
                  address:'',
                  sexe:'',
-                 pays:'',
+                 country:'',
                  id: res.data.data.id
                  });
                  if (res.status === 200) {
-                     alert('Client ajouté avec succés !');
+                     notyf.success('Client ajouté avec succés !')
                      console.log('idClient : ', this.state.id)
                      this.setState({
                          showAdd : false
                      })
                } else {
-                 alert("Une erreur s'est produite");
+                notyf.error("Une erreur s'est produite");
              }
              });
          }
@@ -201,13 +256,13 @@ export default class Domestique extends Component{
                     console.log('id:', res.data.id);
                     console.log('status :', res.status);
                     if (res.status === 200) {
-                        alert('Devis créé avec succés !');
+                        notyf.success('Devis créé avec succés !');
                         this.toDevis();
                         this.setState({
                             surfaceAllocated: ''
                         })
                   } else {
-                    alert("Une erreur s'est produite");
+                    notyf.error("Une erreur s'est produite");
                 }
                 });
         } 
@@ -215,18 +270,19 @@ export default class Domestique extends Component{
         window.location.href = '/devis-domestique';
     }
     render() {
-        const { clients, sexe, checkedStairs,
-                checkedNoStairs, selectedOption,
-                selectedPerson,selectedBuilding, people, building, checked, checkedNo} = this.state;
+        const { clients, sexe,phone, selectedOption,selectedPerson,selectedBuilding, people, building, checked, checkedNo,activePage, clientsPerPage,country} = this.state;
         const isEnabledAdd = this.canBeSubmittedClient();
+        const indexOfLastClient = activePage * clientsPerPage;
+        const indexOfFirstClient = indexOfLastClient - clientsPerPage;
+        const currentClients = clients.slice(indexOfFirstClient, indexOfLastClient);
         console.log('Kit choisi:', selectedOption.id);
         console.log('Kit Building:', selectedBuilding.id);
         console.log('Nbre personne choisie:', selectedPerson);
         console.log('Facture:', checkedNo);
         console.log('Devis:', checked);
-        let filterClient = clients.length ? clients.filter((client)=>{
-            let clientInfos = client.clientFirstName.toLowerCase() + client.clientLastName.toLowerCase() +
-                + client.phone;
+        console.log('country:', country);
+        let filterClient = currentClients.length ? currentClients.filter((client)=>{
+            let clientInfos = client.clientFirstName.toLowerCase() + client.clientLastName.toLowerCase()+ client.phone;
             return clientInfos.indexOf(this.state.search.toLowerCase())!==-1;
           }) : [];
           let customers = filterClient.map((client)=>{
@@ -239,12 +295,13 @@ export default class Domestique extends Component{
             )
           })
         return (
+            <Hero hero="defaultHeroDomestique">
             <div className="container">
                 <div className="row">
                 <div className="col-md-3"></div>
                 <div className="card mt-2 col-md-6">
                     <div className="card-body">
-                            <h3 className="text-success text-center mt-2">création d'un nouveau devis (domestique)</h3>
+                            <h3 className="text-success text-center mt-2">création d'un nouveau devis domestique</h3>
                             <form onSubmit={this.onSubmitDevis}>
                             <div className="form-group">
                                 <label>Nom Client:  </label>
@@ -371,7 +428,18 @@ export default class Domestique extends Component{
                                  <tbody>
                                         {customers}
                                  </tbody>
-                            </Table>    
+                            </Table>
+                            <Pagination
+                                itemClass="page-item"
+                                linkClass="page-link"
+                                prevPageText='prev'
+                                nextPageText='next'
+                                activePage={activePage}
+                                itemsCountPerPage={clientsPerPage}
+                                totalItemsCount={clients.length}
+                                pageRangeDisplayed={5}
+                                onChange={this.handlePageChange.bind(this)}
+                            />      
                         </div>
                     </Modal.Body>
                     </Modal>
@@ -412,12 +480,13 @@ export default class Domestique extends Component{
                                 </div>
                                 <div className="form-group">
                                     <label>Téléphone:  </label>
-                                    <input 
-                                    type="text" 
-                                    className="form-control" 
-                                    name="phone"
-                                    onChange={this.handleChange}
-                                    />
+                                    <PhoneInput
+                                        defaultCountry="SN"
+                                        className="form-control"
+                                        placeholder="Entrer votre numéro de téléphone"
+                                        value={phone}
+                                        onChange={this.setPhone}/>
+                                    )
                                 </div>
                                 <div>
                                 <label>Sexe:  </label>
@@ -436,14 +505,12 @@ export default class Domestique extends Component{
                                     onChange={this.handleChange}
                                     />
                                 </div>
-                                <div className="form-group">
+                                <div className="form-group"> 
                                     <label>Pays:  </label>
-                                    <input 
-                                    type="text" 
+                                    <CountryDropdown
                                     className="form-control" 
-                                    name="pays"
-                                    onChange={this.handleChange}
-                                    />
+                                    value={country}
+                                    onChange={(val) => this.selectCountry(val)}/>
                                 </div>
                             <Modal.Footer>
                             <Button variant="secondary" onClick={this.handleCloseAdd}>
@@ -458,7 +525,7 @@ export default class Domestique extends Component{
                     </Modal>
                 </div>
             </div>
-            
+            </Hero>
         )   
     }
     

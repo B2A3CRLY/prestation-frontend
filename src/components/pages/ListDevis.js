@@ -3,14 +3,16 @@ import { apiUrl } from "../../config.json";
 import http from '../../services/httpService';
 import { Table, Button, Form, Row, Col } from "react-bootstrap";
 import Spinners from '../../components/common/spinners';
-import Alerts from '../../components/common/Alerts';
+import Pagination from "react-js-pagination";
 const apiEndpoint = apiUrl + "/devis/";
 export default class ListDevis extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
           devis: [],
-          loaded:false,
+          loaded: false,
+          activePage: 1,
+          devisPerPage:5,
           search: ""
         };
       }
@@ -28,6 +30,9 @@ export default class ListDevis extends Component {
     updateSearch = (event) =>{
         this.setState({ search: event.target.value.substr(0, 20) });
   }
+  handlePageChange(pageNumber) {
+    this.setState({ activePage: pageNumber });
+  }
   gotoViewQuotation (id) {
     window.location.href = '/view/devis/' + id
   }
@@ -43,14 +48,17 @@ export default class ListDevis extends Component {
   }
   
     render() {
-        const { devis, loaded } = this.state;
+        const { devis, loaded, activePage, devisPerPage} = this.state;
         console.log('devis : ', devis)
+        const indexOfLastDevis = activePage * devisPerPage;
+        const indexOfFirstAgent = indexOfLastDevis - devisPerPage;
+        const currentDevis = devis.slice(indexOfFirstAgent, indexOfLastDevis);
         let devisAgricole = null;
         if (!this.state.loaded) {
             devisAgricole = <Spinners />
           }
           else {
-            let filterDevis = devis.filter(dev => {
+            let filterDevis = currentDevis.filter(dev => {
               let devInfos =
               dev.ref_devis.toLowerCase() +
               dev.client.clientFirstName.toLowerCase() +
@@ -136,6 +144,17 @@ export default class ListDevis extends Component {
               {devisAgricole}
             </tbody>
           </Table>
+          <Pagination
+            itemClass="page-item"
+            linkClass="page-link"
+            prevPageText='prev'
+            nextPageText='next'
+            activePage={activePage}
+            itemsCountPerPage={devisPerPage}
+            totalItemsCount={devis.length}
+            pageRangeDisplayed={5}
+            onChange={this.handlePageChange.bind(this)}
+          />
         </React.Fragment>
         }
         {!loaded && <React.Fragment>{devisAgricole}</React.Fragment>}

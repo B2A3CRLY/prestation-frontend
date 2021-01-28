@@ -4,7 +4,7 @@ import Hero from '../common/hero'
 import {Link} from 'react-router-dom'
 export default function Error() {
     return (
-        <Hero>
+        <Hero hero="defaultHeroError">
             <Banner title="404" subtitle="page not found">
                 <Link to="/" className="btn-error">return home</Link>
             </Banner>

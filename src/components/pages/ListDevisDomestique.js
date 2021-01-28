@@ -3,6 +3,7 @@ import { apiUrl } from "../../config.json";
 import http from '../../services/httpService';
 import { Table, Button, Form, Row, Col } from "react-bootstrap";
 import Spinners from '../../components/common/spinners';
+import Pagination from "react-js-pagination";
 const apiEndpoint = apiUrl + "/devisDomestique/";
 
 export default class ListDevisDomestique extends Component {
@@ -10,6 +11,8 @@ export default class ListDevisDomestique extends Component {
         super(props, context);
         this.state = {
           devis: [],
+          activePage: 1,
+          devisPerPage:5,
           loaded:false,
           search: ""
         };
@@ -27,6 +30,9 @@ export default class ListDevisDomestique extends Component {
     updateSearch = (event) =>{
         this.setState({ search: event.target.value.substr(0, 20) });
   }
+  handlePageChange(pageNumber) {
+    this.setState({ activePage: pageNumber });
+  }
   gotoViewQuotation (id) {
     window.location.href = '/view/domestique/' + id
   }
@@ -42,14 +48,17 @@ export default class ListDevisDomestique extends Component {
   }
   
     render() {
-        const { devis, loaded } = this.state;
+      const { devis, loaded, devisPerPage, activePage } = this.state;
+      const indexOfLastDevis = activePage * devisPerPage;
+      const indexOfFirstAgent = indexOfLastDevis - devisPerPage;
+      const currentDevis = devis.slice(indexOfFirstAgent, indexOfLastDevis);
         console.log('devis : ', devis)
         let devisDomestique = null;
         if (!this.state.loaded) {
             devisDomestique = <Spinners />
           }
           else {
-            let filterDevis = devis.filter(dev => {
+            let filterDevis = currentDevis.filter(dev => {
               let devInfos =
               dev.ref_devis ? dev.ref_devis.toLowerCase() : '' +
               dev.client.clientFirstName.toLowerCase() +
@@ -66,10 +75,8 @@ export default class ListDevisDomestique extends Component {
                   <td>{dev.id}</td>
                   <td>{dev.ref_devis}</td>
                       <td>{dev.client ? dev.client.clientFirstName : ''} {dev.client ? dev.client.clientLastName : ''} </td>
-                  <td style={{textAlign:'center'}}>{dev.client ? dev.client.clientAddress: ''}</td>
                   <td>{dev.client ? dev.client.clientPhone: ''}</td>
                   <td>{dev.client ? dev.client.clientEmail : ''}</td>
-                  <td>{dev.date_creation}</td>
                   <td>{dev.house.designation}</td>
                   <td>{dev.house.price}</td>
                   <td>
@@ -93,10 +100,8 @@ export default class ListDevisDomestique extends Component {
                     <td>{dev.id}</td>
                     <td>{dev.ref_devis}</td>
                         <td>{dev.client ? dev.client.clientFirstName : ''} {dev.client ? dev.client.clientLastName : ''} </td>
-                    <td style={{textAlign:'center'}}>{dev.client ? dev.client.clientAddress: ''}</td>
                     <td>{dev.client ? dev.client.clientPhone: ''}</td>
                     <td>{dev.client ? dev.client.clientEmail : ''}</td>
-                    <td>{dev.date_creation}</td>
                     <td>{dev.building.designation}</td>
                     <td>{dev.building.price}</td>
                     <td>
@@ -150,10 +155,8 @@ export default class ListDevisDomestique extends Component {
               <th>#</th>
               <th>Ref Devis</th>
               <th>Nom</th>
-              <th>Adresse</th>
               <th>Téléphone</th>
               <th>Email</th>
-              <th>Date Création</th>
               <th>Désignation</th>
               <th>Price</th>
               <th>actions sur client</th>
@@ -163,6 +166,17 @@ export default class ListDevisDomestique extends Component {
               {devisDomestique}
             </tbody>
           </Table>
+          <Pagination
+            itemClass="page-item"
+            linkClass="page-link"
+            prevPageText='prev'
+            nextPageText='next'
+            activePage={activePage}
+            itemsCountPerPage={devisPerPage}
+            totalItemsCount={devis.length}
+            pageRangeDisplayed={5}
+            onChange={this.handlePageChange.bind(this)}
+          /> 
         </React.Fragment>
         }
         {!loaded && <React.Fragment>{devisDomestique}</React.Fragment>}

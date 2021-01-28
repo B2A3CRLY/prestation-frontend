@@ -15,6 +15,7 @@ export default class ViewDevisVente extends Component {
         super(props, context);
         this.state = {
             devis: '',
+            sales:'',
             ventes:'',
             client: '',
             firstname: '',
@@ -32,7 +33,7 @@ export default class ViewDevisVente extends Component {
         const idDevis = this.props.valueFromPrint;
         console.log('id : ',idDevis)
         const { data: devis } = await http.get(apiDevis + 'detail/' + idDevis);
-        this.setState({ devis, client: devis.client, firstname: devis.client.clientFirstName, lastname: devis.client.clientLastName,adresse:devis.client.clientAddress,phone: devis.client.clientPhone, dateCreation: devis.date_creation,sex:devis.client.gender,idDevis,isQuotation:devis.isQuotation, isInvoice: devis.isInvoice});
+        this.setState({ devis, client: devis.client, firstname: devis.client.clientFirstName, lastname: devis.client.clientLastName,adresse:devis.client.clientAddress,phone: devis.client.clientPhone, dateCreation: devis.date_creation,sex:devis.client.gender,idDevis,isQuotation:devis.isQuotation, isInvoice: devis.isInvoice, sales:devis.sales});
     }
     async componentDidMount() {
         this.refreshDevis();
@@ -58,8 +59,10 @@ export default class ViewDevisVente extends Component {
         let n = params.length, n1 = 0, n2 = 0, n3 = 0, n4 = 0,n5 = 0,n6 = 0,n7 = 0,n8 = 0,n9 = 0,n10 = 0,n11 = 0,n12 = 0,n13 = 0,n14 = 0,n15 = 0,n16 = 0,n17 = 0, n18 = 0, n19 = 0;
         let l1 = [], l2 = [], l3 = [], l4 = [], l5 = [], l6 = [], l7 = [], l8 = [], l9 = [], l10 = [], l11 = [], l12 = [], l13 = [], l14 = [], l15 = [], l16 = [], l17 = [], l18 = [], l19 = [], l20 = [];
         let total = 0;
-        for (let i = 0; i < n; i++){
-            total += params[i].quantity * params[i].price;
+        let totalEnd = 0;
+        for (let i = 0; i <n; i++){
+            total += (params[i].quantity * parseInt(params[i].vente.price));
+            console.log('total:', total)
             if (n <=a) {
                 l1.push(params[i])
             }
@@ -201,6 +204,7 @@ export default class ViewDevisVente extends Component {
             }
 
         }
+        console.log('Total end :', total)
         return {
             l1: l1,
             l2: l2,
@@ -234,10 +238,11 @@ export default class ViewDevisVente extends Component {
     return result;
     }
     render() {
-        const { devis, firstname, lastname, phone, dateCreation, sex, adresse, isQuotation, isInvoice, loginUserByUsername } = this.state;
+        const { devis, firstname, lastname, phone, dateCreation, sex, adresse, isQuotation, isInvoice, loginUserByUsername, sales} = this.state;
         let dateFrench = now.toLocaleDateString('fr-FR', this.optionsDate);
         let returnArrays = null;
         console.log('devis:', devis)
+        console.log('sales:', sales)
         let produits = [];
         let produitsTest = []
         let produits1 = [];
@@ -276,6 +281,10 @@ export default class ViewDevisVente extends Component {
         let maxlength = 96
         let trimmedString  = tst.substring(0, length)
         console.log('Test length : ', tst.length)
+        produits = [
+            { id: 0, designation: 'PulvérisateuràdosmanuelIngo16', quantity: 1, price: 175, totalPrice: Math.round(175) },
+            
+        ]
         produitsTest = [
             { id: 0, designation: 'PulvérisateuràdosmanuelIngo16', quantity:1, price: 175000, totalPrice: Math.round(175000) },
             { id: 1, designation: 'ppppppppppppppppppp', quantity: 2, price: 17500, totalPrice: Math.round(2 * 17500) },
@@ -633,7 +642,7 @@ export default class ViewDevisVente extends Component {
          ]
         
 
-        returnArrays = this.getArraysVente(produitsTest,10,15)
+        returnArrays = this.getArraysVente(sales,10,15)
         if (returnArrays) {
             produits1 = returnArrays.l1
             produits2 = returnArrays.l2
@@ -665,93 +674,93 @@ export default class ViewDevisVente extends Component {
             return (
                 <tr key={dev.id} style={{height:'30px'}}>
                     {
-                        dev.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '20px', paddingBottom: '5px', textAlign: 'left' }}>{
-                        this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>
+                        dev.vente.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '20px', paddingBottom: '5px', textAlign: 'left' }}>{
+                        this.addNewlines((dev.vente.designation.substring(0, maxlength)), length)}</td>
                     }
                     {
-                        dev.designation.length < 56 && <td style={{ width: '480px', height: '90px', paddingTop: '30px', paddingBottom: '20px', textAlign: 'left' }}>{
-                        this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>
+                        dev.vente.designation.length < 56 && <td style={{ width: '480px', height: '90px', paddingTop: '30px', paddingBottom: '20px', textAlign: 'left' }}>{
+                        this.addNewlines((dev.vente.designation.substring(0, maxlength)), length)}</td>
                     }
                     <td style={{width:'46px',height:'90px',paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.quantity}</td>
-                    <td style={{width:'170px',height:'90px',paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.price}</td>
-                    <td style={{ height:'90px',paddingTop:'30px',paddingBottom:'20px',textAlign: 'right' }}>{dev.totalPrice}</td>
+                    <td style={{width:'170px',height:'90px',paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.vente.price}</td>
+                    <td style={{ height:'90px',paddingTop:'30px',paddingBottom:'20px',textAlign: 'right' }}>{dev.vente.price * dev.quantity}</td>
                 </tr>
             );
         })
         produitsView2 = produits2.map(dev => {
             return (
                 <tr key={dev.id} style={{height:'30px'}}>
-                    {dev.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '20px', paddingBottom: '5px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
-                    {dev.designation.length < 56 && <td style={{width:'480px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.vente.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '20px', paddingBottom: '5px', textAlign: 'left' }}>{this.addNewlines((dev.vente.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.vente.designation.length < 56 && <td style={{width:'480px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'left'}}>{this.addNewlines((dev.vente.designation.substring(0, maxlength)), length)}</td>}
                     <td style={{width:'46px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.quantity}</td>
-                    <td style={{width:'170px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.price}</td>
-                    <td style={{height:'90px', paddingTop:'30px',paddingBottom:'20px', textAlign: 'right' }}>{dev.totalPrice}</td>
+                    <td style={{width:'170px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.vente.price}</td>
+                    <td style={{height:'90px', paddingTop:'30px',paddingBottom:'20px', textAlign: 'right' }}>{dev.vente.price * dev.quantity}</td>
                 </tr>
             );
         })
         produitsView3 = produits3.map(dev => {
             return (
                 <tr key={dev.id} style={{height:'30px'}}>
-                    {dev.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '20px', paddingBottom: '5px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
-                    {dev.designation.length < 56 && <td style={{width:'480px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.vente.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '20px', paddingBottom: '5px', textAlign: 'left' }}>{this.addNewlines((dev.vente.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.vente.designation.length < 56 && <td style={{width:'480px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'left'}}>{this.addNewlines((dev.vente.designation.substring(0, maxlength)), length)}</td>}
                     <td style={{width:'46px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.quantity}</td>
-                    <td style={{width:'170px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.price}</td>
-                    <td style={{height:'90px', paddingTop:'30px',paddingBottom:'20px', textAlign: 'right' }}>{dev.totalPrice}</td>
+                    <td style={{width:'170px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.vente.price}</td>
+                    <td style={{height:'90px', paddingTop:'30px',paddingBottom:'20px', textAlign: 'right' }}>{dev.vente.price * dev.quantity}</td>
                 </tr>
             );
         })
         produitsView4 = produits4.map(dev => {
             return (
                 <tr key={dev.id} style={{height:'30px'}}>
-                    {dev.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '20px', paddingBottom: '5px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
-                    {dev.designation.length < 56 && <td style={{width:'480px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.vente.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '20px', paddingBottom: '5px', textAlign: 'left' }}>{this.addNewlines((dev.vente.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.vente.designation.length < 56 && <td style={{width:'480px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'left'}}>{this.addNewlines((dev.vente.designation.substring(0, maxlength)), length)}</td>}
                     <td style={{width:'46px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.quantity}</td>
-                    <td style={{width:'170px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.price}</td>
-                    <td style={{height:'90px', paddingTop:'30px',paddingBottom:'20px', textAlign: 'right' }}>{dev.totalPrice}</td>
+                    <td style={{width:'170px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.vente.price}</td>
+                    <td style={{height:'90px', paddingTop:'30px',paddingBottom:'20px', textAlign: 'right' }}>{dev.vente.price * dev.quantity}</td>
                 </tr>
             );
         })
         produitsView5 = produits5.map(dev => {
             return (
                 <tr key={dev.id} style={{height:'30px'}}>
-                    {dev.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '20px', paddingBottom: '5px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
-                    {dev.designation.length < 56 && <td style={{width:'480px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.vente.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '20px', paddingBottom: '5px', textAlign: 'left' }}>{this.addNewlines((dev.vente.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.vente.designation.length < 56 && <td style={{width:'480px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'left'}}>{this.addNewlines((dev.vente.designation.substring(0, maxlength)), length)}</td>}
                     <td style={{width:'46px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.quantity}</td>
-                    <td style={{width:'170px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.price}</td>
-                    <td style={{height:'90px', paddingTop:'30px',paddingBottom:'20px', textAlign: 'right' }}>{dev.totalPrice}</td>
+                    <td style={{width:'170px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.vente.price}</td>
+                    <td style={{height:'90px', paddingTop:'30px',paddingBottom:'20px', textAlign: 'right' }}>{dev.vente.price * dev.quantity}</td>
                 </tr>
             );
         })
         produitsView6 = produits6.map(dev => {
             return (
                 <tr key={dev.id} style={{height:'30px'}}>
-                    {dev.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '20px', paddingBottom: '5px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
-                    {dev.designation.length < 56 && <td style={{width:'480px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.vente.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '20px', paddingBottom: '5px', textAlign: 'left' }}>{this.addNewlines((dev.vente.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.vente.designation.length < 56 && <td style={{width:'480px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'left'}}>{this.addNewlines((dev.vente.designation.substring(0, maxlength)), length)}</td>}
                     <td style={{width:'46px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.quantity}</td>
-                    <td style={{width:'170px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.price}</td>
-                    <td style={{height:'90px', paddingTop:'30px',paddingBottom:'20px', textAlign: 'right' }}>{dev.totalPrice}</td>
+                    <td style={{width:'170px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.vente.price}</td>
+                    <td style={{height:'90px', paddingTop:'30px',paddingBottom:'20px', textAlign: 'right' }}>{dev.vente.price * dev.quantity}</td>
                 </tr>
             );
         })
         produitsView7 = produits7.map(dev => {
             return (
                 <tr key={dev.id} style={{height:'30px'}}>
-                    {dev.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '20px', paddingBottom: '5px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
-                    {dev.designation.length < 56 && <td style={{width:'480px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.vente.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '20px', paddingBottom: '5px', textAlign: 'left' }}>{this.addNewlines((dev.vente.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.vente.designation.length < 56 && <td style={{width:'480px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'left'}}>{this.addNewlines((dev.vente.designation.substring(0, maxlength)), length)}</td>}
                     <td style={{width:'46px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.quantity}</td>
-                    <td style={{width:'170px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.price}</td>
-                    <td style={{height:'90px', paddingTop:'30px',paddingBottom:'20px', textAlign: 'right' }}>{dev.totalPrice}</td>
+                    <td style={{width:'170px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.vente.price}</td>
+                    <td style={{height:'90px', paddingTop:'30px',paddingBottom:'20px', textAlign: 'right' }}>{dev.vente.price * dev.quantity}</td>
                 </tr>
             );
         })
         produitsView8 = produits8.map(dev => {
             return (
                 <tr key={dev.id} style={{height:'30px'}}>
-                    {dev.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '20px', paddingBottom: '5px', textAlign: 'left' }}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
-                    {dev.designation.length < 56 && <td style={{width:'480px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'left'}}>{this.addNewlines((dev.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.vente.designation.length > 56 && <td style={{ width: '480px', height: '90px', paddingTop: '20px', paddingBottom: '5px', textAlign: 'left' }}>{this.addNewlines((dev.vente.designation.substring(0, maxlength)), length)}</td>}
+                    {dev.vente.designation.length < 56 && <td style={{width:'480px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'left'}}>{this.addNewlines((dev.vente.designation.substring(0, maxlength)), length)}</td>}
                     <td style={{width:'46px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.quantity}</td>
-                    <td style={{width:'170px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.price}</td>
-                    <td style={{height:'90px', paddingTop:'30px',paddingBottom:'20px', textAlign: 'right' }}>{dev.totalPrice}</td>
+                    <td style={{width:'170px', height:'90px', paddingTop:'30px',paddingBottom:'20px',textAlign: 'right'}}>{dev.vente.price}</td>
+                    <td style={{height:'90px', paddingTop:'30px',paddingBottom:'20px', textAlign: 'right' }}>{dev.vente.price * dev.quantity}</td>
                 </tr>
             );
         })
@@ -780,7 +789,7 @@ export default class ViewDevisVente extends Component {
                     </div>
                     <div className="border-client-black-vente row">
                             <h5 style={{width:'386px', fontWeight:'bold'}}>Désignation produits</h5>
-                            <h5 style={{width:'253px',fontWeight:'bold', textAlign:'center'}}>Quantité</h5>
+                            <h5 style={{width:'257px',fontWeight:'bold', textAlign:'center'}}>Quantité</h5>
                             <h5 className="largeur" style={{width:'70px',fontWeight:'bold', textAlign:'right', paddingRight:'180px',paddingLeft:'10px'}}>PU</h5>
                             <h5 style={{fontWeight:'bold', textAlign:'right'}}>Prix total (francs CFA)</h5>
                     </div>
@@ -797,7 +806,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '484px',paddingLeft:'-2px',paddingBottom: '5px'}}>Total TTC(francs CFA)</h5>
-                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -805,8 +814,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '473px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '465px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -814,8 +823,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '462px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '455px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -824,7 +833,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '445px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -832,8 +841,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '442px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '435px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -841,8 +850,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '433px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '425px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -851,7 +860,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '423px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -904,7 +913,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '484px',paddingLeft:'-2px',paddingBottom: '5px'}}>Total TTC(francs CFA)</h5>
-                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -912,8 +921,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '473px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '465px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -921,8 +930,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '462px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '455px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -931,7 +940,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '445px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -939,8 +948,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end-million row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '442px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginRight: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '435px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginRight: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -948,8 +957,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '433px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '425px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -958,7 +967,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '423px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1047,7 +1056,7 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'5px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '442px', paddingBottom: '5px', marginLeft:'-11px'}}></h5>
+                            <h5 style={{ width: '435px', paddingBottom: '5px', marginLeft:'-11px'}}></h5>
                             <h5 style={{ width: '262px', marginRight: '138px'}}></h5>
                         </div>
                         </div>
@@ -1056,7 +1065,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '484px',paddingLeft:'-2px',paddingBottom: '5px'}}>Total TTC(francs CFA)</h5>
-                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1064,8 +1073,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '473px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '465px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1073,8 +1082,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '462px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '455px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1083,7 +1092,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '445px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1091,8 +1100,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end-million row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '442px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginRight: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '435px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginRight: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1100,8 +1109,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '433px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '425px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1110,7 +1119,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '423px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1159,7 +1168,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '484px',paddingLeft:'-2px',paddingBottom: '5px'}}>Total TTC(francs CFA)</h5>
-                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1167,8 +1176,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '473px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '465px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1176,8 +1185,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '462px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '455px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1186,7 +1195,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '445px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1194,8 +1203,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '575px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginRight: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '435px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginRight: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1203,8 +1212,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '433px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '425px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1213,7 +1222,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '423px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1306,7 +1315,7 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '462px', paddingBottom: '5px', marginLeft:'-11px'}}></h5>
+                            <h5 style={{ width: '455px', paddingBottom: '5px', marginLeft:'-11px'}}></h5>
                             <h5 style={{ width: '262px', marginLeft: '138px'}}></h5>
                         </div>
                         </div>
@@ -1315,7 +1324,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '484px',paddingLeft:'-2px',paddingBottom: '5px'}}>Total TTC(francs CFA)</h5>
-                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1323,8 +1332,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'5px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '473px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '465px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1332,8 +1341,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'5px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '462px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '455px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1342,7 +1351,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '445px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1350,8 +1359,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'5px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '575px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginRight: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '435px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginRight: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1359,8 +1368,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'5px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '433px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '425px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1369,7 +1378,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '423px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1431,7 +1440,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '484px',paddingLeft:'-2px',paddingBottom: '5px'}}>Total TTC(francs CFA)</h5>
-                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1439,8 +1448,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '473px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '465px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1448,8 +1457,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '462px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '455px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1458,7 +1467,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '445px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1466,8 +1475,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '575px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginRight: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '435px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginRight: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1475,8 +1484,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '433px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '425px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1485,7 +1494,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '423px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1621,7 +1630,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '484px',paddingLeft:'-2px',paddingBottom: '5px'}}>Total TTC(francs CFA)</h5>
-                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1629,8 +1638,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'5px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '473px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '465px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1638,8 +1647,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'5px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '462px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '455px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1648,7 +1657,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '445px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1656,8 +1665,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'5px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '575px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginRight: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '435px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginRight: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1665,8 +1674,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'5px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '433px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '425px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1675,7 +1684,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '423px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1728,7 +1737,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '484px',paddingLeft:'-2px',paddingBottom: '-25px'}}>Total TTC(francs CFA)</h5>
-                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1736,8 +1745,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '473px', paddingBottom: '-25px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '465px', paddingBottom: '-25px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1745,8 +1754,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '462px', paddingBottom: '-25px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '455px', paddingBottom: '-25px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1755,7 +1764,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '445px', paddingBottom: '-25px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1763,8 +1772,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '575px', paddingBottom: '-25px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginRight: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '435px', paddingBottom: '-25px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginRight: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1772,8 +1781,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '433px', paddingBottom: '-25px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '425px', paddingBottom: '-25px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1782,7 +1791,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '423px', paddingBottom: '-25px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1863,7 +1872,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '484px',paddingLeft:'-2px',paddingBottom: '-25px'}}>Total TTC(francs CFA)</h5>
-                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1871,8 +1880,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '473px', paddingBottom: '-25px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '465px', paddingBottom: '-25px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1880,8 +1889,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '462px', paddingBottom: '-25px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '455px', paddingBottom: '-25px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1890,7 +1899,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '445px', paddingBottom: '-25px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1898,8 +1907,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '575px', paddingBottom: '-25px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginRight: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '435px', paddingBottom: '-25px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginRight: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1907,8 +1916,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '433px', paddingBottom: '-25px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '425px', paddingBottom: '-25px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1917,7 +1926,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '423px', paddingBottom: '-25px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -1999,7 +2008,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '484px',paddingLeft:'-2px',paddingBottom: '5px'}}>Total TTC(francs CFA)</h5>
-                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2007,8 +2016,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'5px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '473px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '465px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2016,8 +2025,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'5px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '462px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '455px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2026,7 +2035,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '445px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2034,8 +2043,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'5px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '575px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginRight: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '435px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginRight: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2043,8 +2052,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'5px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '433px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '425px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2053,7 +2062,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '423px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2113,7 +2122,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '484px',paddingLeft:'-2px',paddingBottom: '5px'}}>Total TTC(francs CFA)</h5>
-                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2121,8 +2130,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '473px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '465px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2130,8 +2139,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '462px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '455px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2140,7 +2149,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '445px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2148,8 +2157,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '575px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginRight: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '435px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginRight: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2157,8 +2166,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '433px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '425px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2167,7 +2176,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '423px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2268,7 +2277,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '484px',paddingLeft:'-2px',paddingBottom: '5px'}}>Total TTC(francs CFA)</h5>
-                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2276,8 +2285,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '473px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '465px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2285,8 +2294,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '462px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '455px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2295,7 +2304,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '445px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2303,8 +2312,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '575px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginRight: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '435px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginRight: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2312,8 +2321,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '433px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '425px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2322,7 +2331,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '423px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2412,7 +2421,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '484px',paddingLeft:'-2px',paddingBottom: '5px'}}>Total TTC(francs CFA)</h5>
-                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2420,8 +2429,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'5px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '473px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '465px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2429,8 +2438,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'5px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '462px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '455px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2439,7 +2448,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '445px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2447,8 +2456,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'5px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '575px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginRight: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '435px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginRight: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2456,8 +2465,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'5px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '433px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '425px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2523,7 +2532,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '484px',paddingLeft:'-2px',paddingBottom: '5px'}}>Total TTC(francs CFA)</h5>
-                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2531,8 +2540,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '473px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '465px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2540,8 +2549,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '462px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '455px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2550,7 +2559,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '445px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2558,8 +2567,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '575px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginRight: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '435px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginRight: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2567,8 +2576,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '433px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '425px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2658,7 +2667,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '484px',paddingLeft:'-2px',paddingBottom: '5px'}}>Total TTC(francs CFA)</h5>
-                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2666,8 +2675,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '473px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '465px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2675,8 +2684,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '462px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '455px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2685,7 +2694,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '445px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2693,8 +2702,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '575px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginRight: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '435px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginRight: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2702,8 +2711,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '433px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '425px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2805,7 +2814,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '484px',paddingLeft:'-2px',paddingBottom: '5px'}}>Total TTC(francs CFA)</h5>
-                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2813,8 +2822,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'5px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '473px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '465px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2822,8 +2831,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'5px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '462px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '455px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2832,7 +2841,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '445px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2840,8 +2849,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'5px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '575px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginRight: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '435px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginRight: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2849,8 +2858,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'5px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '433px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '425px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2859,7 +2868,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '423px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2936,7 +2945,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '484px',paddingLeft:'-2px',paddingBottom: '5px'}}>Total TTC(francs CFA)</h5>
-                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2944,8 +2953,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '473px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '465px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2953,8 +2962,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '462px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '455px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2963,7 +2972,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '445px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2971,8 +2980,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '575px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginRight: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '435px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginRight: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -2980,8 +2989,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '433px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '425px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -3079,7 +3088,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '484px',paddingLeft:'-2px',paddingBottom: '5px'}}>Total TTC(francs CFA)</h5>
-                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                        <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -3087,8 +3096,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '473px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '465px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -3096,8 +3105,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '462px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '455px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -3106,7 +3115,7 @@ export default class ViewDevisVente extends Component {
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
                             <h5 style={{ width: '445px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -3114,8 +3123,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '575px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginRight: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '435px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginRight: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
@@ -3123,8 +3132,8 @@ export default class ViewDevisVente extends Component {
                         <div style={{marginTop:'-25px', marginLeft:'400px'}}
                             className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <h5 style={{ width: '433px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
-                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{1.18*total}</h5>
+                            <h5 style={{ width: '425px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</h5>
+                            <h5 style={{ width: '262px', marginLeft: '138px'}}>{Math.ceil(1.18*total)}</h5>
                         </div>
                         </div>
                         )}
