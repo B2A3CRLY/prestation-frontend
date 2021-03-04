@@ -211,10 +211,11 @@ export default class Domestique extends Component{
                      this.setState({
                          showAdd : false
                      })
-               } else {
-                notyf.error("Une erreur s'est produite");
-             }
-             });
+               } }).catch(err=>{
+                if (err.response) {
+                  notyf.error("Une erreur s'est produite")
+                }
+            });
          }
     async componentDidMount() {
         this.refreshDomestique();
@@ -261,13 +262,15 @@ export default class Domestique extends Component{
                         this.setState({
                             surfaceAllocated: ''
                         })
-                  } else {
-                    notyf.error("Une erreur s'est produite");
-                }
+                  }
+                }).catch(err=>{
+                    if (err.response) {
+                      notyf.error("Une erreur s'est produite")
+                    }
                 });
         } 
     toDevis = () =>{
-        window.location.href = '/devis-domestique';
+        window.location.href = '/liste-devis-domestique';
     }
     render() {
         const { clients, sexe,phone, selectedOption,selectedPerson,selectedBuilding, people, building, checked, checkedNo,activePage, clientsPerPage,country} = this.state;
@@ -275,12 +278,6 @@ export default class Domestique extends Component{
         const indexOfLastClient = activePage * clientsPerPage;
         const indexOfFirstClient = indexOfLastClient - clientsPerPage;
         const currentClients = clients.slice(indexOfFirstClient, indexOfLastClient);
-        console.log('Kit choisi:', selectedOption.id);
-        console.log('Kit Building:', selectedBuilding.id);
-        console.log('Nbre personne choisie:', selectedPerson);
-        console.log('Facture:', checkedNo);
-        console.log('Devis:', checked);
-        console.log('country:', country);
         let filterClient = currentClients.length ? currentClients.filter((client)=>{
             let clientInfos = client.clientFirstName.toLowerCase() + client.clientLastName.toLowerCase()+ client.phone;
             return clientInfos.indexOf(this.state.search.toLowerCase())!==-1;
@@ -300,8 +297,10 @@ export default class Domestique extends Component{
                 <div className="row">
                 <div className="col-md-3"></div>
                 <div className="card mt-2 col-md-6">
+                    <div className="card-header mt-4">
+						<h3 style={{textAlign:'center'}}>création d'un nouveau devis domestique</h3>
+  					</div>
                     <div className="card-body">
-                            <h3 className="text-success text-center mt-2">création d'un nouveau devis domestique</h3>
                             <form onSubmit={this.onSubmitDevis}>
                             <div className="form-group">
                                 <label>Nom Client:  </label>
@@ -328,7 +327,7 @@ export default class Domestique extends Component{
                             <div className="form-group">
                                 <Select 
                                 isSearchable={true}
-                                value={selectedOption}
+                                value={selectedOption ? selectedOption: ''}
                                 isClearable= {true}
                                 onChange={this.handleChangeSelect}
                                 options={optionDomestique} />

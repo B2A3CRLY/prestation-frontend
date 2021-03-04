@@ -204,9 +204,11 @@ export default class Vente extends Component{
                 this.setState({ showProduct: false })
                 console.log('productCollected: ', idProductCollected)
                 
-          } else {
-            notyf.error("Une erreur s'est produite");
-        }
+          } 
+        }).catch(err=>{
+            if (err.response) {
+              notyf.error("Une erreur s'est produite")
+            }
         });
     }
     onSubmitCreateProduct = (e) =>{
@@ -231,10 +233,11 @@ export default class Vente extends Component{
                      this.setState({
                          createProduct : false
                      })
-               } else {
-                 notyf.error("Une erreur s'est produite");
-             }
-             });
+               }}).catch(err=>{
+                if (err.response) {
+                  notyf.error("Une erreur s'est produite")
+                }
+            });
     }
     canBeSubmittedProduct (){
         return this.state.selectedOption && this.state.quantity;
@@ -278,12 +281,14 @@ export default class Vente extends Component{
                     console.log('id:', res.data.id);
                     console.log('status :', res.status);
                     if (res.status === 200) {
-                        alert('Devis créé avec succés !');
+                        notyf.success('Devis créé avec succés !');
                         this.toDevis();
-                  } else {
-                    alert("Une erreur s'est produite");
-                }
-                })
+                  }
+                }).catch(err=>{
+                    if (err.response) {
+                      notyf.error("Une erreur s'est produite")
+                    }
+                });
         } 
     toDevis = () =>{
         window.location.href = '/liste-devis-vente';
@@ -322,8 +327,10 @@ export default class Vente extends Component{
                 <div className="row">
                 <div className="col-md-3"></div>
                 <div className="card mt-2 col-md-6">
+                    <div className="card-header mt-4">
+						<h3 style={{textAlign:'center'}}>création d'un nouveau devis vente</h3>
+  					</div>
                     <div className="card-body">
-                            <h3 className="text-success text-center mt-2">création d'un nouveau devis vente</h3>
                             <form onSubmit={this.onSubmitDevis}>
                             <div className="form-group">
                                 <label>Nom Client:  </label>

@@ -8,7 +8,7 @@ export default function HomeServiceVente() {
         <>
         <Hero hero="defaultHeroHSVente">
             <Banner title="devis vente | liste ventes" subtitle="Cliquer pour créer un devis ou afficher la liste des devis">
-                <Link to="/vente" className="mr-2 btn-error">Créer Devis</Link>
+                <Link to="/vente" className="mr-2 btn-error mbMobile">Créer Devis</Link>
                 <Link to="/liste-devis-vente" className="btn-error">Afficher Liste Devis</Link>
             </Banner>
         </Hero>

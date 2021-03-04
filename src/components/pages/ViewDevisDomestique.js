@@ -109,40 +109,40 @@ export default class ViewDevisDomestique extends Component {
                     </div>
                 </div>
                 <div style={{marginTop:'10px'}}>
-                {devis.house !== null && priceHouse === 89900 &&(
+                {devis.house !== null && parseInt(priceHouse) === 89900 &&(
                 <>   
                 <div className="border-client-black row">
-                        <h5 id="first" style={{width:'355px', fontWeight:'bold'}}>Désignation produits</h5>
-                        <h5 style={{width:'193px',fontWeight:'bold'}}>Quantité</h5>
-                        <h5 style={{width:'230px',fontWeight:'bold'}}>PU</h5>
+                        <h5 id="first" className="dproduits0">Désignation produits</h5>
+                        <h5 className="qte0">Quantité</h5>
+                        <h5 className="pu0">PU</h5>
                         <h5 style={{fontWeight:'bold'}}>Prix HT(francs CFA)</h5>
                 </div>
                 <div style={{marginTop:'-13px'}} className="border-client-white-first
                 text-size-order row">
-                        <p style={{width:'370px', paddingTop:'5px'}}>{designationHouse}</p>
-                        <p style={{ width: '150px', marginLeft:'20px', paddingTop:'20px'}}>{quantityHouse}</p>
-                        <p style={{ width: '241px', paddingTop:'20px'}}>{priceHouse}</p>
-                        <p style={{marginLeft:'148px', paddingTop:'20px'}}>{priceHouse}</p>
+                        <p className="dHouse0">{designationHouse}</p>
+                        <p className="pHouse01">{quantityHouse}</p>
+                        <p className="pHouse02">{priceHouse}</p>
+                        <p className="pHouse03">{priceHouse}</p>
                 </div>
                 <div style={{marginTop:'-13px', marginLeft:'400px'}}
                 className=" border-client-white row">
                         <div className="space-between-resize text-size-order">
-                            <p style={{ width: '398px', paddingBottom: '5px', marginLeft:'-11px'}}>Sous-total HT (francs CFA)</p>
-                            <p style={{marginLeft:'138px', paddingBottom:'5px'}}>{priceHouse}</p>
+                            <p className="sTotalH0">Sous-total HT (francs CFA)</p>
+                            <p className="pHouse04">{priceHouse}</p>
                         </div>
                 </div>
                 <div style={{marginTop:'-13px', marginLeft:'400px'}}
                 className="border-client-white row">
                         <div className="space-between-resize text-size-order">
-                            <p style={{ width: '411px', paddingBottom: '5px', marginLeft:'-11px'}}>Montant TVA(18%)</p>
-                            <p style={{width: '262px', marginLeft:'138px', paddingBottom:'5px'}}>0,00</p>
+                            <p className="mTVAH0">Montant TVA(18%)</p>
+                            <p className="pHouse05">0,00</p>
                         </div>
                 </div>
                 <div style={{marginTop:'-13px', marginLeft:'400px'}}
                 className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <p style={{ width: '400px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</p>
-                            <p style={{ width: '262px', marginLeft: '138px', paddingBottom: '5px' }}>{priceHouse}</p>
+                            <p className="totalH0">Total TTC(francs CFA)</p>
+                            <p className="pHouse06">{priceHouse}</p>
                         </div>
                 </div>               
                 <div className="text-right-domestique"><h5 id="two">1/1</h5></div>
@@ -150,75 +150,75 @@ export default class ViewDevisDomestique extends Component {
                 {devis.house !== null && priceHouse > 89900 &&(
                 <>   
                 <div className="border-client-black row">
-                        <h5 id="first" style={{width:'355px', fontWeight:'bold'}}>Désignation produits</h5>
-                        <h5 style={{width:'193px',fontWeight:'bold'}}>Quantité</h5>
-                        <h5 style={{width:'230px',fontWeight:'bold'}}>PU</h5>
+                        <h5 id="first" className="dproduits">Désignation produits</h5>
+                        <h5 className="qte">Quantité</h5>
+                        <h5 className="pu">PU</h5>
                         <h5 style={{fontWeight:'bold'}}>Prix HT(francs CFA)</h5>
                 </div>
                 <div style={{marginTop:'-13px'}} className="border-client-white-first
                 text-size-order row">
-                        <p style={{width:'370px', paddingTop:'5px'}}>{designationHouse}</p>
-                        <p style={{ width: '138px', marginLeft:'20px', paddingTop:'20px'}}>{quantityHouse}</p>
-                        <p style={{ width: '241px', paddingTop:'20px'}}>{priceHouse}</p>
-                        <p style={{marginLeft:'148px', paddingTop:'20px'}}>{priceHouse}</p>
+                        <p className="dHouse">{designationHouse}</p>
+                        <p className="pHouse1">{quantityHouse}</p>
+                        <p className="pHouse2">{priceHouse}</p>
+                        <p className="pHouse3">{priceHouse}</p>
                 </div>
                 <div style={{marginTop:'-13px', marginLeft:'400px'}}
                 className=" border-client-white row">
                         <div className="space-between-resize text-size-order">
-                            <p style={{ width: '386px', paddingBottom: '5px', marginLeft:'-11px'}}>Sous-total HT (francs CFA)</p>
-                            <p style={{marginLeft:'138px', paddingBottom:'5px'}}>{priceHouse}</p>
+                            <p className="sTotalH">Sous-total HT (francs CFA)</p>
+                            <p className="pHouse4">{priceHouse}</p>
                         </div>
                 </div>
                 <div style={{marginTop:'-13px', marginLeft:'400px'}}
                 className="border-client-white row">
                         <div className="space-between-resize text-size-order">
-                            <p style={{ width: '406px', paddingBottom: '5px', marginLeft:'-11px'}}>Montant TVA(18%)</p>
-                            <p style={{width: '262px', marginLeft:'138px', paddingBottom:'5px'}}>0,00</p>
+                            <p className="mTVAH">Montant TVA(18%)</p>
+                            <p className="pHouse5">0,00</p>
                         </div>
                 </div>
                 <div style={{marginTop:'-13px', marginLeft:'400px'}}
                 className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <p style={{ width: '386px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</p>
-                            <p style={{ width: '262px', marginLeft: '138px', paddingBottom: '5px' }}>{priceHouse}</p>
+                            <p className="totalH">Total TTC(francs CFA)</p>
+                            <p className="pHouse6">{priceHouse}</p>
                         </div>
                 </div>               
                 <div className="text-right-domestique"><h5 id="two">1/1</h5></div>
                 </>)}
-                {devis.building!==null && priceBuilding <= 982887 &&(
+                {devis.building!==null && parseInt(priceBuilding) <= 982887 &&(
                 <>    
                 <div className="border-client-black row">
-                        <h5 id="first" style={{width:'355px', fontWeight:'bold'}}>Désignation produits</h5>
-                        <h5 style={{width:'198px',fontWeight:'bold'}}>Quantité</h5>
-                        <h5 style={{width:'230px',fontWeight:'bold'}}>PU</h5>
+                        <h5 id="first" className="dproduitsB">Désignation produits</h5>
+                        <h5 className="qteB">Quantité</h5>
+                        <h5 className="puB">PU</h5>
                         <h5 style={{fontWeight:'bold'}}>Prix HT(francs CFA)</h5>
                 </div>
                 <div style={{marginTop:'-13px'}} className="border-client-white-first
                 text-size-order row">
-                        <p style={{width:'370px', paddingTop:'20px'}}>{designationBuilding}</p>
-                        <p style={{ width: '150px', marginLeft:'20px', paddingTop:'20px'}}>{quantityHouse}</p>
-                        <p style={{ width: '229px', paddingTop:'20px'}}>{priceBuilding}</p>
-                        <p style={{marginLeft:'148px', paddingTop:'20px'}}>{priceBuilding}</p>
+                        <p className="dBuilding">{designationBuilding}</p>
+                        <p className="qBuilding1">{quantityHouse}</p>
+                        <p className="qBuilding2">{priceBuilding}</p>
+                        <p className="qBuilding3">{priceBuilding}</p>
                 </div>
                 <div style={{marginTop:'-13px', marginLeft:'400px'}}
                 className=" border-client-white row">
                         <div className="space-between-resize text-size-order">
-                            <p style={{ width: '383px', paddingBottom: '6px', marginLeft:'-11px'}}>Sous-total HT (francs CFA)</p>
-                            <p style={{marginLeft:'138px', paddingBottom:'6px'}}>{priceBuilding}</p>
+                            <p className="sTotalB">Sous-total HT (francs CFA)</p>
+                            <p className="qBuilding4">{priceBuilding}</p>
                         </div>
                 </div>
                 <div style={{marginTop:'-13px', marginLeft:'400px'}}
                 className="border-client-white row">
                         <div className="space-between-resize text-size-order">
-                            <p style={{ width: '411px', paddingBottom: '5px', marginLeft:'-11px'}}>Montant TVA(18%)</p>
-                            <p style={{width: '262px', paddingBottom:'5px'}} className="goback">0,00</p>
+                            <p className="mTVAB">Montant TVA(18%)</p>
+                            <p className="pBuilding5 goback">0,00</p>
                         </div>
                 </div>
                 <div style={{marginTop:'-13px', marginLeft:'400px'}}
                 className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <p style={{ width: '383px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</p>
-                            <p style={{ width: '262px', marginLeft: '138px', paddingBottom: '5px' }}>{priceBuilding}</p>
+                            <p className="totalB">Total TTC(francs CFA)</p>
+                            <p className="qBuilding6">{priceBuilding}</p>
                         </div>
                 </div>
                 <div className="text-right-domestique"><h5 id="two">1/1</h5></div>
@@ -226,37 +226,37 @@ export default class ViewDevisDomestique extends Component {
                 {devis.building!==null && priceBuilding > 982887 &&(
                 <>    
                 <div className="border-client-black row">
-                        <h5 id="first" style={{width:'355px', fontWeight:'bold'}}>Désignation produits</h5>
-                        <h5 style={{width:'198px',fontWeight:'bold'}}>Quantité</h5>
-                        <h5 style={{width:'230px',fontWeight:'bold'}}>PU</h5>
+                        <h5 id="first" className="dproduitsB1">Désignation produits</h5>
+                        <h5 className="qteB1">Quantité</h5>
+                        <h5 className="puB1">PU</h5>
                         <h5 style={{fontWeight:'bold'}}>Prix HT(francs CFA)</h5>
                 </div>
                 <div style={{marginTop:'-13px'}} className="border-client-white-first
                 text-size-order row">
-                        <p style={{width:'370px', paddingTop:'20px'}}>{designationBuilding}</p>
-                        <p style={{ width: '150px', marginLeft:'20px', paddingTop:'20px'}}>{quantityHouse}</p>
-                        <p style={{ width: '217px', paddingTop:'20px'}}>{priceBuilding}</p>
-                        <p style={{marginLeft:'148px', paddingTop:'20px'}}>{priceBuilding}</p>
+                        <p className="dBuilding_">{designationBuilding}</p>
+                        <p className="qBuilding1_">{quantityHouse}</p>
+                        <p className="qBuilding2_">{priceBuilding}</p>
+                        <p className="qBuilding3_">{priceBuilding}</p>
                 </div>
                 <div style={{marginTop:'-13px', marginLeft:'400px'}}
                 className=" border-client-white row">
                         <div className="space-between-resize text-size-order">
-                            <p style={{ width: '374px', paddingBottom: '6px', marginLeft:'-11px'}}>Sous-total HT (francs CFA)</p>
-                            <p style={{marginLeft:'138px', paddingBottom:'6px'}}>{priceBuilding}</p>
+                            <p className="sTotalB_">Sous-total HT (francs CFA)</p>
+                            <p className="qBuilding4_">{priceBuilding}</p>
                         </div>
                 </div>
                 <div style={{marginTop:'-13px', marginLeft:'400px'}}
                 className="border-client-white row">
                         <div className="space-between-resize text-size-order">
-                            <p style={{ width: '411px', paddingBottom: '5px', marginLeft:'-11px'}}>Montant TVA(18%)</p>
-                            <p style={{width: '262px', paddingBottom:'5px'}} className="goback">0,00</p>
+                            <p className="mTVAB_">Montant TVA(18%)</p>
+                            <p className="qBuilding5_ goback">0,00</p>
                         </div>
                 </div>
                 <div style={{marginTop:'-13px', marginLeft:'400px'}}
                 className="border-client-white-end row">
                         <div className="space-between-resize text-size-order">
-                            <p style={{ width: '374px', paddingBottom: '5px', marginLeft:'-11px'}}>Total TTC(francs CFA)</p>
-                            <p style={{ width: '262px', marginLeft: '138px', paddingBottom: '5px' }}>{priceBuilding}</p>
+                            <p className="totalB_">Total TTC(francs CFA)</p>
+                            <p className="qBuilding6_">{priceBuilding}</p>
                         </div>
                 </div>
                 <div className="text-right-domestique"><h5 id="two">1/1</h5></div>
@@ -265,12 +265,12 @@ export default class ViewDevisDomestique extends Component {
                 </div>
                 <div className="space-between-domestique">
                     <div>
-                        <h4 className="text-resize">Fait à Dakar (Sénégal), le {dateFrench}</h4>
+                        <h3 className="text-resize">Fait à Dakar (Sénégal), le {dateFrench}</h3>
                     </div>
                     <div>
                         <h4 className="space-right" style={{textDecoration:'underline'}}>LE SERVICE TECHNIQUE:<br/></h4>
                         <div className="space-left-domestique text-resize">
-                        {loginUserByUsername[0]?loginUserByUsername[0].first_name: '' } {' '} {loginUserByUsername[0]? loginUserByUsername[0].last_name:''}
+                            <h3>{loginUserByUsername[0]?loginUserByUsername[0].first_name: '' } {' '} {loginUserByUsername[0]? loginUserByUsername[0].last_name:''}</h3>
                         </div>
                     </div>     
                 </div>

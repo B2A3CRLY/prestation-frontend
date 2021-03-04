@@ -224,15 +224,15 @@ export default class ViewDevis extends Component {
                     { id: 5, ref: "1-f", designation: 'Manchon JR 63 mm, Sortie 2" M', quantity: a63_3, price: 3000, totalPrice: Math.ceil(a63_3 * 3000) },
                     { id: 6, ref: "1-g", designation: 'Manchon JR 25 mm, Sortie 1" M', quantity: m25_1, price: 780, totalPrice: Math.ceil(m25_1 * 780) },
                     { id: 7, ref: "1-h", designation: 'Réduction 2", 1"/1/2 FF', quantity: r2_1_ff, price: 2000, totalPrice: Math.ceil(r2_1_ff * 2000) },
-                    { id: 8, ref: "1-i", designation: 'Réduction 1" 1/2, 1" MF', quantity: r1_1_MF, price: 1500, totalPrice: Math.ceil(r1_1_MF * 150) },
+                    { id: 8, ref: "1-i", designation: 'Réduction 1" 1/2, 1" MF', quantity: r1_1_MF, price: 1500, totalPrice: Math.ceil(r1_1_MF * 1500) },
                     { id: 9, ref: "1-j", designation: 'Coude JR 25 mm, 1" M', quantity: cJR25, price: 780, totalPrice: Math.ceil(cJR25 * 780) },
-                    { id: 10, ref: "1-k", designation: 'Vanne JR 25 mm', quantity: vJR25, price: 2000, totalPrice: Math.ceil(vJR25 * 2000) },
-                    { id: 11, ref: "1-l", designation: 'Téflon', quantity: teflon, price: 350, totalPrice: Math.ceil(teflon * 350) },
-                    { id: 12, ref: "1-m", designation: 'Rouleau Anjou 25 mm, 50 m', quantity: lPR, price: 11000, totalPrice: Math.ceil(lPR * 11000) }
                     
                 ]
                 quotationGouttePlus = [
-                   { id: 13, ref: "1-n", designation: 'Rouleau Anjou 63 mm, 50 m', quantity: lCPDN63_2ha, price: 55690, totalPrice: Math.ceil(lCPDN63_2ha * 55690) },
+                    { id: 10, ref: "1-k", designation: 'Vanne JR 25 mm', quantity: vJR25, price: 2000, totalPrice: Math.ceil(vJR25 * 2000) },
+                    { id: 11, ref: "1-l", designation: 'Téflon', quantity: teflon, price: 350, totalPrice: Math.ceil(teflon * 350) },
+                    { id: 12, ref: "1-m", designation: 'Rouleau Anjou 25 mm, 50 m', quantity: lPR, price: 11000, totalPrice: Math.ceil(lPR * 11000) },
+                    { id: 13, ref: "1-n", designation: 'Rouleau Anjou 63 mm, 50 m', quantity: lCPDN63_2ha, price: 55690, totalPrice: Math.ceil(lCPDN63_2ha * 55690) },
                     { id: 14, ref: "1-o", designation: 'Bouchon DN 25 mm', quantity: bDN25, price: 600, totalPrice: Math.ceil(bDN25 * 600) },
                     { id: 15, ref: "1-p", designation: 'Bouchon DN 63 mm', quantity: bDN63, price: 3040, totalPrice: Math.ceil(bDN63 * 3040) }
                 ]
@@ -395,7 +395,7 @@ export default class ViewDevis extends Component {
                     </p>
                     <div className="border-double">
                         <h2 className="border text-center">
-                            DEVIS Nº {devis.ref_devis} POUR L'INSTALLATION D'UN SYSTEME {constGoutteAGoutte.length !== 0 && constAspersion.length === 0 ? 'GOUTTE À GOUTTE' : ''} {constGoutteAGoutte.length === 0 && constAspersion.length !== 0 ? 'ASPERSION TOTALEMENT AUTOMATISE ET PILOTABLE À DISTANCE' : ''} {constGoutteAGoutte.length !== 0 && constAspersion.length !== 0 ? "D'IRRIGATION" : ''} À l'INTENTION DE <span id="orange">{sex === 'Masculin' ? 'M.' + ' ' + firstname.toUpperCase(): ''}</span>
+                            DEVIS Nº {devis.ref_devis} POUR L'INSTALLATION D'UN SYSTEME {constGoutteAGoutte.length !== 0 && constAspersion.length === 0 ? 'GOUTTE À GOUTTE' : ''} {constGoutteAGoutte.length === 0 && constAspersion.length !== 0 ? 'ASPERSION TOTALEMENT AUTOMATISE ET PILOTABLE À DISTANCE' : ''} {constGoutteAGoutte.length !== 0 && constAspersion.length !== 0 ? "D'IRRIGATION" : ''} À l'INTENTION DE <span id="orange">{sex === 'Masculin' ? 'M.' + ' ' + firstname.toUpperCase()+ ' ' + lastname.toUpperCase() : ''}</span>
                             <span id="orange">{sex === 'Feminin' ? 'Mme.' + ' ' + firstname.toUpperCase() + ' ' + lastname.toUpperCase() : ''}</span>
                         </h2>
                     </div>
@@ -408,7 +408,7 @@ export default class ViewDevis extends Component {
                         <div className="border-client-orange">
                             <p>Date de manifestation d'intérêt : <span id="orange">{dateCreation}</span></p>
                             <p>Zone d'éxécution des travaux : <span id="orange">{zoneChamp}</span></p>
-                            <p>Superficie du champ agricole : <span id="orange">{totalSurface} {parseFloat(totalCloture) > 1 ? "hectares" : "hectare"}</span></p>
+                            <p>Superficie du champ agricole : <span id="orange">{totalSurface} {(parseFloat(totalCloture)||parseInt(totalCloture)) > 1 ? "hectares" : "hectares"}</span></p>
                         </div>
                     </div>
                     {constGoutteAGoutte.length !== 0 && constAspersion.length === 0 && typeTaster === 'goutteurNonPerfore' && (
@@ -734,9 +734,9 @@ export default class ViewDevis extends Component {
                                     <tr>
                                         <th>1-s</th>
                                         <th>Main d'oeuvre pour l'installation technique détaillée comprenant toute l'ingénieurie hydraulique et électrique</th>
-                                        <th style={{ textAlign: 'right' }}>{totalWorkForce !==0 ? 1:'X'}</th>
-                                        <th colspan="1" style={{ textAlign: 'right' }}>{totalWorkForce !==0 ? totalWorkForce:'X'}</th>
-                                        <th style={{ textAlign: 'right' }}>{totalWorkForce !==0 ? totalWorkForce:'X'}</th>
+                                        <th style={{ textAlign: 'right', paddingTop:'40px' }}>{totalWorkForce !==0 ? 1:'X'}</th>
+                                        <th colspan="1" style={{ textAlign: 'right',paddingTop:'40px'  }}>{totalWorkForce !==0 ? totalWorkForce:'X'}</th>
+                                        <th style={{ textAlign: 'right',paddingTop:'40px'  }}>{totalWorkForce !==0 ? totalWorkForce:'X'}</th>
                                     </tr>
                                 </tbody>
                                 <tbody>
@@ -744,8 +744,8 @@ export default class ViewDevis extends Component {
                                         <th></th>
                                         <th></th>
                                         <th style={{ textAlign: 'center' }}>Total (TTC)</th>
-                                        <th colspan="1" style={{ textAlign: 'right' }}>{1.18*(totalPriceGoutte + totalWorkForce + totalCloture + totalEclairage + totalSupportMetalique)}</th>
-                                        <th style={{ textAlign: 'right' }}>{1.18*(totalPriceGoutte + totalWorkForce + totalCloture + totalEclairage + totalSupportMetalique)}</th>
+                                        <th colspan="1" style={{ textAlign: 'right' }}>{Math.round(1.18*(totalPriceGoutte + totalWorkForce + totalCloture + totalEclairage + totalSupportMetalique))}</th>
+                                        <th style={{ textAlign: 'right' }}>{Math.round(1.18*(totalPriceGoutte + totalWorkForce + totalCloture + totalEclairage + totalSupportMetalique))}</th>
                                     </tr>
                                 </tbody>
                             </table>

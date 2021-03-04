@@ -17,6 +17,10 @@ const apiAgent = apiUrl + '/agent/';
 const apiDevis = apiUrl + '/devisVente/';
 const apiFilterDevis = apiUrl + '/getnumber/';
 const tokenKey = 'token';
+const orangeUrlToken = 'https://api.orange.com/oauth/v3/token'
+const authorization_header ='Basic TjJlMG1UeFhFckxNemxLVkhrbjVVYm55R2FmajYyclY6SlBlRUdYeXhvbHhtUGtYSg=='
+const access_token = 'pIeL8mPyWwEw7Pp9xONOjkTlUM8U' 
+const queryString = require('query-string');
 const optionsDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 const now = new Date();
 const listNumber = [];
@@ -35,8 +39,14 @@ const notyf = new Notyf({
         },
         {
             type: 'success',
-            duration: '10000',
+            duration: '4000',
             dismissible:'true'
+        },
+        {
+            type: 'blueSuccess',
+            duration: '4000',
+            dismissible: 'true',
+            background: 'blue',
         },
         {
             type: 'warning',
@@ -61,7 +71,10 @@ export default class ValiderCommande extends Component {
             agent: '',
             ventes: '',
             listDevis: '',
+            messageSmS: 'Bonjour',
+            numeroKirikou:221775977255,
             show: false,
+            showValidation: false,
             activePage: 1,
             search: '',
             client: '',
@@ -81,6 +94,8 @@ export default class ValiderCommande extends Component {
             isQuotation: '',
             isInvoice: '',
             loginUserByUsername: '',
+            selectedFile: '',
+            isFilePicked: false,
         }
     }
     async refreshDevis() {
@@ -94,6 +109,9 @@ export default class ValiderCommande extends Component {
     async componentWillMount() {
         this.refreshDevis();
         this.refreshAgents();
+    }
+    handleChangeFile = (event) => {
+        this.setState({selectedFile: event.target.files[0], isFilePicked:true})
     }
     handleClose = () => {
         this.setState({ show: false });
@@ -147,12 +165,12 @@ export default class ValiderCommande extends Component {
         })
         
     }
-    sendLinkClient = (email,order) => {
-        const params = {
-            order: order,
-            email: email
-        }
-        http.post(apiUrl + '/tracking/commande', params).then(res => {
+    sendLinkClient = (email, order, file) => {
+        let formData = new FormData()
+        formData.append('order', order)
+        formData.append('email', email)
+        formData.append('file', file)
+        http.post(apiUrl + '/tracking/commande', formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(res => {
             console.log('email:', res)
             if (res.status === 200) {
                 notyf.success('email envoyé au client avec succées !')
@@ -163,21 +181,122 @@ export default class ValiderCommande extends Component {
         })
         
     }
-    sendwhatsAppMessage = (phone) => {
-        return 'http://api.whatsapp.com/send?phone=221' + phone
+    sendEmailClientWithoutFile = (email, order) => {
+        const emailInfos = {
+            email: email,
+            order: order
+        }
+        http.post(apiUrl + '/download/facture', emailInfos).then(res => {
+            console.log('email:', res)
+            if (res.status === 200) {
+                notyf.success('email envoyé au client avec succées !')
+            }
+        }).catch(error => {
+            if (error.response) {
+                    notyf.error('email non envoyé !')
+                }
+            })
+        
+    }
+    sendwhatsAppMessage = (phone, document) => {
+        return `https://api.whatsapp.com/send?phone=' + ${phone} + '&text=Bonjour         veuillez%20télécharger%20votre%20devis%20en%20cliquant%20sur%20ce%20lien: ' + 
+        ${document}`
+        
+    }
+    sendSMS(recipient_phone_number, dev_phone_number, message) {
+        const url =
+            `https://api.orange.com/smsmessaging/v1/outbound/tel%3A%2B${dev_phone_number}/requests`
+        const headers = {
+            "Content-type":"application/json",
+            "Authorization": `Bearer ${access_token}` 
+        }
+        const body = {
+            "outboundSMSMessageRequest": {
+                "address": `tel:+${recipient_phone_number}`,
+                "senderAddress": `tel:+${dev_phone_number}`,
+                "outboundSMSTextMessage": {
+                    "message": message
+                }
+            
+            }
+        }
+        http.post(url,body,{headers: headers,}).then(res => {
+            console.log('status :', res.status);
+            console.log('res :', res.data);
+            if (res.status === 201) {
+                notyf.success('sms envoyé avec succés !');
+            }}).catch(err => {
+            if (err.response) {
+                notyf.error('Une erreur s\'est produite')
+            } else if (err.request) {
+                console.log(err)
+            } else {
+                notyf.error('Une erreur inattendue s\'est produite')
+            }
+        })
+        
+    }
+    getToken = () => {
+        http.post(orangeUrlToken,
+        {
+            data :{'grant_type':'client_credentials'}
+        },
+        {
+            headers: {
+                "Authorization": `Bearer ${authorization_header}`,
+                "Content-type": "application/x-www-form-urlencoded",
+                "Accept": "application/json"
+            },
+        }
+        ).then(res => {
+            console.log('status_access_token :', res.status);
+            console.log('access_token :', res.data);
+            if (res.status === 200) {
+                notyf.success('token obtenu avec succés !');
+            }
+        }).catch(err => {
+            if (err.response) {
+                notyf.error('Une erreur s\'est produite')
+            } else if (err.request) {
+                console.log(err)
+            } else {
+                notyf.error('Une erreur inattendue s\'est produite')
+            }
+        })
     }
     refreshPage() {
         window.location.reload(false);
-      }
+    }
+    onSubmitDevisFile = (e) => {
+        e.preventDefault();
+        const {selectedFile } = this.state;
+        const idDevis = this.props.match.params.id;
+        let formData = new FormData();
+        formData.append('document', selectedFile, selectedFile.name)
+        console.log('formData:', formData)
+        http.put(apiDevis + 'update/' + idDevis + '/' ,formData)
+                .then(res => {
+                    if (res.status === 200) {
+                        notyf.open({
+                            type: 'blueSuccess',
+                            message:'fichier enregistré avec succées !'
+                        })
+                        this.setState({showValidation: true})
+                    } if (res.status === 500) {
+                        notyf.error('Oops une erreur s\'est produite !')
+                }
+        })
+    }
     onSubmitDevis = (e) => {
         e.preventDefault();
         const idDevis = this.props.match.params.id;
         const { idAgent, order_ongoing, agent, devis} = this.state;
         const devisUpdated = {
-            agent:idAgent,
+            agent: idAgent,
             isInvoice: true,
-            isQuotation: false,
+            isQuotation: false
         }
+       
         if (devis.agent === null) {
             const number = {
                 order_ongoing: 1 + order_ongoing
@@ -202,15 +321,17 @@ export default class ValiderCommande extends Component {
                                 //this.refreshAgents();
                                 ws.next({ message: devis.code, type: 'message' });
                                 this.sendLinkClient(devis.client.clientEmail,devis.code);
+                                notyf.success('devis assigné avec succés !')
                                 setTimeout(this.refreshPage(), 100000)
                             } 
                         });
-                    } if (res.status !== 200) {
+                    } if (res.status === 500) {
                         notyf.error('Oops une erreur s\'est produite !')
                   }
-            });
+                })
+                .catch(error =>{console.log(error)})
         }
-        if (devis.agent.id === agent.id) {
+        if (devis.agent !== null && devis.agent.id === agent.id) {
             notyf.open({
                 type: 'warning',
                 message:'Impossible ! Commande déja assignée à cet agent.'
@@ -247,9 +368,8 @@ export default class ValiderCommande extends Component {
                             console.log('IdAgent_Remplacé:', res.data.id);
                             console.log('Status_Agent_Remplacé :', res.status);
                             if (res.status === 200) {
-                                //this.refreshAgents();
-                                ws.next({ message: devis.code, type: 'message' });
-                                //this.sendLinkClient(devis.client.clientEmail,devis.code);
+                                //ws.next({ message: devis.code, type: 'message' });
+                                this.sendEmailClientWithoutFile(devis.client.clientEmail,devis.code);
                                 setTimeout(this.refreshPage(), 100000)
                             } 
                         });
@@ -261,10 +381,11 @@ export default class ValiderCommande extends Component {
         }
     }
     canBeValidAgent(){
-        return this.state.agentFirstname && this.state.agentLastname;
+        return this.state.agentFirstname && this.state.agentLastname && this.state.selectedFile;
     }
     render() {
-        const { agents, order_ongoing, idAgent, devis, activePage, agentsPerPage, phone} = this.state;
+        const { agents, order_ongoing, idAgent, devis, activePage, agentsPerPage,selectedFile, isFilePicked, showValidation, phone, client,messageSmS, numeroKirikou}= this.state;
+        console.log('fichier : ', selectedFile)
         const indexOfLastAgent = activePage * agentsPerPage;
         const indexOfFirstAgent = indexOfLastAgent - agentsPerPage;
         const currentAgents = agents.slice(indexOfFirstAgent, indexOfLastAgent);
@@ -316,25 +437,52 @@ export default class ValiderCommande extends Component {
                             <div className="card mt-2 mr-2 col-md-5 text-white bg-white">
                                     <div className="card-body">
                                     <h3 className="text-success text-center mt-2">Confirmation Commande</h3>
-                                    <form onSubmit={this.onSubmitDevis}>
-                                    <div className="form-group">
-                                        <label>Nom Agent Choisi:  </label>
-                                        <input 
-                                        type="text" 
-                                        className="form-control"
-                                        value={this.state.agentFirstname + ' ' + 
-                                        this.state.agentLastname}
-                                        onChange={this.handleChange}
-                                        />      
-                                    </div>
-                                    <Button variant="secondary" size="sm" className="mt-2 mr-2" onClick={this.handleShow}>Choisir Agent</Button> 
-                                    <Button variant="primary" type="submit" size="sm" className="btn btn-success mt-2" disabled={!isEnabled}>
-                                            Valider
+                                    <form onSubmit={this.onSubmitDevisFile}>
+                                    <div>
+                                    <input type="file" name="file" onChange={this.handleChangeFile} />
+                                        {isFilePicked ? (
+                                            <div>
+                                                <p style={{color:'green'}}>Nom fichier: {selectedFile.name}</p>
+                                                <p style={{color:'green'}}>Type fichier: {selectedFile.type}</p>
+                                                <p style={{color:'green'}}>Taille fichier: {(selectedFile.size)/1000} ko</p>
+                                                <p style={{color:'green'}}>
+                                                    dernière date modification:{' '}
+                                                    {selectedFile.lastModifiedDate.toLocaleDateString()}
+                                                </p>
+                                            </div>
+                                        ) : (
+                                            <p style={{color:'green'}}>Choisir un fichier !</p>
+                                        )}
+                                    </div> 
+                                    <Button variant="primary" type="submit" size="sm" className="btn btn-success mt-2" disabled={!isFilePicked}>
+                                            Enregistrer
                                     </Button>
                                     </form>
-                                    <WhatsAppWidget phoneNumber='' message='Bonjour Chosen !' />
-                                    <a className="btn btn-success mt-2" href={'http://api.whatsapp.com/send?phone=' + phone}>Send</a>
-                                    </div>
+                                    {showValidation ? (
+                                        <form onSubmit={this.onSubmitDevis}>
+                                        <div className="form-group">
+                                            <label>Nom Agent Choisi:  </label>
+                                            <input 
+                                            type="text" 
+                                            className="form-control"
+                                            value={this.state.agentFirstname + ' ' + 
+                                            this.state.agentLastname}
+                                            onChange={this.handleChange}
+                                            />      
+                                        </div>
+                                        <Button variant="secondary" size="sm" className="mt-2 mr-2" onClick={this.handleShow}>Choisir Agent</Button> 
+                                        <Button variant="primary" type="submit" size="sm" className="btn btn-success mt-2" disabled={!isEnabled}>
+                                                Valider
+                                        </Button>
+                                        </form>
+                                    ) : 
+                                    ''}
+                                    {devis.document ? (<>
+                                        <a className="btn btn-success mt-2 mr-2" href={this.sendwhatsAppMessage(phone, devis.document)}><i className="fab fa-whatsapp"></i>WhatsApp</a>
+                                        <Button className="btn btn-success mt-2 mr-2" onClick={() => this.sendSMS(client.clientPhone, numeroKirikou, messageSmS)}>Send SmS</Button>
+                                        <Button className="btn btn-success mt-2" onClick={()=>this.getToken()}>Get Token</Button>
+                                        </>) : ''}
+                                   </div>  
                                 </div>
                                 <div className="card mt-2 col-md-5">
                                     <div className="card-body">

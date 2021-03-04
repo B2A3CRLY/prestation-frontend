@@ -273,6 +273,7 @@ export default class ViewBonLivraisonVente extends Component {
         let length = 55
         let maxlength = 55
         let addresslength = 17
+        let namelength = 17
         let tst = 'Pulvérisateur à dos manuel Ingco 16 litrespppppppppppppp'
         
         console.log('tst:', tst.length)
@@ -669,8 +670,11 @@ export default class ViewBonLivraisonVente extends Component {
                     <h2 style={{ marginBottom: '10px', fontWeight: 'bold' }}>BON DE LIVRAISON</h2>
                     <div className="space-between-home">
                         <div className="text-size-order">
-                            <p style={{paddingTop:'35px'}}><span>{sex === 'Masculin' ? ('M.' + ' ' + firstname.toUpperCase() + ' ' + lastname.toUpperCase()).substring(0,17) : ''}</span></p>
-                            <p><span>{sex === 'Feminin' ? 'Mme.' +' '+ firstname.toUpperCase()  +' '+lastname.toUpperCase() :''}</span></p>
+                            <p style={{ paddingTop: '35px' }}><span>{sex === 'Masculin' ? ('M.' + ' ' + firstname.toUpperCase().substring(0, namelength) + ' ' +
+                            lastname.toUpperCase()).substring(0, namelength) : ''}</span></p>
+                            <p><span>{sex === 'Feminin' ? 'Mme.' + ' ' +
+                                firstname.toUpperCase().substring(0, namelength) + ' ' +
+                                lastname.toUpperCase().substring(0, namelength) : ''}</span></p>
                             <p><span>{(adresse.toUpperCase()).substring(0,addresslength)}</span></p>
                             <p><span>{phone}</span></p>
                         </div>

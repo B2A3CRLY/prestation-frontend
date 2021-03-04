@@ -76,7 +76,7 @@ class Form extends Component {
 
 	renderButton(label) {
 		return (
-			<button disabled={this.validate()} className="btn btn-primary mb-2">
+			<button disabled={this.validate()} className="btn btn-success mb-2">
 				{label}
 			</button>
 		);

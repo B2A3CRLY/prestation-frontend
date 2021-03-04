@@ -71,23 +71,25 @@ class LoginForm extends Form {
 		//console.log('token:', auth.getCurrentUser())
 		if (auth.getCurrentUser()) return <Redirect to="/"/>;
 		return (
-			<Hero hero="defaultHeroDomestique">
-				<div className = "towards-top">
+			<Hero hero="defaultHeroLogin">
 					<div className="row">
 						<div className="col-md-0"></div>
 						<div className="card mt-4 col-md-12">
-							<h3>Login page</h3>
-							<form onSubmit={this.handleSubmit}>
-								
-								<span className="input-group-addon"><i className="fa fa-user fa-fw mb-2"></i></span>
-								{this.renderInput('username','Username','text','form-control','Enter your usename')}
-								<span className="input-group-addon"><i className="fa fa-key fa-fw"></i></span>
-								{this.renderInput('password', 'Password', 'password', 'form-control', 'Enter your password')}
-								{this.renderButton('Login')}
-							</form>
+							<div className="card-header mt-4">
+								<h3 style={{textAlign:'center'}}>Login Page Kirikou Prestation</h3>
+  							</div>
+							<div className="card-body">
+								<form onSubmit={this.handleSubmit} className="form-group">
+									<span className="input-group-addon"><i className="fa fa-user fa-fw"></i></span>
+									{this.renderInput('username','Username','text','form-control','Enter your usename')}
+									<span className="input-group-addon"><i className="fa fa-key fa-fw"></i></span>
+									{this.renderInput('password', 'Password', 'password', 'form-control', 'Enter your password')}
+									{this.renderButton('Login')}
+								</form>
+  							</div>
 						</div>
 					</div>
-				</div>
+
 			</Hero>
 		);
 	}

@@ -450,10 +450,11 @@ export default class AddColis extends Component {
                         this.setState({
                             showAdd : false
                         })
-                  } else {
-                    notyf.error("Une erreur s'est produite");
-                }
-                });
+                  }}).catch(err=>{
+                      if (err.response) {
+                        notyf.error("Une erreur s'est produite")
+                      }
+                  });
             }    
         onSubmitCulture = (e) =>{
             e.preventDefault();
@@ -480,9 +481,11 @@ export default class AddColis extends Component {
                             vitesseVent: '',
                             porteeTheorique:''
                         })
-                  } else {
-                    notyf.error("Une erreur s'est produite");
-                }
+                    }
+                }).catch(err=>{
+                    if (err.response) {
+                      notyf.error("Une erreur s'est produite")
+                    }
                 });
         }
     onSubmitDevis = (e) => {
@@ -524,9 +527,10 @@ export default class AddColis extends Component {
                         this.setState({
                             surfaceAllocated: ''
                         })
-                  } if(res.status!==200) {
-                    notyf.error("Une erreur s'est produite");
-                }
+                  }}).catch(err=>{
+                    if (err.response) {
+                      notyf.error("Une erreur s'est produite")
+                    }
                 });
         }    
         toDevis = () =>{
@@ -593,8 +597,10 @@ export default class AddColis extends Component {
                 <div className="row">
                 <div className="col-md-3"></div>
                 <div className="card mt-2 col-md-6">
+                    <div className="card-header mt-4">
+						<h3 style={{textAlign:'center'}}>création d'un nouveau devis agricole</h3>
+  					</div>
                     <div className="card-body">
-                                <h3 className="text-success text-center mt-2">création d'un nouveau devis agricole</h3>
                             <ToastContainer draggable={false} transition={Zoom} autoClose ={8000}/>
                             <form onSubmit={this.onSubmitDevis}>
                             <div className="form-group">

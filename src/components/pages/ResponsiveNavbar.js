@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import './ResponsiveNavbar.css';
-import { Button } from '../Button';
+import { Button } from '../common/Button';
 export default function ResponsiveNavbar() {
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
