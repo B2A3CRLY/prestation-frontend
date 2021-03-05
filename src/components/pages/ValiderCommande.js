@@ -20,6 +20,9 @@ const tokenKey = 'token';
 const orangeUrlToken = 'https://api.orange.com/oauth/v3/token'
 const authorization_header ='Basic TjJlMG1UeFhFckxNemxLVkhrbjVVYm55R2FmajYyclY6SlBlRUdYeXhvbHhtUGtYSg=='
 const access_token = 'pIeL8mPyWwEw7Pp9xONOjkTlUM8U' 
+const YOUR_CLIENT_ID = 'N2e0mTxXErLMzlKVHkn5UbnyGafj62rV'
+const YOUR_CLIENT_SECRET = 'JPeEGXyxolxmPkXJ'
+const YOUR_API_IDENTIFIER = '0c2U1NBFtH4Cshun'
 const queryString = require('query-string');
 const optionsDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 const now = new Date();
@@ -237,9 +240,15 @@ export default class ValiderCommande extends Component {
         
     }
     getToken = () => {
-        http.post(orangeUrlToken,
+        http.get(orangeUrlToken,
         {
-            data :{'grant_type':'client_credentials'}
+            data: {
+                
+                grant_type: 'client_credentials',
+                client_id: YOUR_CLIENT_ID,
+                client_secret: YOUR_CLIENT_SECRET,
+                audience: YOUR_API_IDENTIFIER
+            }
         },
         {
             headers: {
@@ -250,7 +259,7 @@ export default class ValiderCommande extends Component {
         }
         ).then(res => {
             console.log('status_access_token :', res.status);
-            console.log('access_token :', res.data);
+            console.log('access_token :', res);
             if (res.status === 200) {
                 notyf.success('token obtenu avec succés !');
             }
