@@ -11,6 +11,7 @@ import '../../custom.css';
 import { Notyf } from 'notyf';
 import 'notyf/notyf.min.css'; // for React, Vue and Svelte
 import http from '../../services/httpService';
+import axios from 'axios';
 import {webSocket} from 'rxjs/webSocket';
 import { Button, Form, Modal,Table} from 'react-bootstrap';
 const apiAgent = apiUrl + '/agent/';
@@ -239,24 +240,44 @@ export default class ValiderCommande extends Component {
         })
         
     }
-    getToken = () => {
-        http.get(orangeUrlToken,
-        {
+    obtainToken = () =>{
+        const options = {
+            method: 'POST',
+            url: orangeUrlToken,
+            headers: {'content-type': 'application/x-www-form-urlencoded'},
             data: {
-                
-                grant_type: 'client_credentials',
-                client_id: YOUR_CLIENT_ID,
-                client_secret: YOUR_CLIENT_SECRET,
-                audience: YOUR_API_IDENTIFIER
+              grant_type: 'client_credentials',
+              client_id: YOUR_CLIENT_ID,
+              client_secret: YOUR_CLIENT_SECRET,
+              audience: YOUR_API_IDENTIFIER
             }
-        },
-        {
-            headers: {
-                "Authorization": `Bearer ${authorization_header}`,
-                "Content-type": "application/x-www-form-urlencoded",
-                "Accept": "application/json"
+          };
+          
+          axios.request(options).then(function (response) {
+            console.log(response.data);
+          }).catch(function (error) {
+            console.error(error);
+          });
+    }
+    getToken = () => {
+        http.post(orangeUrlToken,
+            {
+                data: {
+                    grant_type: 'client_credentials',
+                    client_id: YOUR_CLIENT_ID,
+                    client_secret: YOUR_CLIENT_SECRET,
+                    audience: YOUR_API_IDENTIFIER
+                }
             },
-        }
+            {
+                mode: 'no-cors',
+                method: "post",
+                headers: {
+                    "Authorization": `Bearer ${authorization_header}`,
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "Accept": "application/json"
+                },
+            }
         ).then(res => {
             console.log('status_access_token :', res.status);
             console.log('access_token :', res);
@@ -490,6 +511,7 @@ export default class ValiderCommande extends Component {
                                         <a className="btn btn-success mt-2 mr-2" href={this.sendwhatsAppMessage(phone, devis.document)}><i className="fab fa-whatsapp"></i>WhatsApp</a>
                                         <Button className="btn btn-success mt-2 mr-2" onClick={() => this.sendSMS(client.clientPhone, numeroKirikou, messageSmS)}>Send SmS</Button>
                                         <Button className="btn btn-success mt-2" onClick={()=>this.getToken()}>Get Token</Button>
+                                        <Button className="btn btn-success mt-2" onClick={()=>this.getToken()}>Get Token</Button><Button className="btn btn-success mt-2" onClick={()=>this.obtainToken()}>obtain Token</Button>
                                         </>) : ''}
                                    </div>  
                                 </div>
