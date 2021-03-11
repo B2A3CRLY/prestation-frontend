@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import WhatsAppWidget from 'react-whatsapp-widget' //for support team
 import 'react-whatsapp-widget/dist/index.css'
 import ReactWhatsapp from 'react-whatsapp';
+import fetchToCurl from 'fetch-to-curl';
 import Pagination from "react-js-pagination";
 import '../../custom.css';
 import { Notyf } from 'notyf';
@@ -240,16 +241,26 @@ export default class ValiderCommande extends Component {
         })
         
     }
-    obtainToken = () =>{
+    obtainToken = () => {
+        const url = orangeUrlToken;
         const options = {
+        headers: {
+            Authorization: authorization_header
+        },
+            method: 'post'
+        };
+        fetchToCurl(url, options)
+        /*const options = {
             method: 'POST',
             url: orangeUrlToken,
-            headers: {'content-type': 'application/x-www-form-urlencoded'},
+            headers: {
+                'Content-type': 'application/x-www-form-urlencoded'
+            },
             data: {
               grant_type: 'client_credentials',
-              client_id: YOUR_CLIENT_ID,
-              client_secret: YOUR_CLIENT_SECRET,
-              audience: YOUR_API_IDENTIFIER
+              //client_id: YOUR_CLIENT_ID,
+              //client_secret: YOUR_CLIENT_SECRET,
+              //audience: YOUR_API_IDENTIFIER
             }
           };
           
@@ -257,7 +268,7 @@ export default class ValiderCommande extends Component {
             console.log(response.data);
           }).catch(function (error) {
             console.error(error);
-          });
+          });*/
     }
     getToken = () => {
         http.post(orangeUrlToken,
@@ -270,10 +281,9 @@ export default class ValiderCommande extends Component {
                 }
             },
             {
-                mode: 'no-cors',
                 method: "post",
                 headers: {
-                    "Authorization": `Bearer ${authorization_header}`,
+                    "Authorization": authorization_header,
                     "Content-Type": "application/x-www-form-urlencoded",
                     "Accept": "application/json"
                 },
@@ -510,8 +520,7 @@ export default class ValiderCommande extends Component {
                                     {devis.document ? (<>
                                         <a className="btn btn-success mt-2 mr-2" href={this.sendwhatsAppMessage(phone, devis.document)}><i className="fab fa-whatsapp"></i>WhatsApp</a>
                                         <Button className="btn btn-success mt-2 mr-2" onClick={() => this.sendSMS(client.clientPhone, numeroKirikou, messageSmS)}>Send SmS</Button>
-                                        <Button className="btn btn-success mt-2" onClick={()=>this.getToken()}>Get Token</Button>
-                                        <Button className="btn btn-success mt-2" onClick={()=>this.getToken()}>Get Token</Button><Button className="btn btn-success mt-2" onClick={()=>this.obtainToken()}>obtain Token</Button>
+                                        <Button className="btn btn-success mt-2" onClick={()=>this.getToken()}>obtain Token</Button>
                                         </>) : ''}
                                    </div>  
                                 </div>
