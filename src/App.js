@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from './components/Navbar';
-import ResponsiveNavbar from './components/pages/ResponsiveNavbar';
+import ProtectedRoute from './components/common/protectedRoute'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Home from './components/pages/Home';
 import Domestique from './components/pages/Domestique';
@@ -58,25 +58,25 @@ class App extends Component {
     return (
       <Router>
         <Navbar user={loginUserByUsername ? loginUserByUsername[0] : loginUserByUsername} loginUser={loginUser} />
-        {/*<ResponsiveNavbar/>*/}
             <Switch>
+              <ProtectedRoute path='/home-service-list' exact component={HomeServiceList} />
+              <ProtectedRoute path='/home-service-prestation' exact component={HomeServicePrestation} />
+              <ProtectedRoute path='/home-service-vente' exact component={HomeServiceVente}/>
+              <ProtectedRoute path='/domestique' exact component={Domestique} />
+              <ProtectedRoute path='/liste-devis-domestique' exact component={ListDevisDomestique} />
+              <ProtectedRoute path='/agricole' exact component={Agricole} />
+              <ProtectedRoute path='/liste-devis-agricole' exact component={ListDevis} />
+              <ProtectedRoute path='/view/devis/:id' exact component={PrintDevis} />
+              <ProtectedRoute path='/view/domestique/:id' exact component={PrintDevisDomestique}/>
+              <ProtectedRoute path='/view/devis-vente/:id' exact component={PrintDevisVente} />
+              <ProtectedRoute path='/view/facture-vente/:id' exact component={PrintFactureVente} />
+              <ProtectedRoute path='/view/bon-livraison-vente/:id' exact 
+                component={PrintBonLivraisonVente} />
+              <ProtectedRoute path='/view/contenu-vente/:id' exact component={ContenuDevisVente}/>
+              <ProtectedRoute path='/liste-devis-vente' exact component={ListDevisVente}/>
+              <ProtectedRoute path="/view/confirmation/:id" component={ValiderCommande} />
+              <ProtectedRoute path="/vente" component={Vente} />
               <Route path='/' exact component={Home}/>
-              <Route path='/home-service-list' exact component={HomeServiceList} />
-              <Route path='/home-service-prestation' exact component={HomeServicePrestation} />
-              <Route path='/home-service-vente' exact component={HomeServiceVente}/>
-              <Route path='/domestique' exact component={Domestique} />
-              <Route path='/liste-devis-domestique' exact component={ListDevisDomestique} />
-              <Route path='/agricole' exact component={Agricole} />
-              <Route path='/liste-devis-agricole' exact component={ListDevis} />
-              <Route path='/view/devis/:id' exact component={PrintDevis} />
-              <Route path='/view/domestique/:id' exact component={PrintDevisDomestique}/>
-              <Route path='/view/devis-vente/:id' exact component={PrintDevisVente} />
-              <Route path='/view/facture-vente/:id' exact component={PrintFactureVente} />
-              <Route path='/view/bon-livraison-vente/:id' exact component={PrintBonLivraisonVente} />
-              <Route path='/view/contenu-vente/:id' exact component={ContenuDevisVente}/>
-              <Route path='/liste-devis-vente' exact component={ListDevisVente}/>
-              <Route path="/view/confirmation/:id" component={ValiderCommande} />
-              <Route path="/vente" component={Vente} />
               <Route path='/login' exact component={Login} />
               <Route path="/logout" component={Logout} />
               <Route component={Error}/>

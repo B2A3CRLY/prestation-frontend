@@ -19,7 +19,9 @@ const apiAgent = apiUrl + '/agent/';
 const apiDevis = apiUrl + '/devisVente/';
 const apiFilterDevis = apiUrl + '/getnumber/';
 const tokenKey = 'token';
-const orangeUrlToken = 'https://api.orange.com/oauth/v3/token'
+const API_KEY = '1fc20349a4f40e260f481ad036c7bae2b015745d'
+const urlsmsPartner = 'https://api.smspartner.fr/v1/send'
+const url = 'https://api.orange.com/oauth/v3/token'
 const authorization_header ='Basic TjJlMG1UeFhFckxNemxLVkhrbjVVYm55R2FmajYyclY6SlBlRUdYeXhvbHhtUGtYSg=='
 const access_token = 'pIeL8mPyWwEw7Pp9xONOjkTlUM8U' 
 const YOUR_CLIENT_ID = 'N2e0mTxXErLMzlKVHkn5UbnyGafj62rV'
@@ -203,11 +205,11 @@ export default class ValiderCommande extends Component {
             })
         
     }
-    sendwhatsAppMessage = (phone, document) => {
-        return `https://api.whatsapp.com/send?phone=' + ${phone} + '&text=Bonjour         veuillez%20télécharger%20votre%20devis%20en%20cliquant%20sur%20ce%20lien: ' + 
-        ${document}`
-        
+    sendwhatsAppMessage = (phone, document, code, firstname, lastname) => {
+        return `https://api.whatsapp.com/send?phone=' + ${phone} + '&text=Bonjour M (Mme) ${firstname} ${lastname},
+        Veuillez télécharger votre devis ${code} commandé chez KIRIKOU SYSTEMS en cliquant sur ce ${document}. Pour toutes questions ou informations supplémentaires, veuillez nous contacter au +221 77 277 00 56. Merci de faire confiance à KIRIKOU SYSTEMS.`
     }
+    
     sendSMS(recipient_phone_number, dev_phone_number, message) {
         const url =
             `https://api.orange.com/smsmessaging/v1/outbound/tel%3A%2B${dev_phone_number}/requests`
@@ -241,54 +243,46 @@ export default class ValiderCommande extends Component {
         })
         
     }
-    obtainToken = () => {
-        const url = orangeUrlToken;
-        const options = {
-        headers: {
-            Authorization: authorization_header
-        },
-            method: 'post'
-        };
-        fetchToCurl(url, options)
-        /*const options = {
-            method: 'POST',
-            url: orangeUrlToken,
-            headers: {
-                'Content-type': 'application/x-www-form-urlencoded'
-            },
-            data: {
-              grant_type: 'client_credentials',
-              //client_id: YOUR_CLIENT_ID,
-              //client_secret: YOUR_CLIENT_SECRET,
-              //audience: YOUR_API_IDENTIFIER
+    smsPartner(){
+        const headers = {
+                'Content-type': 'application/json',
+                'cache-control': 'no-cache'
+        }
+        const smsBody = {
+            apiKey:API_KEY,
+            phoneNumbers: '+221775977255',
+            sender: 'Kirikou',
+            game: 1,
+            message:'Hello Babacar !'
+        }
+        axios.post(urlsmsPartner, smsBody,{headers: headers,}).then(res => {
+            console.log('status:', res.status);
+            console.log('response :', res);
+            if (res.status === 200) {
+                notyf.success('message envoyé avec succés !');
             }
-          };
-          
-          axios.request(options).then(function (response) {
-            console.log(response.data);
-          }).catch(function (error) {
-            console.error(error);
-          });*/
+        }).catch(err => {
+            if (err.response) {
+                notyf.error('Une erreur s\'est produite')
+            } else if (err.request) {
+                console.log(err)
+            } else {
+                notyf.error('Une erreur inattendue s\'est produite')
+            }
+        })
     }
-    getToken = () => {
-        http.post(orangeUrlToken,
-            {
-                data: {
-                    grant_type: 'client_credentials',
-                    client_id: YOUR_CLIENT_ID,
-                    client_secret: YOUR_CLIENT_SECRET,
-                    audience: YOUR_API_IDENTIFIER
-                }
-            },
-            {
-                method: "post",
-                headers: {
-                    "Authorization": authorization_header,
-                    "Content-Type": "application/x-www-form-urlencoded",
-                    "Accept": "application/json"
-                },
-            }
-        ).then(res => {
+    
+    getToken(e) {
+        e.preventDefault()
+        const headers = {
+            'Authorization': `${authorization_header}`,
+            'Content-type': 'application/x-www-form-urlencoded',
+            'Accept': 'application/json'
+        }
+        const data = {
+            grant_type:"client_credentials"
+        }
+        http.post(url, data, {headers: headers,}).then(res => {
             console.log('status_access_token :', res.status);
             console.log('access_token :', res);
             if (res.status === 200) {
@@ -408,8 +402,8 @@ export default class ValiderCommande extends Component {
                             console.log('IdAgent_Remplacé:', res.data.id);
                             console.log('Status_Agent_Remplacé :', res.status);
                             if (res.status === 200) {
-                                //ws.next({ message: devis.code, type: 'message' });
-                                this.sendEmailClientWithoutFile(devis.client.clientEmail,devis.code);
+                                ws.next({ message: devis.code, type: 'message' });
+                                //this.sendEmailClientWithoutFile(devis.client.clientEmail,devis.code);
                                 setTimeout(this.refreshPage(), 100000)
                             } 
                         });
@@ -424,7 +418,7 @@ export default class ValiderCommande extends Component {
         return this.state.agentFirstname && this.state.agentLastname && this.state.selectedFile;
     }
     render() {
-        const { agents, order_ongoing, idAgent, devis, activePage, agentsPerPage,selectedFile, isFilePicked, showValidation, phone, client,messageSmS, numeroKirikou}= this.state;
+        const { agents, order_ongoing, idAgent, devis, activePage, agentsPerPage,selectedFile, isFilePicked, showValidation, phone, client,messageSmS, numeroKirikou, firstname, lastname}= this.state;
         console.log('fichier : ', selectedFile)
         const indexOfLastAgent = activePage * agentsPerPage;
         const indexOfFirstAgent = indexOfLastAgent - agentsPerPage;
@@ -518,9 +512,10 @@ export default class ValiderCommande extends Component {
                                     ) : 
                                     ''}
                                     {devis.document ? (<>
-                                        <a className="btn btn-success mt-2 mr-2" href={this.sendwhatsAppMessage(phone, devis.document)}><i className="fab fa-whatsapp"></i>WhatsApp</a>
+                                        <a className="btn btn-success mt-2 mr-2" href={this.sendwhatsAppMessage(phone, devis.document, devis.code,firstname, lastname)}><i className="fab fa-whatsapp"></i>WhatsApp</a>
                                         <Button className="btn btn-success mt-2 mr-2" onClick={() => this.sendSMS(client.clientPhone, numeroKirikou, messageSmS)}>Send SmS</Button>
-                                        <Button className="btn btn-success mt-2" onClick={()=>this.getToken()}>obtain Token</Button>
+                                        <Button className="btn btn-success mt-2" onClick={
+                                            () =>this.smsPartner()}>Sms Partner</Button>
                                         </>) : ''}
                                    </div>  
                                 </div>
